@@ -9,7 +9,7 @@ STUDY_DIR = os.path.join(BASE_DIR, "study-room")
 ASSETS_DIR = os.path.join(STUDY_DIR, "lesson-assets")
 VIDEOS_SRC = os.path.join(BASE_DIR, "videos")
 ARTIFACT_DIR = "/Users/rouen/.gemini/antigravity/brain/2f7883a2-405d-4596-a34a-2d0b4894d4c3"
-COURSE_JSON = os.path.join(BASE_DIR, "app", "src", "data", "courseData.json")
+COURSE_JSON = os.path.join(BASE_DIR, "courseData.json")
 
 os.makedirs(STUDY_DIR, exist_ok=True)
 os.makedirs(ASSETS_DIR, exist_ok=True)
