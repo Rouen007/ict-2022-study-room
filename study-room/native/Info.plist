@@ -26,5 +26,7 @@
   <string>13.0</string>
   <key>NSHighResolutionCapable</key>
   <true/>
+  <key>NSHumanReadableCopyright</key>
+  <string>Created by Xiao Ang</string>
 </dict>
 </plist>

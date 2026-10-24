@@ -1,6 +1,6 @@
 # ICT 2022 学习室 (ICT 2022 Mentorship Study Room)
 
-针对 **2022 ICT Mentorship [No Rant]** 全 37 集课程打造的本地双语精读与交互训练系统（支持零依赖浏览器直开 & 原生 macOS 桌面应用 `ICT 2022 学习室.app`）。
+> **Created by Xiao Ang** · 针对 **2022 ICT Mentorship [No Rant]** 全 37 集课程打造的本地双语精读与交互训练系统（支持零依赖浏览器直开 & 原生 macOS 桌面应用 `ICT 2022 学习室.app`）。
 
 ## 🚀 快速上手（其他人 Clone 后可直接使用）
 

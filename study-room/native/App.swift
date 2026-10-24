@@ -43,7 +43,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
             backing: .buffered,
             defer: false
         )
-        window.title = "ICT 2022 学习室 · Inner Circle Trader"
+        window.title = "ICT 2022 学习室 · Inner Circle Trader · Created by Xiao Ang"
         window.minSize = NSSize(width: 1080, height: 700)
 
         let contentController = WKUserContentController()
