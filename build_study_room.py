@@ -429,20 +429,29 @@ for ep_obj in cdata["episodes"]:
     if lid not in DISTILL_LESSONS:
         princs, core_text = STAGE_MAP_BY_EP.get(ep_num, (["P01", "P05", "P07"], ep_obj["summaryZh"]))
         cases = []
-        for kp in ep_obj.get("keyPoints", []):
+        kfs = ep_obj.get("keyframes", [])
+        figs = [{"src": f"lesson-assets/{kf['file']}", "caption": f"[{kf['timeStr']} {kf['timeframe']}] {kf['titleZh']}：{kf['captionZh']}"} for kf in kfs]
+
+        for idx, kp in enumerate(ep_obj.get("keyPoints", [])):
+            kp_figs = [figs[idx]] if idx < len(figs) else figs[:1]
+            read_items = []
+            if kp_figs:
+                read_items.append({"who": "老师图", "text": kp_figs[0]["caption"]})
+            read_items.append({"who": "老师", "text": kp["detailZh"]})
+            read_items.append({"who": "主模型", "text": f"将此教学点纳入【{ep_obj['module']}】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"})
+
+            fig_guide = f"重点核对原片关键帧 [{kp['timeStr']}] 处的价格结构转变与失衡区形态。" if kp_figs else ""
+
             cases.append({
                 "title": f"[{kp['timeStr']}] {kp['titleZh']}",
                 "gist": kp["detailZh"],
-                "scene": f"Ep.{ep_num:02d}《{ep_obj['titleEn']}》时间轴 [{kp['timeStr']}] 核心教学段落。",
-                "figureGuide": "",
-                "figures": [],
-                "read": [
-                    {"who": "老师", "text": kp["detailZh"]},
-                    {"who": "主模型", "text": f"结合前 5 集基础闭环，将该规则纳入 {ep_obj['module']} 的执行检查表。"}
-                ],
+                "scene": f"Ep.{ep_num:02d}《{ep_obj['titleEn']}》原片时间轴 [{kp['timeStr']}] 核心教学案例。",
+                "figureGuide": fig_guide,
+                "figures": kp_figs,
+                "read": read_items,
                 "plan": [
                     f"在原片 [{kp['timeStr']}] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-                    "未满足时间窗口与流动性猎杀前提时保持 Wait"
+                    "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
                 ],
                 "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
                 "principles": princs
@@ -489,7 +498,7 @@ import glob
 import re
 
 TRANSCRIPTS_DIR = os.path.join(BASE_DIR, "transcripts")
-HANDBOOK_PATH = os.path.join(BASE_DIR, "ICT_2022_Ep01_05_图文精读手册.md")
+HANDBOOK_PATH = os.path.join(BASE_DIR, "ICT_2022_全37讲_图文精读手册.md")
 
 def load_transcript_segments(ep_num):
     pattern = os.path.join(TRANSCRIPTS_DIR, f"{ep_num:02d}_*.md")
@@ -517,18 +526,19 @@ def load_handbook_sections():
     with open(HANDBOOK_PATH, "r", encoding="utf-8") as hf:
         text = hf.read()
     sections = {}
-    splits = re.split(r"(?=^## 第\s*[1-5]\s*集)", text, flags=re.M)
+    splits = re.split(r"(?=^##\s+Ep\.\s*\d+)", text, flags=re.M)
     for chunk in splits:
-        m = re.match(r"^## 第\s*([1-5])\s*集[^\n]*\n(.+)", chunk, flags=re.S)
+        m = re.match(r"^##\s+Ep\.\s*(\d+)[^\n]*\n(.+)", chunk, flags=re.S)
         if not m:
             continue
         ep_i = int(m.group(1))
         body = m.group(2).strip()
-        # Convert simple markdown to clean HTML paragraphs/lists/codeblocks for the study room
         html_lines = []
         in_code = False
+        in_table = False
         for line in body.splitlines():
-            if line.strip().startswith("```"):
+            sline = line.strip()
+            if sline.startswith("```"):
                 if not in_code:
                     html_lines.append('<pre class="hb-code"><code>')
                     in_code = True
@@ -539,20 +549,48 @@ def load_handbook_sections():
             if in_code:
                 html_lines.append(line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
                 continue
-            if line.startswith("!["):
+            if sline.startswith("![") or sline.startswith("````") or sline.startswith("<!--"):
                 continue
-            if line.startswith("### "):
-                html_lines.append(f"<h4>{line[4:].strip()}</h4>")
-            elif line.startswith("#### "):
-                html_lines.append(f"<h5>{line[5:].strip()}</h5>")
-            elif line.startswith("> "):
-                html_lines.append(f"<blockquote>{line[2:].strip()}</blockquote>")
-            elif line.strip().startswith("- ") or line.strip().startswith("* "):
-                content = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", line.strip()[2:])
+            if sline.startswith("|"):
+                cells = [c.strip() for c in sline.split("|")[1:-1]]
+                if all(re.match(r"^:?-+:?$", c) for c in cells if c):
+                    continue
+                if not in_table:
+                    html_lines.append("<div style='overflow-x:auto;margin:12px 0;'><table class='hb-table'>")
+                    html_lines.append("<tr>" + "".join(f"<th>{re.sub(r'\\*\\*(.+?)\\*\\*', r'<b>\\1</b>', c)}</th>" for c in cells) + "</tr>")
+                    in_table = True
+                else:
+                    html_lines.append("<tr>" + "".join(f"<td>{re.sub(r'\\*\\*(.+?)\\*\\*', r'<b>\\1</b>', c)}</td>" for c in cells) + "</tr>")
+                continue
+            else:
+                if in_table:
+                    html_lines.append("</table></div>")
+                    in_table = False
+
+            if sline.startswith("### "):
+                html_lines.append(f"<h4>{sline[4:].strip()}</h4>")
+            elif sline.startswith("#### "):
+                html_lines.append(f"<h5>{sline[5:].strip()}</h5>")
+            elif sline.startswith("> "):
+                quote_txt = sline[2:].strip()
+                if quote_txt.startswith("[!"):
+                    tag_m = re.match(r"^\[!([A-Z]+)\]\s*(.*)", quote_txt)
+                    if tag_m:
+                        atype = tag_m.group(1).lower()
+                        crest = tag_m.group(2)
+                        crest = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", crest)
+                        html_lines.append(f"<blockquote class='alert-box alert-{atype}'><b>[{tag_m.group(1)}]</b> {crest}</blockquote>")
+                        continue
+                quote_txt = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", quote_txt)
+                html_lines.append(f"<blockquote>{quote_txt}</blockquote>")
+            elif sline.startswith("- ") or sline.startswith("* "):
+                content = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", sline[2:])
                 html_lines.append(f"<p style='margin:4px 0 4px 14px;'>• {content}</p>")
-            elif line.strip():
-                content = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", line.strip())
+            elif sline:
+                content = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", sline)
                 html_lines.append(f"<p>{content}</p>")
+        if in_table:
+            html_lines.append("</table></div>")
         sections[ep_i] = "\n".join(html_lines)
     return sections
 

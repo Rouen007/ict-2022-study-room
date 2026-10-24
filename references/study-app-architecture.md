@@ -14,7 +14,7 @@ ict-2022-mentorship/
 ├── courseData.json                   # 37 讲元数据、时间轴节点、关键帧与术语源数据
 ├── build_course_data.py              # 生成 courseData.json 的脚本
 ├── build_study_room.py               # 生成 study-room 三大 JS 数据包的核心构建器
-├── ICT_2022_Ep01_05_图文精读手册.md   # 前 5 集深度中文讲义源文档
+├── ICT_2022_全37讲_图文精读手册.md   # 全 37 讲深度中文讲义源文档（含 62+ 关键帧图解与全模块拆解）
 ├── transcripts/                      # 全 37 集清洗后逐分钟英文原稿 (01_*.md - 37_*.md)
 └── study-room/                       # 学习室前端与 macOS 原生封装目录
     ├── index.html                    # 6 大学习模块主页面
