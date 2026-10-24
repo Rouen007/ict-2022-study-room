@@ -5,7 +5,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     private var window: NSWindow!
     private var webView: WKWebView!
     private let qaMode = CommandLine.arguments.contains("--qa")
-    private let studyRootURL = URL(fileURLWithPath: "/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/study-room", isDirectory: true)
+    private lazy var studyRootURL: URL = {
+        if let customPath = Bundle.main.object(forInfoDictionaryKey: "StudyRootPath") as? String,
+           FileManager.default.fileExists(atPath: customPath) {
+            return URL(fileURLWithPath: customPath, isDirectory: true)
+        }
+        let defaultDevPath = "/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/study-room"
+        if FileManager.default.fileExists(atPath: defaultDevPath) {
+            return URL(fileURLWithPath: defaultDevPath, isDirectory: true)
+        }
+        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        return appSupport.appendingPathComponent("ICT2022Study", isDirectory: true)
+    }()
 
     private var notebookURL: URL {
         studyRootURL.appendingPathComponent("notebook.json", isDirectory: false)

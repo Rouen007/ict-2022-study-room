@@ -5,7 +5,7 @@ import re
 import glob
 import shutil
 
-BASE_DIR = "/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TRANSCRIPTS_DIR = os.path.join(BASE_DIR, "transcripts")
 ARTIFACT_DIR = "/Users/rouen/.gemini/antigravity/brain/2f7883a2-405d-4596-a34a-2d0b4894d4c3"
 

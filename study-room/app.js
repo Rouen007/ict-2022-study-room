@@ -739,6 +739,13 @@ function openVideoAt(epId, seconds = 0) {
       ytEl.style.display = 'none';
       ytEl.src = '';
       videoEl.style.display = 'block';
+      videoEl.onerror = () => {
+        if (lesson.youtubeId) {
+          videoEl.style.display = 'none';
+          ytEl.style.display = 'block';
+          ytEl.src = `https://www.youtube.com/embed/${lesson.youtubeId}?start=${Math.floor(seconds || 0)}&autoplay=1`;
+        }
+      };
       if (!videoEl.src.endsWith(lesson.videoPath)) {
         videoEl.src = lesson.videoPath;
       }
@@ -778,6 +785,13 @@ function renderMtfView() {
   if (lesson.hasLocalVideo && lesson.videoPath) {
     ytEl.style.display = 'none';
     videoEl.style.display = 'block';
+    videoEl.onerror = () => {
+      if (lesson.youtubeId) {
+        videoEl.style.display = 'none';
+        ytEl.style.display = 'block';
+        ytEl.src = `https://www.youtube.com/embed/${lesson.youtubeId}`;
+      }
+    };
     if (!videoEl.getAttribute('src') || !videoEl.getAttribute('src').includes(lesson.videoPath)) {
       videoEl.setAttribute('src', lesson.videoPath);
     }

@@ -4,7 +4,7 @@ import os
 import shutil
 import glob
 
-BASE_DIR = "/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STUDY_DIR = os.path.join(BASE_DIR, "study-room")
 ASSETS_DIR = os.path.join(STUDY_DIR, "lesson-assets")
 VIDEOS_SRC = os.path.join(BASE_DIR, "videos")
@@ -672,7 +672,7 @@ LIBRARY_DATA = {
     "dayCount": len(lessons_list),
     "imageCount": total_images,
     "latestDate": "Ep.01–Ep.37 全集",
-    "sourcePath": "/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship",
+    "sourcePath": os.path.dirname(os.path.abspath(__file__)),
     "topics": [
         "Module 1 · 核心模型与日内基石 (Ep 01–05)",
         "Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)",

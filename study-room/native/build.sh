@@ -1,8 +1,9 @@
 #!/bin/zsh
 set -euo pipefail
 
-ROOT="/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/study-room"
-APP="/Users/rouen/Desktop/ICT 2022 学习室.app"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+APP="${1:-$HOME/Desktop/ICT 2022 学习室.app}"
 CONTENTS="$APP/Contents"
 MACOS="$CONTENTS/MacOS"
 RESOURCES="$CONTENTS/Resources"
@@ -24,6 +25,10 @@ rm -rf "$APP"
 mkdir -p "$MACOS" "$RESOURCES"
 
 cp "$ROOT/native/Info.plist" "$CONTENTS/Info.plist"
+# Record the source workspace path in Info.plist so dev builds auto-sync with the cloned folder
+/usr/libexec/PlistBuddy -c "Delete :StudyRootPath" "$CONTENTS/Info.plist" 2>/dev/null || true
+/usr/libexec/PlistBuddy -c "Add :StudyRootPath string $ROOT" "$CONTENTS/Info.plist"
+
 if [[ -f "$ROOT/native/Study.icns" ]]; then
   cp "$ROOT/native/Study.icns" "$RESOURCES/Study.icns"
 fi
