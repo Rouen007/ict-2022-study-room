@@ -50,6 +50,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         contentController.add(self, name: "saveNotebook")
         contentController.add(self, name: "reloadPage")
         contentController.add(self, name: "copyText")
+        contentController.add(self, name: "openExternalURL")
 
         if let initialJSON = loadNotebookJSON() {
             let scriptSource = "window.nativeNotebook = \(initialJSON);"
@@ -127,7 +128,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         } else if message.name == "copyText", let text = message.body as? String {
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setString(text, forType: .string)
+        } else if message.name == "openExternalURL", let urlString = message.body as? String, let url = URL(string: urlString) {
+            NSWorkspace.shared.open(url)
         }
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url,
+           let scheme = url.scheme?.lowercased(),
+           (scheme == "http" || scheme == "https") {
+            NSWorkspace.shared.open(url)
+            decisionHandler(.cancel)
+            return
+        }
+        decisionHandler(.allow)
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

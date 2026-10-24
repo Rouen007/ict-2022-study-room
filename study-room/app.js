@@ -623,6 +623,7 @@ function renderLibrary() {
   const isDone = state.completedLessons.includes(activeLesson.id);
   const currentNote = state.lessonNotes[activeLesson.id] || '';
   const distillHtml = window.renderLessonDistill ? window.renderLessonDistill(activeLesson) : '';
+  const epUrls = buildVideoUrls(activeLesson.id, 0);
 
   detailEl.innerHTML = `
     <div class="lesson-meta">
@@ -630,10 +631,9 @@ function renderLibrary() {
         <p class="eyebrow">Episode #${escapeHtml(activeLesson.id)} · ${escapeHtml(activeLesson.moduleTitle)} · 时长 ${escapeHtml(activeLesson.duration)}</p>
         <h3>${escapeHtml(activeLesson.title)}</h3>
       </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="ghost small" id="watchLessonVideo" type="button">
-          ${activeLesson.hasLocalVideo ? '打开 1080p 本地视频 & 多周期图谱' : '打开原片视频播放'}
-        </button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <a class="website-link small-link" href="${escapeHtml(epUrls.ytUrl)}" target="_blank" rel="noopener">🎬 YouTube 原片 ↗</a>
+        <a class="website-link small-link" href="${escapeHtml(epUrls.biliUrl)}" target="_blank" rel="noopener">📺 B站中配 P${epUrls.epNum} ↗</a>
         <button class="${isDone ? 'ghost' : 'primary'}" id="markLessonDone" type="button">
           ${isDone ? '已标记学完（点此取消）' : '标记本课已学完'}
         </button>
@@ -649,10 +649,6 @@ function renderLibrary() {
     </div>
     <div class="lesson-article">${activeLesson.html}</div>
   `;
-
-  document.getElementById('watchLessonVideo').addEventListener('click', () => {
-    openVideoAt(activeLesson.id, 0);
-  });
 
   document.getElementById('markLessonDone').addEventListener('click', () => {
     const idx = state.completedLessons.indexOf(activeLesson.id);
@@ -689,14 +685,6 @@ function renderLibrary() {
     });
   });
 
-  detailEl.querySelectorAll('[data-open-video]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const epId = String(btn.dataset.openVideo || activeLesson.id).padStart(2, '0');
-      const sec = Number(btn.dataset.seconds || btn.dataset.sec || 0);
-      openVideoAt(epId, sec);
-    });
-  });
-
   detailEl.querySelectorAll('.lesson-figure img, .dfigure img, .lesson-article img').forEach((img) => {
     img.addEventListener('click', () => {
       const fig = img.closest('figure');
@@ -707,65 +695,49 @@ function renderLibrary() {
   });
 }
 
+function buildVideoUrls(epId, seconds = 0) {
+  const padded = String(epId).replace(/^ep/i, '').padStart(2, '0');
+  const epNum = parseInt(padded, 10) || 1;
+  const lesson = LESSON_LIBRARY.find((l) => l.id === padded) || LESSON_LIBRARY[0] || {};
+  const vid = lesson.youtubeId || lesson.videoId || '';
+  const sec = Math.max(0, Math.floor(Number(seconds || 0)));
+  const ytUrl = sec > 0
+    ? `https://www.youtube.com/watch?v=${vid}&list=PLOqlWG05MfW6T7mUjI2CK5BdQ6FrV3zEm&t=${sec}s`
+    : (lesson.youtubeUrl || `https://www.youtube.com/watch?v=${vid}&list=PLOqlWG05MfW6T7mUjI2CK5BdQ6FrV3zEm`);
+  const biliUrl = sec > 0
+    ? `https://www.bilibili.com/video/BV16sH963EgW/?p=${epNum}&t=${sec}`
+    : (lesson.biliUrl || `https://www.bilibili.com/video/BV16sH963EgW/?p=${epNum}`);
+  return { ytUrl, biliUrl, epNum, padded };
+}
+
 function openImageViewer(src, title, caption, epId, seconds) {
   const viewer = document.getElementById('imageViewer');
   const viewerImg = document.getElementById('viewerImg');
   const viewerTitle = document.getElementById('viewerTitle');
   const viewerCaption = document.getElementById('viewerCaption');
-  const jumpBtn = document.getElementById('viewerJumpVideo');
+  const jumpYT = document.getElementById('viewerJumpYT');
+  const jumpBili = document.getElementById('viewerJumpBili');
   viewerImg.src = src;
   viewerTitle.textContent = title || '课程原图';
   viewerCaption.textContent = caption || '';
   if (epId && seconds !== null && seconds !== undefined) {
-    jumpBtn.style.display = 'inline-block';
-    jumpBtn.onclick = () => {
-      viewer.close();
-      openVideoAt(epId, seconds);
-    };
+    const urls = buildVideoUrls(epId, seconds);
+    jumpYT.style.display = 'inline-block';
+    jumpYT.href = urls.ytUrl;
+    jumpBili.style.display = 'inline-block';
+    jumpBili.href = urls.biliUrl;
   } else {
-    jumpBtn.style.display = 'none';
+    jumpYT.style.display = 'none';
+    jumpBili.style.display = 'none';
   }
   if (!viewer.open) viewer.showModal();
 }
 
-function openVideoAt(epId, seconds = 0) {
-  state.videoEpId = String(epId).padStart(2, '0');
-  setView('mtf');
-  setTimeout(() => {
-    const lesson = LESSON_LIBRARY.find((l) => l.id === state.videoEpId) || LESSON_LIBRARY[0];
-    const videoEl = document.getElementById('localVideoPlayer');
-    const ytEl = document.getElementById('ytFallbackPlayer');
-    if (lesson.hasLocalVideo && lesson.videoPath) {
-      ytEl.style.display = 'none';
-      ytEl.src = '';
-      videoEl.style.display = 'block';
-      videoEl.onerror = () => {
-        if (lesson.youtubeId) {
-          videoEl.style.display = 'none';
-          ytEl.style.display = 'block';
-          ytEl.src = `https://www.youtube.com/embed/${lesson.youtubeId}?start=${Math.floor(seconds || 0)}&autoplay=1`;
-        }
-      };
-      if (!videoEl.src.endsWith(lesson.videoPath)) {
-        videoEl.src = lesson.videoPath;
-      }
-      videoEl.currentTime = Number(seconds || 0);
-      videoEl.play().catch(() => {});
-    } else if (lesson.youtubeId) {
-      videoEl.pause();
-      videoEl.style.display = 'none';
-      ytEl.style.display = 'block';
-      ytEl.src = `https://www.youtube.com/embed/${lesson.youtubeId}?start=${Math.floor(seconds || 0)}&autoplay=1`;
-    }
-  }, 60);
-}
-
 function renderMtfView() {
   const lesson = LESSON_LIBRARY.find((l) => l.id === state.videoEpId) || LESSON_LIBRARY[0];
-  document.getElementById('videoEpBadge').textContent = lesson.hasLocalVideo
-    ? `Episode ${lesson.id} · 本地 1080p MP4（含原声）`
-    : `Episode ${lesson.id} · YouTube 原片流`;
-  document.getElementById('videoEpTitle').textContent = `Ep.${lesson.id} ${lesson.title}`;
+  const epUrls = buildVideoUrls(lesson.id, 0);
+  document.getElementById('videoEpBadge').textContent = `Episode ${lesson.id} · 时长 ${lesson.duration || ''} · YouTube & B站双端跳帧`;
+  document.getElementById('videoEpTitle').textContent = `${lesson.title}`;
 
   const selector = document.getElementById('videoEpSelector');
   selector.innerHTML = ['01', '02', '03', '04', '05'].map((id) => `
@@ -780,56 +752,46 @@ function renderMtfView() {
     });
   });
 
-  const videoEl = document.getElementById('localVideoPlayer');
-  const ytEl = document.getElementById('ytFallbackPlayer');
-  if (lesson.hasLocalVideo && lesson.videoPath) {
-    ytEl.style.display = 'none';
-    videoEl.style.display = 'block';
-    videoEl.onerror = () => {
-      if (lesson.youtubeId) {
-        videoEl.style.display = 'none';
-        ytEl.style.display = 'block';
-        ytEl.src = `https://www.youtube.com/embed/${lesson.youtubeId}`;
-      }
-    };
-    if (!videoEl.getAttribute('src') || !videoEl.getAttribute('src').includes(lesson.videoPath)) {
-      videoEl.setAttribute('src', lesson.videoPath);
-    }
-  } else {
-    videoEl.style.display = 'none';
-    ytEl.style.display = 'block';
-    ytEl.src = `https://www.youtube.com/embed/${lesson.youtubeId || ''}`;
+  const heroEl = document.getElementById('videoExternalHero');
+  if (heroEl) {
+    heroEl.innerHTML = `
+      <p class="muted" style="margin:0 0 10px;">${escapeHtml(lesson.summary || '')}</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="website-link" href="${escapeHtml(epUrls.ytUrl)}" target="_blank" rel="noopener">🎬 打开 YouTube 原片 (Ep.${escapeHtml(lesson.id)}) ↗</a>
+        <a class="website-link" href="${escapeHtml(epUrls.biliUrl)}" target="_blank" rel="noopener">📺 打开 B站中配 (P${epUrls.epNum}) ↗</a>
+      </div>
+    `;
   }
 
   const jumpsEl = document.getElementById('videoKeyframeJumps');
   const kfs = lesson.keyframes || [];
   if (kfs.length) {
-    jumpsEl.innerHTML = kfs.map((kf) => `
-      <button class="kf-jump-row" data-kf-sec="${kf.seconds}" type="button">
-        <div>
-          <span class="ts-jump">[${escapeHtml(kf.timeStr || kf.time || '')}]</span>
-          <strong>${escapeHtml(kf.titleZh || kf.title || '')}</strong>
+    jumpsEl.innerHTML = kfs.map((kf) => {
+      const urls = buildVideoUrls(lesson.id, kf.seconds);
+      const tStr = kf.timeStr || kf.time || '';
+      const tTitle = kf.titleZh || kf.title || '';
+      return `
+        <div class="kf-jump-row" style="cursor:default;">
+          <div>
+            <span class="badge-core" style="margin-right:6px;">${escapeHtml(kf.timeframe || '')}</span>
+            <strong>${escapeHtml(tTitle)}</strong>
+          </div>
+          <span class="dual-jump" style="flex-shrink:0;">
+            <a class="time-pill yt-pill" href="${escapeHtml(urls.ytUrl)}" target="_blank" rel="noopener">🎬 YT [${escapeHtml(tStr)}] ↗</a>
+            <a class="time-pill bili-pill" href="${escapeHtml(urls.biliUrl)}" target="_blank" rel="noopener">📺 B站 [${escapeHtml(tStr)}] ↗</a>
+          </span>
         </div>
-        <small style="color:var(--muted);flex-shrink:0;">点此跳帧 ▶</small>
-      </button>
-    `).join('');
-    jumpsEl.querySelectorAll('[data-kf-sec]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const sec = Number(btn.dataset.kfSec || 0);
-        if (lesson.hasLocalVideo) {
-          videoEl.currentTime = sec;
-          videoEl.play().catch(() => {});
-        }
-      });
-    });
+      `;
+    }).join('');
   } else {
-    jumpsEl.innerHTML = '<p class="muted">本集暂无 1080p 关键帧快捷书签，可直接在课堂讲义中点击任意时间戳跳帧。</p>';
+    jumpsEl.innerHTML = '<p class="muted">可在课堂讲义中点击任意时间节点直达 YouTube 或 B站对应秒数。</p>';
   }
 
   // Render MTF Slider
   const activeCase = MTF_WALKTHROUGHS.find((c) => c.id === state.mtfCaseId) || MTF_WALKTHROUGHS[0];
   if (state.mtfStepIndex >= activeCase.steps.length) state.mtfStepIndex = 0;
   const activeStep = activeCase.steps[state.mtfStepIndex];
+  const stepUrls = buildVideoUrls(activeCase.ep, activeStep.seconds);
 
   const caseTabs = document.getElementById('mtfCaseTabs');
   caseTabs.innerHTML = MTF_WALKTHROUGHS.map((c) => `
@@ -869,7 +831,10 @@ function renderMtfView() {
     <div class="mtf-stage-card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
         <strong>当前层级：${escapeHtml(activeStep.tf)} · 本层任务：${escapeHtml(activeStep.goal)}</strong>
-        <button class="ts-jump" id="syncMtfToVideo" type="button">[${escapeHtml(activeStep.time)}] 同步左侧视频到此帧</button>
+        <span class="dual-jump">
+          <a class="time-pill yt-pill" href="${escapeHtml(stepUrls.ytUrl)}" target="_blank" rel="noopener">🎬 YT [${escapeHtml(activeStep.time)}] ↗</a>
+          <a class="time-pill bili-pill" href="${escapeHtml(stepUrls.biliUrl)}" target="_blank" rel="noopener">📺 B站 [${escapeHtml(activeStep.time)}] ↗</a>
+        </span>
       </div>
       <img src="${escapeHtml(activeStep.src)}" alt="${escapeHtml(activeStep.tf)}" id="mtfStageImg" />
       <div class="${state.blindQuiz ? 'blind-mask' : ''}" style="margin-top:12px;display:grid;gap:8px;">
@@ -884,9 +849,6 @@ function renderMtfView() {
     </div>
   `;
 
-  document.getElementById('syncMtfToVideo').addEventListener('click', () => {
-    openVideoAt(activeCase.ep, activeStep.seconds);
-  });
   document.getElementById('mtfStageImg').addEventListener('click', () => {
     openImageViewer(activeStep.src, `${activeCase.title} · ${activeStep.tf}`, activeStep.observation, activeCase.ep, activeStep.seconds);
   });

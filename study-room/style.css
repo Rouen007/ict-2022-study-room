@@ -465,22 +465,66 @@ button.ghost.small {
 .ts-jump,
 .time-pill {
   display: inline-block;
-  margin-right: 6px;
+  margin-right: 5px;
+  margin-bottom: 3px;
   padding: 3px 8px;
   border-radius: 5px;
   border: 1px solid var(--green);
   background: var(--green-soft);
   color: var(--green);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .ts-jump:hover,
 .time-pill:hover {
   background: var(--green);
   color: #fff;
+}
+
+.time-pill.yt-pill {
+  border-color: #b53838;
+  background: #fdf0f0;
+  color: #9e2a2a;
+}
+
+.time-pill.yt-pill:hover {
+  background: #b53838;
+  color: #fff;
+}
+
+.time-pill.bili-pill {
+  border-color: #1f6fa8;
+  background: #eef6fc;
+  color: #195a8a;
+}
+
+.time-pill.bili-pill:hover {
+  background: #1f6fa8;
+  color: #fff;
+}
+
+.dual-jump {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.video-external-hero {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.website-link.small-link {
+  padding: 5px 10px;
+  font-size: 0.82rem;
 }
 
 .lesson-video-bar {

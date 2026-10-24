@@ -558,8 +558,19 @@ def load_handbook_sections():
 
 HANDBOOK_BY_EP = load_handbook_sections()
 
+def make_dual_video_links(ep_num, vid, sec, label):
+    yt_url = f"https://www.youtube.com/watch?v={vid}&list=PLOqlWG05MfW6T7mUjI2CK5BdQ6FrV3zEm&t={int(sec)}s"
+    bili_url = f"https://www.bilibili.com/video/BV16sH963EgW/?p={int(ep_num)}&t={int(sec)}"
+    return (
+        f'<span class="dual-jump">'
+        f'<a class="time-pill yt-pill" href="{yt_url}" target="_blank" rel="noopener" title="跳转 YouTube 原片 {label}">🎬 YT [{label}] ↗</a>'
+        f'<a class="time-pill bili-pill" href="{bili_url}" target="_blank" rel="noopener" title="跳转 B站中配 P{ep_num} {label}">📺 B站 [{label}] ↗</a>'
+        f'</span>'
+    )
+
 def build_lesson_html(ep_obj):
     ep_num = ep_obj["ep"]
+    vid = ep_obj["videoId"]
     segs, calc_words = load_transcript_segments(ep_num)
     word_count = calc_words or ep_obj.get("wordCount", 0)
     parts = []
@@ -569,20 +580,19 @@ def build_lesson_html(ep_obj):
     # Video & Bilibili quick action bar inside lesson
     parts.append(
         f'<div class="lesson-video-bar">'
-        f'<button type="button" class="primary" data-open-video="{ep_num}" data-sec="0">▶ 在多周期图谱 & 播放器中打开本集</button>'
-        f'<a class="website-link" href="{ep_obj["biliUrl"]}" target="_blank" rel="noopener">📺 B站中配 P{ep_num} ↗</a>'
-        f'<a class="website-link" href="{ep_obj["youtubeUrl"]}" target="_blank" rel="noopener">🎬 YouTube 原片 ↗</a>'
+        f'<a class="website-link yt-main-link" href="{ep_obj["youtubeUrl"]}" target="_blank" rel="noopener">🎬 打开 YouTube 原片 (Ep.{ep_num:02d}) ↗</a>'
+        f'<a class="website-link bili-main-link" href="{ep_obj["biliUrl"]}" target="_blank" rel="noopener">📺 打开 B站中配 (P{ep_num}) ↗</a>'
         f'</div>'
     )
 
     # KeyPoints section
     if ep_obj.get("keyPoints"):
-        parts.append("<h3>一、关键时间轴与核心拆解</h3>")
-        parts.append("<table><thead><tr><th>原片时间</th><th>核心教学节点</th><th>机构订单流拆解与执行要点</th></tr></thead><tbody>")
+        parts.append("<h3>一、关键时间轴与核心拆解（点击时间直接跳至 YouTube / B站对应秒数）</h3>")
+        parts.append("<table><thead><tr><th>原片时间直达</th><th>核心教学节点</th><th>机构订单流拆解与执行要点</th></tr></thead><tbody>")
         for kp in ep_obj["keyPoints"]:
             parts.append(
                 f'<tr>'
-                f'<td style="white-space:nowrap"><button type="button" class="time-pill" data-open-video="{ep_num}" data-sec="{kp["seconds"]}">▶ [{kp["timeStr"]}]</button></td>'
+                f'<td style="white-space:nowrap">{make_dual_video_links(ep_num, vid, kp["seconds"], kp["timeStr"])}</td>'
                 f'<td><b>{kp["titleZh"]}</b></td>'
                 f'<td>{kp["detailZh"]}</td>'
                 f'</tr>'
@@ -597,7 +607,7 @@ def build_lesson_html(ep_obj):
                 f'<figure class="lesson-figure" data-seconds="{kf["seconds"]}" style="margin:14px 0">'
                 f'<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">'
                 f'<div><span class="badge-core">{kf["timeframe"]}</span> <b>{kf["titleZh"]}</b></div>'
-                f'<button type="button" class="time-pill" data-open-video="{ep_num}" data-sec="{kf["seconds"]}">▶ 跳转原片 [{kf["timeStr"]}]</button>'
+                f'{make_dual_video_links(ep_num, vid, kf["seconds"], kf["timeStr"])}'
                 f'</div>'
                 f'<img src="lesson-assets/{kf["file"]}" alt="{kf["titleZh"]} — {kf["captionZh"]}">'
                 f'<figcaption style="margin:8px 0 0;color:#20322f;font-size:0.92rem;">{kf["captionZh"]}</figcaption>'
@@ -613,13 +623,13 @@ def build_lesson_html(ep_obj):
     if segs:
         sec_title = "四" if ep_num in HANDBOOK_BY_EP else "三"
         parts.append(
-            f'<details class="transcript-details" open><summary>{sec_title}、原片英文逐字稿全文（共 {len(segs)} 个分钟切片 · {word_count} 词 · 点击时间戳跳转播放）</summary>'
+            f'<details class="transcript-details" open><summary>{sec_title}、原片英文逐字稿全文（共 {len(segs)} 个分钟切片 · {word_count} 词 · 点击时间戳直达 YouTube / B站）</summary>'
             f'<div class="transcript-box">'
         )
         for seg in segs:
             parts.append(
                 f'<div class="transcript-row">'
-                f'<button type="button" class="time-pill" data-open-video="{ep_num}" data-sec="{seg["startSec"]}">[{seg["range"]}]</button>'
+                f'{make_dual_video_links(ep_num, vid, seg["startSec"], seg["range"])}'
                 f'<p>{seg["text"]}</p>'
                 f'</div>'
             )
