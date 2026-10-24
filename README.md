@@ -39,6 +39,7 @@ open "$HOME/Desktop/ICT 2022 学习室.app"
 
 ## 📚 配套深度文档
 
-- [ICT 2022 全 37 讲图文精读手册](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/ICT_2022_全37讲_图文精读手册.md)：涵盖全 37 讲 62+ 张关键帧图解、机构订单流逻辑与避坑指南的大全集讲义。
+- [🧭 ICT 2022 终极总结与全体系精要归纳](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/ICT_2022_终极总结与全体系精要归纳.md)：IPDA 算法逻辑、S1–S6 六阶段标准化实战决策链、12 大核心技术武器库速查与终局晋级阶梯。
+- [📘 ICT 2022 全 37 讲图文精读手册](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/ICT_2022_全37讲_图文精读手册.md)：涵盖全 37 讲 62+ 张关键帧图解、机构订单流逻辑与避坑指南的大全集讲义。
 - [知识体系总纲与六阶段链路](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/references/framework.md)：12 条核心交易原则与 S1–S6 实战决策链路。
 - [学习室技术架构与编译指南](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/references/study-app-architecture.md)：纯原生 Swift + WKWebView 架构与增量补齐流程。
