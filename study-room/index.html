@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICT 2022 学习室</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="distill.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">ICT</div>
+        <div>
+          <p class="eyebrow">SirTrader No-Rant · 37 讲</p>
+          <h1>ICT 2022 学习室</h1>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="学习模式">
+        <button class="nav-btn active" data-view="classroom">
+          <span>01</span>
+          <div>
+            <strong>指导课堂</strong>
+            <small>37 讲三层提炼 + 1080p 图解 + 双语原稿</small>
+          </div>
+        </button>
+        <button class="nav-btn" data-view="mtf">
+          <span>02</span>
+          <div>
+            <strong>多周期图谱 & 原片</strong>
+            <small>1W→1D→1H→15m→2m 剥洋葱与本地视频</small>
+          </div>
+        </button>
+        <button class="nav-btn" data-view="orderflow">
+          <span>03</span>
+          <div>
+            <strong>日内时间与流程</strong>
+            <small>NY 时间轴 · 6 步核对单 · 术语词典</small>
+          </div>
+        </button>
+        <button class="nav-btn" data-view="practice">
+          <span>04</span>
+          <div>
+            <strong>理解练习</strong>
+            <small>每次 3 题 · Wait/Armed/Execute 引导训练</small>
+          </div>
+        </button>
+        <button class="nav-btn" data-view="journal">
+          <span>05</span>
+          <div>
+            <strong>Ep.04 复盘手帐</strong>
+            <small>标准四维复盘表 + NQ/ES 盈亏换算</small>
+          </div>
+        </button>
+        <button class="nav-btn" data-view="notebook">
+          <span>06</span>
+          <div>
+            <strong>我的笔记</strong>
+            <small>保存理解、错因与历史答题</small>
+          </div>
+        </button>
+      </nav>
+
+      <div class="progress-card">
+        <p class="eyebrow">学习原则</p>
+        <p id="principleText">流动性 (Liquidity) 先于方向，扫损 (Stop Hunt) 先于反转，位移 (Displacement) 产生 FVG，折价/溢价 (Discount/Premium) 决定挂单性价比。</p>
+        <div class="progress-line"><span id="progressFill"></span></div>
+        <small id="progressMeta">已完成 0 / 37 讲</small>
+        <small id="saveStatus" class="save-status">存储准备中…</small>
+        <button class="ghost small reload-btn" id="reloadApp" type="button">刷新最新内容</button>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <!-- 01 指导课堂 -->
+      <section class="view active" id="view-classroom">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">第一部分 · 先建立流动性与市场结构语言</p>
+            <h2>37 讲指导课堂（前 5 集 1080p 原片深度图解）</h2>
+          </div>
+          <div class="head-actions">
+            <button class="ghost" id="openSystemMapTop" type="button">查看 ICT 2022 体系地图</button>
+            <button class="primary" id="startPracticeFromClass">学完去练 3 题</button>
+          </div>
+        </header>
+
+        <div class="curriculum-strip" id="curriculumStrip"></div>
+
+        <section class="library-panel">
+          <div class="library-head">
+            <div>
+              <p class="eyebrow">课程原文与三层提炼</p>
+              <h3>全部 37 讲完整目录</h3>
+            </div>
+            <div class="filter-bar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+              <button class="chip active" data-ep-filter="all" type="button">全部 (37)</button>
+              <button class="chip" data-ep-filter="core" type="button">前 5 集核心课 (1080p图解)</button>
+              <input id="lessonSearch" class="search-input" type="search" placeholder="搜索 FVG / MSS / OB / 08:30 / 13:30 / Daily Bias…" />
+            </div>
+          </div>
+          <div class="library-layout">
+            <div class="lesson-list" id="lessonList"></div>
+            <article class="lesson-detail" id="lessonDetail"></article>
+          </div>
+        </section>
+      </section>
+
+      <!-- 02 多周期图谱 & 原片 -->
+      <section class="view" id="view-mtf">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">第二部分 · 1080p 原片跳帧与多周期矩阵拆解</p>
+            <h2>多周期图谱 & 原片同步研读</h2>
+          </div>
+          <div class="head-actions">
+            <button class="ghost" id="toggleBlindQuiz" type="button">开启盲测遮罩模式 (隐藏右侧答案)</button>
+          </div>
+        </header>
+
+        <div class="mtf-video-grid">
+          <div class="video-card">
+            <div class="video-card-head">
+              <div>
+                <p class="eyebrow" id="videoEpBadge">Episode 01 · Local 1080p MP4</p>
+                <h3 id="videoEpTitle">Elements To A Trade Setup</h3>
+              </div>
+              <div class="video-ep-selector" id="videoEpSelector"></div>
+            </div>
+            <div class="video-Stage">
+              <video id="localVideoPlayer" controls preload="metadata"></video>
+              <iframe id="ytFallbackPlayer" title="YouTube Fallback" allowfullscreen style="display:none;"></iframe>
+            </div>
+            <div class="video-keyframe-jumps" id="videoKeyframeJumps"></div>
+          </div>
+
+          <div class="mtf-slider-card">
+            <div class="mtf-slider-head">
+              <div>
+                <p class="eyebrow">多周期剥洋葱 (Top-Down Matrix)</p>
+                <h3 id="mtfCaseTitle">选择下方周期标签，观察同一笔交易在不同周期的形态</h3>
+              </div>
+              <div class="mtf-case-tabs" id="mtfCaseTabs"></div>
+            </div>
+            <div class="mtf-tf-strip" id="mtfTfStrip"></div>
+            <div class="mtf-stage" id="mtfStage"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 日内时间与流程 -->
+      <section class="view" id="view-orderflow">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">第三部分 · 纽约算法时钟与开仓前硬核检查</p>
+            <h2>日内时间轴 (Time & Price) · 6 步核对单 · 术语词典</h2>
+          </div>
+          <div class="head-actions">
+            <button class="primary" id="goPracticeFromFlow">进入 3 题引导练习</button>
+          </div>
+        </header>
+
+        <div class="flow-steps" id="flowSteps"></div>
+        <div class="flow-detail" id="flowDetail"></div>
+
+        <div class="checklist-and-glossary">
+          <div class="checklist-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div>
+                <p class="eyebrow">Pre-Trade Checklist</p>
+                <h3>ICT 2022 挂单前 6 步必检清单</h3>
+              </div>
+              <button class="ghost small" id="resetChecklist" type="button">重置勾选</button>
+            </div>
+            <div id="preTradeChecklist"></div>
+          </div>
+
+          <div class="glossary-card">
+            <p class="eyebrow">ICT 2022 Core Glossary</p>
+            <h3>核心术语精解 (12 词)</h3>
+            <div class="glossary-list" id="glossaryList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 理解练习 -->
+      <section class="view" id="view-practice">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">第四部分 · 引导式判断，不背口诀</p>
+            <h2 id="batchTitle">理解练习</h2>
+          </div>
+          <div class="batch-tabs" id="batchTabs"></div>
+        </header>
+
+        <div class="case-banner" id="caseBanner"></div>
+        <div class="questions" id="questionList"></div>
+
+        <footer class="practice-footer">
+          <div>
+            <strong>本组自检：</strong>
+            <span id="batchFeedback">先独立写出你的动作（Wait / Armed / Execute / Cancel / Exit）和理由，再点“查看导师解释”。</span>
+          </div>
+          <div class="footer-actions">
+            <button class="ghost" id="revealBatch">查看本组全部解释</button>
+            <button class="primary" id="completeBatch">保存原答并继续</button>
+          </div>
+        </footer>
+      </section>
+
+      <!-- 05 Ep.04 复盘手帐 -->
+      <section class="view" id="view-journal">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">第五部分 · 严格按 Ep.04 规范记录日内价格行为</p>
+            <h2>Ep.04 标准四维复盘手帐 & 点值换算器</h2>
+          </div>
+        </header>
+
+        <div class="journal-grid">
+          <div class="journal-form-card">
+            <h3>新增复盘记录（Ep.04 四维标准）</h3>
+            <p class="muted">ICT 在第 4 集反复强调：每天把高、低、点差和折算金额标在图上并记入复盘日志，不要去想“要是抓满整段能赚多少钱”，只看 FVG 内的确定性区间。</p>
+            <div class="j-form-row">
+              <label>交易日期
+                <input type="date" id="jDate" />
+              </label>
+              <label>品种合约
+                <select id="jSymbol">
+                  <option value="MNQ">MNQ (Micro Nasdaq · \$2/pt)</option>
+                  <option value="MES">MES (Micro S&P · \$5/pt)</option>
+                  <option value="NQ">NQ (E-mini Nasdaq · \$20/pt)</option>
+                  <option value="ES">ES (E-mini S&P · \$50/pt)</option>
+                </select>
+              </label>
+              <label>时段窗口
+                <select id="jSession">
+                  <option value="08:30-11:00 NY AM">08:30–11:00 NY 早盘窗口</option>
+                  <option value="13:30-16:00 NY PM">13:30–16:00 NY 下午盘窗口</option>
+                </select>
+              </label>
+              <label>张数 (Contracts)
+                <input type="number" id="jContracts" value="1" min="1" max="50" />
+              </label>
+            </div>
+            <div class="j-form-row">
+              <label>方向与猎杀池
+                <select id="jDirection">
+                  <option value="Sweep SSL → Long">先扫 SSL (卖方流动性) → 做多</option>
+                  <option value="Sweep BSL → Short">先扫 BSL (买方流动性) → 做空</option>
+                </select>
+              </label>
+              <label>① FVG 入场价 (Entry)
+                <input type="number" step="0.25" id="jEntry" placeholder="如 14957.00" />
+              </label>
+              <label>② 止损位 (Stop Loss)
+                <input type="number" step="0.25" id="jStop" placeholder="如 14989.50" />
+              </label>
+              <label>③ 对侧流动性目标价 (Target)
+                <input type="number" step="0.25" id="jTarget" placeholder="如 14780.75" />
+              </label>
+            </div>
+            <div class="j-calc-preview" id="jCalcPreview">
+              <span>③ 点数距离：<strong>0.00 pts</strong></span>
+              <span>风险距离：<strong>0.00 pts (R:R —)</strong></span>
+              <span>④ 折算合约金额：<strong>\$0.00</strong></span>
+            </div>
+            <label>盘面关键观察（MSS 位置 / 0.5 均衡位 / 是否遵守等待纪律）
+              <textarea id="jComment" placeholder="记录今天 08:30 或 13:30 扫了哪个高低点、是否有三推或位移、是否等回到折价/溢价区 FVG 才进场..."></textarea>
+            </label>
+            <div style="display:flex;gap:10px;margin-top:10px;">
+              <button class="primary" id="saveJournalEntry" type="button">保存到复盘手帐</button>
+              <button class="ghost" id="fillDemoJournal" type="button">填入 Ep.04 原片 NQ 案例数据</button>
+            </div>
+          </div>
+
+          <div class="journal-list-card">
+            <h3>已保存的复盘手帐 (<span id="journalCount">0</span>)</h3>
+            <div id="journalEntriesList" class="journal-entries-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 我的笔记 -->
+      <section class="view" id="view-notebook">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">第六部分 · 把 ICT 2022 变成你自己的执行纪律</p>
+            <h2>学习笔记与错误清单</h2>
+          </div>
+          <div class="head-actions">
+            <button class="primary" id="copyContinueRequest" type="button">复制接续请求</button>
+            <button class="ghost" id="exportNotes">导出学习记录 JSON</button>
+          </div>
+        </header>
+
+        <div class="notebook-grid">
+          <div class="note-card">
+            <h3>我对 ICT 2022 模型的核心理解</h3>
+            <p class="muted">用你自己的话写：为什么散户的突破是算法的止损猎杀？为什么没有 MSS + Displacement 绝不摸顶抄底？</p>
+            <textarea id="summaryNote" placeholder="写下你自己的交易戒律与理解..."></textarea>
+          </div>
+          <div class="note-card">
+            <h3>我最容易犯的错误（参照垃圾老师学习室自查）</h3>
+            <div class="mistake-list" id="mistakeList"></div>
+          </div>
+          <div class="note-card full">
+            <h3>课程分课笔记 (<span id="lessonNotesCount">0</span>)</h3>
+            <div id="savedLessonNotes" class="saved-answers"></div>
+          </div>
+          <div class="note-card full">
+            <h3>已保存的练习回答</h3>
+            <div id="savedAnswers" class="saved-answers"></div>
+          </div>
+          <div class="note-card full">
+            <h3>练习答题版本记录（不覆盖旧答案）</h3>
+            <div id="attemptHistory" class="saved-answers"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="image-viewer" id="imageViewer">
+    <div class="viewer-bar">
+      <strong id="viewerTitle">课程原图</strong>
+      <div class="viewer-actions">
+        <button class="ghost small" id="viewerJumpVideo" type="button" style="display:none;">跳到原片此刻</button>
+        <button class="ghost small" id="closeViewer" type="button">关闭 ESC</button>
+      </div>
+    </div>
+    <div class="viewer-stage">
+      <img id="viewerImg" alt="课程放大图" />
+      <p id="viewerCaption" style="color:#eef3ed;margin-top:10px;font-size:0.92rem;line-height:1.6;"></p>
+    </div>
+  </dialog>
+
+  <dialog class="system-map" id="systemMap">
+    <div class="viewer-bar">
+      <strong>ICT 2022 Mentorship 体系地图 · 6 步交易链路与 12 条核心原则</strong>
+      <button class="ghost small" id="closeSystemMap" type="button">关闭 ESC</button>
+    </div>
+    <div class="system-map-body" id="systemMapBody"></div>
+  </dialog>
+
+  <script src="distill-data.js"></script>
+  <script src="library-data.js"></script>
+  <script src="course.js"></script>
+  <script src="distill.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

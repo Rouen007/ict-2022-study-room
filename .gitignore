@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.pyc
+node_modules/
+dist/
+videos/*.mp4
+videos/*.m4a
+videos/*.part
+study-room/videos
+study-room/notebook.json
+study-room/history/
+study-room/native/Study.iconset/
+transcripts/raw_vtt/
