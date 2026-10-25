@@ -3,6 +3,8 @@ import json
 import os
 import shutil
 import glob
+import subprocess
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STUDY_DIR = os.path.join(BASE_DIR, "study-room")
@@ -714,9 +716,46 @@ for ep_obj in cdata["episodes"]:
         "html": html_body
     })
 
+def get_git_version_info():
+    try:
+        sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=BASE_DIR).decode().strip()
+        short_sha = sha[:7]
+        date = subprocess.check_output(["git", "log", "-1", "--format=%cI"], cwd=BASE_DIR).decode().strip()
+        ts = int(subprocess.check_output(["git", "log", "-1", "--format=%ct"], cwd=BASE_DIR).decode().strip())
+        msg = subprocess.check_output(["git", "log", "-1", "--format=%s"], cwd=BASE_DIR).decode().strip()
+    except Exception:
+        short_sha = "f58278a"
+        sha = "f58278a78265b481b47c2e0edabd21b95987bfbb"
+        date = "2026-10-24T22:31:05+08:00"
+        ts = 1792852265
+        msg = "docs: add master summary and full system distillation guide (Created by Xiao Ang)"
+
+    return {
+        "repo": "Rouen007/ict-2022-study-room",
+        "branch": "main",
+        "commitSha": short_sha,
+        "commitFullSha": sha,
+        "commitDate": date,
+        "commitTimestamp": ts,
+        "commitMessage": msg,
+        "packagedAt": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "lessonCount": len(lessons_list),
+        "imageCount": total_images,
+        "version": "1.2.0"
+    }
+
+VERSION_INFO = get_git_version_info()
+
+with open(os.path.join(STUDY_DIR, "version.json"), "w", encoding="utf-8") as vf:
+    json.dump(VERSION_INFO, vf, ensure_ascii=False, indent=2)
+
+with open(os.path.join(STUDY_DIR, "version.js"), "w", encoding="utf-8") as vf:
+    vf.write("window.ANG_VERSION = " + json.dumps(VERSION_INFO, ensure_ascii=False, indent=2) + ";\n")
+
 LIBRARY_DATA = {
     "schema": "ang-learning-library",
-    "packagedAt": "2026-10-24",
+    "packagedAt": VERSION_INFO["packagedAt"],
+    "versionInfo": VERSION_INFO,
     "dayCount": len(lessons_list),
     "imageCount": total_images,
     "latestDate": "Ep.01–Ep.37 全集",

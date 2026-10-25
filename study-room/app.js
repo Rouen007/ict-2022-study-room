@@ -1440,6 +1440,335 @@ function bindEvents() {
   });
 }
 
+// ==========================================================================
+// GitHub Sync Checker & Red Dot Alert (本地慢于 GitHub 红点提示)
+// ==========================================================================
+let syncStatusState = {
+  checking: false,
+  isBehind: false,
+  simulated: false,
+  lastCheckTime: null,
+  local: null,
+  remote: null,
+  error: null
+};
+
+function getLocalVersionInfo() {
+  if (window.ANG_VERSION) return window.ANG_VERSION;
+  if (window.ANG_LIBRARY && window.ANG_LIBRARY.versionInfo) return window.ANG_LIBRARY.versionInfo;
+  return {
+    repo: 'Rouen007/ict-2022-study-room',
+    branch: 'main',
+    commitSha: 'f58278a',
+    commitFullSha: 'f58278a78265b481b47c2e0edabd21b95987bfbb',
+    commitDate: '2026-10-24T22:31:05+08:00',
+    commitTimestamp: 1792852265,
+    commitMessage: 'docs: add master summary and full system distillation guide (Created by Xiao Ang)',
+    packagedAt: '2026-10-25 08:00:00'
+  };
+}
+
+async function checkGitHubSync(isManual = false) {
+  const localVer = getLocalVersionInfo();
+  syncStatusState.local = localVer;
+  syncStatusState.checking = true;
+  syncStatusState.error = null;
+  updateSyncUI();
+
+  // Support simulated behind state for instant verification
+  if (localStorage.getItem('ict_simulate_behind') === 'true' || window.__ICT_FORCE_BEHIND__) {
+    await new Promise((r) => setTimeout(r, 350));
+    syncStatusState.checking = false;
+    syncStatusState.isBehind = true;
+    syncStatusState.simulated = true;
+    syncStatusState.lastCheckTime = new Date();
+    syncStatusState.remote = {
+      sha: '9c84e1b',
+      fullSha: '9c84e1b2f4837dc8a1e948c2057391da401bca99',
+      date: new Date().toISOString(),
+      msg: 'feat: add enhanced ICT orderflow tape-reading models and real-time alerts (Simulated)'
+    };
+    updateSyncUI();
+    return;
+  }
+
+  let remoteData = null;
+
+  // 1. Query GitHub Commits API
+  try {
+    const apiUrl = `https://api.github.com/repos/${localVer.repo}/commits/${localVer.branch}`;
+    const resp = await fetch(apiUrl, {
+      cache: 'no-cache',
+      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      const rSha = (data.sha || '').substring(0, 7);
+      const rDate = data.commit?.committer?.date || data.commit?.author?.date;
+      const rMsg = (data.commit?.message || '').split('\n')[0];
+      remoteData = {
+        sha: rSha,
+        fullSha: data.sha || '',
+        date: rDate,
+        msg: rMsg
+      };
+    }
+  } catch (err) {
+    console.warn('[SyncCheck] GitHub API failed, attempting raw version.json...', err);
+  }
+
+  // 2. Fallback: Query raw version.json
+  if (!remoteData) {
+    try {
+      const rawUrl = `https://raw.githubusercontent.com/${localVer.repo}/${localVer.branch}/study-room/version.json?_t=${Date.now()}`;
+      const rawResp = await fetch(rawUrl, { cache: 'no-cache' });
+      if (rawResp.ok) {
+        const rawJson = await rawResp.json();
+        remoteData = {
+          sha: (rawJson.commitSha || '').substring(0, 7),
+          fullSha: rawJson.commitFullSha || rawJson.commitSha || '',
+          date: rawJson.commitDate,
+          msg: rawJson.commitMessage || 'latest commit from version.json'
+        };
+      }
+    } catch (err2) {
+      console.warn('[SyncCheck] Fallback raw version.json failed too:', err2);
+    }
+  }
+
+  syncStatusState.checking = false;
+  syncStatusState.lastCheckTime = new Date();
+
+  if (remoteData) {
+    const remoteTime = new Date(remoteData.date).getTime();
+    const localTime = localVer.commitTimestamp
+      ? (localVer.commitTimestamp * 1000)
+      : new Date(localVer.commitDate).getTime();
+
+    // Condition for local being behind GitHub:
+    // Remote SHA differs from local SHA, AND remote commit timestamp is newer (by > 5000ms buffer)
+    const isBehind = (remoteData.sha !== localVer.commitSha && remoteTime > localTime + 5000);
+
+    syncStatusState.isBehind = isBehind;
+    syncStatusState.simulated = false;
+    syncStatusState.remote = remoteData;
+  } else {
+    syncStatusState.error = '未能获取 GitHub 远程数据（可能处于离线或网络受限状态）';
+    syncStatusState.isBehind = false;
+  }
+
+  updateSyncUI();
+}
+
+function updateSyncUI() {
+  const chip = document.getElementById('gitSyncChip');
+  const chipDot = document.getElementById('syncChipDot');
+  const chipLabel = document.getElementById('syncChipLabel');
+  const topBtn = document.getElementById('gitTopPill');
+  const topDot = document.getElementById('syncTopDot');
+  const topLabel = document.getElementById('syncTopLabel');
+  const behindBanner = document.getElementById('syncBehindBanner');
+
+  if (syncStatusState.checking) {
+    if (chip) chip.className = 'git-sync-chip';
+    if (chipDot) chipDot.className = 'sync-dot checking';
+    if (chipLabel) chipLabel.textContent = '检测中…';
+    if (topBtn) topBtn.classList.remove('has-update');
+    if (topDot) topDot.className = 'sync-dot checking';
+    if (topLabel) topLabel.textContent = '检测中…';
+    if (behindBanner) behindBanner.style.display = 'none';
+  } else if (syncStatusState.isBehind) {
+    // 🔴 RED DOT: Local is behind GitHub!
+    if (chip) chip.className = 'git-sync-chip has-update';
+    if (chipDot) chipDot.className = 'sync-dot red';
+    if (chipLabel) chipLabel.textContent = '有新数据 🔴';
+    if (topBtn) topBtn.classList.add('has-update');
+    if (topDot) topDot.className = 'sync-dot red';
+    if (topLabel) topLabel.textContent = '发现 GitHub 更新 🔴';
+    if (behindBanner) behindBanner.style.display = 'flex';
+  } else if (syncStatusState.error) {
+    if (chip) chip.className = 'git-sync-chip';
+    if (chipDot) chipDot.className = 'sync-dot grey';
+    if (chipLabel) chipLabel.textContent = '离线模式';
+    if (topBtn) topBtn.classList.remove('has-update');
+    if (topDot) topDot.className = 'sync-dot grey';
+    if (topLabel) topLabel.textContent = '本地模式';
+    if (behindBanner) behindBanner.style.display = 'none';
+  } else {
+    // 🟢 GREEN DOT: Local is up to date!
+    if (chip) chip.className = 'git-sync-chip';
+    if (chipDot) chipDot.className = 'sync-dot green';
+    if (chipLabel) chipLabel.textContent = '已同步';
+    if (topBtn) topBtn.classList.remove('has-update');
+    if (topDot) topDot.className = 'sync-dot green';
+    if (topLabel) topLabel.textContent = '已与 GitHub 同步';
+    if (behindBanner) behindBanner.style.display = 'none';
+  }
+
+  renderSyncModalDetails();
+}
+
+function renderSyncModalDetails() {
+  const modal = document.getElementById('syncModal');
+  if (!modal) return;
+
+  const titleEl = document.getElementById('syncModalStatusTitle');
+  const subEl = document.getElementById('syncModalStatusSub');
+  const iconEl = document.getElementById('syncModalIcon');
+  const noticeBox = document.getElementById('syncNoticeBox');
+  const noticeDesc = document.getElementById('syncNoticeDesc');
+  const cmdCard = document.getElementById('syncCmdCard');
+  const remoteCard = document.getElementById('remoteCard');
+  const remoteBadge = document.getElementById('remoteBadge');
+
+  const localShaEl = document.getElementById('localShaDisplay');
+  const localDateEl = document.getElementById('localDateDisplay');
+  const localMsgEl = document.getElementById('localMsgDisplay');
+
+  const remoteShaEl = document.getElementById('remoteShaDisplay');
+  const remoteDateEl = document.getElementById('remoteDateDisplay');
+  const remoteMsgEl = document.getElementById('remoteMsgDisplay');
+  const simBtn = document.getElementById('btnSimulateBehind');
+
+  const loc = syncStatusState.local || getLocalVersionInfo();
+  if (localShaEl) localShaEl.textContent = loc.commitSha || 'unknown';
+  if (localDateEl) localDateEl.textContent = loc.commitDate ? loc.commitDate.replace('T', ' ').slice(0, 19) : '--';
+  if (localMsgEl) localMsgEl.textContent = loc.commitMessage || '本地已构建版本';
+
+  const rem = syncStatusState.remote;
+  if (rem) {
+    if (remoteShaEl) remoteShaEl.textContent = rem.sha || '-------';
+    if (remoteDateEl) remoteDateEl.textContent = rem.date ? rem.date.replace('T', ' ').slice(0, 19) : '--';
+    if (remoteMsgEl) remoteMsgEl.textContent = rem.msg || '最新提交';
+  } else {
+    if (remoteShaEl) remoteShaEl.textContent = '-------';
+    if (remoteDateEl) remoteDateEl.textContent = '--';
+    if (remoteMsgEl) remoteMsgEl.textContent = syncStatusState.error || '未获取到远程数据';
+  }
+
+  if (simBtn) {
+    const isSim = localStorage.getItem('ict_simulate_behind') === 'true';
+    simBtn.textContent = isSim ? '🟢 关闭模拟落后状态' : '🔴 模拟落后测试开关';
+  }
+
+  if (syncStatusState.checking) {
+    if (iconEl) iconEl.textContent = '🔄';
+    if (titleEl) titleEl.textContent = '正在检测 GitHub 仓库同步状态…';
+    if (subEl) subEl.textContent = '正在连接 api.github.com 查询最新提交…';
+    if (noticeBox) noticeBox.className = 'sync-notice-box';
+    if (noticeDesc) noticeDesc.textContent = '正在对比本地 Commit 与 GitHub main 分支最新记录…';
+    if (cmdCard) cmdCard.style.display = 'none';
+    if (remoteCard) remoteCard.className = 'sync-compare-card remote';
+    if (remoteBadge) { remoteBadge.className = 'card-status-badge'; remoteBadge.textContent = '检测中'; }
+  } else if (syncStatusState.isBehind) {
+    // RED BEHIND
+    if (iconEl) iconEl.textContent = '🔴';
+    if (titleEl) titleEl.textContent = '本地数据慢于 GitHub 远程仓库';
+    if (subEl) subEl.textContent = syncStatusState.simulated ? '【当前为模拟测试模式】检测到 GitHub 存在更新' : '检测到 GitHub 存在新的讲义、图解或优化';
+    if (noticeBox) noticeBox.className = 'sync-notice-box alert-red';
+    if (noticeDesc) noticeDesc.innerHTML = `<strong>⚠️ 发现更新</strong>：GitHub 仓库上已有较新的提交（<code>${rem ? rem.sha : ''}</code>）。请在工作区拉取更新，确保学习室呈现全套最新内容。`;
+    if (cmdCard) cmdCard.style.display = 'block';
+    if (remoteCard) remoteCard.className = 'sync-compare-card remote has-update';
+    if (remoteBadge) { remoteBadge.className = 'card-status-badge badge-update-needed'; remoteBadge.textContent = '有新提交待拉取'; }
+  } else if (syncStatusState.error) {
+    if (iconEl) iconEl.textContent = '⚪';
+    if (titleEl) titleEl.textContent = '离线模式 / 未能连接 GitHub';
+    if (subEl) subEl.textContent = '网络暂不可用或达到 API 频次限制';
+    if (noticeBox) noticeBox.className = 'sync-notice-box';
+    if (noticeDesc) noticeDesc.textContent = syncStatusState.error + '。当前继续流畅使用本地所有 37 讲全部离线资源。';
+    if (cmdCard) cmdCard.style.display = 'none';
+    if (remoteCard) remoteCard.className = 'sync-compare-card remote';
+    if (remoteBadge) { remoteBadge.className = 'card-status-badge'; remoteBadge.textContent = '离线'; }
+  } else {
+    // GREEN LATEST
+    if (iconEl) iconEl.textContent = '🟢';
+    if (titleEl) titleEl.textContent = '本地数据已是最新';
+    if (subEl) subEl.textContent = '与 GitHub main 分支完全一致';
+    if (noticeBox) noticeBox.className = 'sync-notice-box';
+    if (noticeDesc) noticeDesc.innerHTML = `<strong>✅ 状态良好</strong>：本地 Commit 与 GitHub 远程 <code>${loc.repo}</code> 完全同步，所有 37 讲 62 张高清图解与三层提炼均为最新版本。`;
+    if (cmdCard) cmdCard.style.display = 'none';
+    if (remoteCard) remoteCard.className = 'sync-compare-card remote';
+    if (remoteBadge) { remoteBadge.className = 'card-status-badge badge-latest'; remoteBadge.textContent = '与远程一致'; }
+  }
+}
+
+function openSyncModal() {
+  const modal = document.getElementById('syncModal');
+  if (!modal) return;
+  renderSyncModalDetails();
+  modal.showModal();
+}
+
+function initGitHubSyncCheck() {
+  const chip = document.getElementById('gitSyncChip');
+  if (chip) chip.addEventListener('click', openSyncModal);
+
+  const topBtn = document.getElementById('gitTopPill');
+  if (topBtn) topBtn.addEventListener('click', openSyncModal);
+
+  const banner = document.getElementById('syncBehindBanner');
+  if (banner) banner.addEventListener('click', openSyncModal);
+
+  const modal = document.getElementById('syncModal');
+  const closeBtn = document.getElementById('closeSyncModal');
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.close();
+    });
+  }
+
+  const checkNowBtn = document.getElementById('btnCheckSyncNow');
+  if (checkNowBtn) {
+    checkNowBtn.addEventListener('click', () => {
+      checkGitHubSync(true);
+    });
+  }
+
+  const simBtn = document.getElementById('btnSimulateBehind');
+  if (simBtn) {
+    simBtn.addEventListener('click', () => {
+      const isSim = localStorage.getItem('ict_simulate_behind') === 'true';
+      if (isSim) {
+        localStorage.removeItem('ict_simulate_behind');
+        window.__ICT_FORCE_BEHIND__ = false;
+      } else {
+        localStorage.setItem('ict_simulate_behind', 'true');
+        window.__ICT_FORCE_BEHIND__ = true;
+      }
+      checkGitHubSync(true);
+    });
+  }
+
+  const copyPullBtn = document.getElementById('btnCopyPullCmd');
+  if (copyPullBtn) {
+    copyPullBtn.addEventListener('click', () => {
+      const cmd = 'git pull origin main && ./study-room/native/build.sh';
+      const nativeCopy = window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.copyText;
+      if (nativeCopy) {
+        nativeCopy.postMessage(cmd);
+        copyPullBtn.textContent = '已复制！';
+        setTimeout(() => { copyPullBtn.textContent = '复制更新命令'; }, 2000);
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cmd).then(() => {
+          copyPullBtn.textContent = '已复制！';
+          setTimeout(() => { copyPullBtn.textContent = '复制更新命令'; }, 2000);
+        });
+      }
+    });
+  }
+
+  // Initial check on startup
+  checkGitHubSync(false);
+
+  // Periodic check every 10 minutes
+  setInterval(() => {
+    checkGitHubSync(false);
+  }, 10 * 60 * 1000);
+}
+
 function init() {
   renderProgress();
   renderClassroom();
@@ -1450,6 +1779,7 @@ function init() {
   renderNotebook();
   bindEvents();
   setView(state.view || 'classroom');
+  initGitHubSyncCheck();
   flushNativeNotebook();
 }
 

@@ -15,7 +15,13 @@
         <div>
           <p class="eyebrow">SirTrader No-Rant · 37 讲</p>
           <h1>ICT 2022 学习室</h1>
-          <small style="color:#bdd8c9;font-size:0.74rem;display:block;margin-top:2px;">Created by Xiao Ang</small>
+          <div class="brand-subrow" style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px;">
+            <small style="color:#bdd8c9;font-size:0.74rem;">Created by Xiao Ang</small>
+            <button class="git-sync-chip" id="gitSyncChip" type="button" title="点击查看 GitHub 远程数据同步状态">
+              <span class="sync-dot" id="syncChipDot"></span>
+              <span class="sync-chip-label" id="syncChipLabel">检测中…</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -70,6 +76,13 @@
         <div class="progress-line"><span id="progressFill"></span></div>
         <small id="progressMeta">已完成 0 / 37 讲</small>
         <small id="saveStatus" class="save-status">存储准备中…</small>
+        <div class="sync-behind-banner" id="syncBehindBanner" style="display:none;" title="点击查看 GitHub 远程更新与拉取指引">
+          <span class="sync-beacon-dot"></span>
+          <div class="sync-behind-text">
+            <strong>GitHub 发现新更新</strong>
+            <small>本地数据落后，点击查看 ↗</small>
+          </div>
+        </div>
         <button class="ghost small reload-btn" id="reloadApp" type="button">刷新最新内容</button>
         <small style="display:block;margin-top:8px;color:#9ebdb0;font-size:0.72rem;text-align:center;">Created by Xiao Ang · ICT 2022 Study Room</small>
       </div>
@@ -81,9 +94,13 @@
         <header class="page-head">
           <div>
             <p class="eyebrow">第一部分 · 先建立流动性与市场结构语言</p>
-            <h2>37 讲指导课堂（前 5 集 1080p 原片深度图解）</h2>
+            <h2>37 讲指导课堂（全 37 讲 1080p 原片深度图解与三层提炼）</h2>
           </div>
           <div class="head-actions">
+            <button class="ghost git-top-pill" id="gitTopPill" type="button" title="检查与 GitHub 仓库数据同步状态">
+              <span class="sync-dot" id="syncTopDot"></span>
+              <span id="syncTopLabel">GitHub 同步</span>
+            </button>
             <button class="ghost" id="openSystemMapTop" type="button">查看 ICT 2022 体系地图</button>
             <button class="primary" id="startPracticeFromClass">学完去练 3 题</button>
           </div>
@@ -99,7 +116,7 @@
             </div>
             <div class="filter-bar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
               <button class="chip active" data-ep-filter="all" type="button">全部 (37)</button>
-              <button class="chip" data-ep-filter="core" type="button">前 5 集核心课 (1080p图解)</button>
+              <button class="chip" data-ep-filter="core" type="button">前 5 集核心课</button>
               <input id="lessonSearch" class="search-input" type="search" placeholder="搜索 FVG / MSS / OB / 08:30 / 13:30 / Daily Bias…" />
             </div>
           </div>
@@ -345,6 +362,73 @@
     <div class="system-map-body" id="systemMapBody"></div>
   </dialog>
 
+  <!-- GitHub 同步状态与红点详情弹窗 -->
+  <dialog class="sync-modal-dialog" id="syncModal">
+    <div class="sync-modal-head">
+      <div class="sync-head-title">
+        <span class="sync-modal-icon" id="syncModalIcon">🔄</span>
+        <div>
+          <strong id="syncModalStatusTitle">GitHub 仓库数据同步状态</strong>
+          <small id="syncModalStatusSub">正在检测本地与远程仓库版本差异…</small>
+        </div>
+      </div>
+      <button class="ghost small" id="closeSyncModal" type="button">关闭 ESC</button>
+    </div>
+    <div class="sync-modal-body">
+      <div class="sync-compare-grid">
+        <div class="sync-compare-card local">
+          <div class="card-tag">💻 本地数据版本</div>
+          <div class="card-commit-row">
+            <span class="code-pill" id="localShaDisplay">-------</span>
+            <small id="localDateDisplay">--:--:--</small>
+          </div>
+          <p class="card-msg" id="localMsgDisplay">本地构建数据</p>
+          <div class="card-status-badge local-badge">当前运行版本</div>
+        </div>
+
+        <div class="sync-compare-card remote" id="remoteCard">
+          <div class="card-tag">🌐 GitHub 远程最新 (main)</div>
+          <div class="card-commit-row">
+            <span class="code-pill" id="remoteShaDisplay">-------</span>
+            <small id="remoteDateDisplay">--:--:--</small>
+          </div>
+          <p class="card-msg" id="remoteMsgDisplay">正在向 GitHub API 查询…</p>
+          <div class="card-status-badge" id="remoteBadge">检查中</div>
+        </div>
+      </div>
+
+      <div class="sync-notice-box" id="syncNoticeBox">
+        <p id="syncNoticeDesc">正在检查 GitHub 上的最新数据提交…</p>
+      </div>
+
+      <div class="sync-cmd-card" id="syncCmdCard" style="display:none;">
+        <label>终端更新命令（在项目工作区执行）：</label>
+        <div class="cmd-row">
+          <code id="pullCmdText">git pull origin main && ./study-room/native/build.sh</code>
+          <button class="primary small" id="btnCopyPullCmd" type="button">复制更新命令</button>
+        </div>
+        <small class="cmd-tip">更新拉取后，桌面 App 将自动热重载为最新讲义与图解。</small>
+      </div>
+
+      <div class="sync-modal-footer">
+        <div class="sync-footer-left">
+          <button class="ghost small" id="btnSimulateBehind" type="button" title="点击切换模拟本地慢于 GitHub 状态以检验红点提示效果">
+            🔴 模拟落后测试开关
+          </button>
+          <button class="ghost small" id="btnCheckSyncNow" type="button">
+            🔄 立即重新检测
+          </button>
+        </div>
+        <div class="sync-footer-right">
+          <a class="primary small btn-link" id="btnOpenGitHubCommits" href="https://github.com/Rouen007/ict-2022-study-room/commits/main" target="_blank" rel="noopener">
+            打开 GitHub 提交记录 ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="version.js"></script>
   <script src="distill-data.js"></script>
   <script src="library-data.js"></script>
   <script src="course.js"></script>

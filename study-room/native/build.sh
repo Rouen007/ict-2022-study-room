@@ -40,6 +40,8 @@ cp "$ROOT/distill.js" "$RESOURCES/distill.js"
 cp "$ROOT/course.js" "$RESOURCES/course.js"
 cp "$ROOT/library-data.js" "$RESOURCES/library-data.js"
 cp "$ROOT/app.js" "$RESOURCES/app.js"
+cp "$ROOT/version.js" "$RESOURCES/version.js" 2>/dev/null || true
+cp "$ROOT/version.json" "$RESOURCES/version.json" 2>/dev/null || true
 ditto "$ROOT/lesson-assets" "$RESOURCES/lesson-assets"
 
 xcrun swiftc \
