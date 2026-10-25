@@ -1,3574 +1,1206 @@
 window.LESSON_DISTILL = {
-  "schema": "garbage-teacher-distill",
-  "version": 1,
-  "coverage": {
-    "sourceLessons": 37,
-    "distilled": 37
-  },
+  "schema": "ict-2022-distill",
+  "version": 2,
   "framework": {
     "schema": "ict-2022-distill-framework",
-    "version": 1,
-    "identity": "主模型提炼：把 ICT 2022 Mentorship [No Rant] 全 37 集的原话、1080p 原图批注与多周期推演，按一笔日内交易从『盘前过滤 → 流动性地图 → 猎杀触发 → 均衡进场 → 时段管理 → 手帐复盘』的六阶段归类。例子中严格区分 ICT原话 / 原片图表 / 主模型归纳。",
+    "version": 2,
+    "identity": "学习室的条件分析与训练框架；除显式证据外均为主模型归纳，不是对市场机制的实证保证。",
     "chain": [
       {
         "id": "S1",
-        "title": "① 今天值不值得做",
-        "question": "环境与时间门：纽约时区、午休禁区与垃圾时间过滤"
+        "title": "时间与环境",
+        "question": "数据、会话、新闻、风险预算是否齐全？"
       },
       {
         "id": "S2",
-        "title": "② 地图：流动性在哪",
-        "question": "高周期偏向 (DOL)：旧高低点止损池 (BSL/SSL) 与失衡区 (FVG)"
+        "title": "流动性地图",
+        "question": "候选目标和反向路径是什么？"
       },
       {
         "id": "S3",
-        "title": "③ 触发：什么时候能做",
-        "question": "猎杀止损 (Stop Raid) + 高能量位移 MSS + 订单块交付状态改变"
+        "title": "清扫与路径",
+        "question": "观察到什么，哪些路径已经失效？"
       },
       {
         "id": "S4",
-        "title": "④ 位置：在哪里挂单",
-        "question": "50% 均衡点 (Equilibrium) 溢价/折价过滤 + 三K线 FVG 挂单"
+        "title": "位移与结构",
+        "question": "哪个 swing 何时被突破？证据是否独立？"
       },
       {
         "id": "S5",
-        "title": "⑤ 管理：怎么拿、怎么走",
-        "question": "内外部流动性分批止盈、13:30 下午盘 Spooling 与 MOC 收盘加速"
+        "title": "位置与管理",
+        "question": "区间锚点、FVG、E/S/T 和取消条件是什么？"
       },
       {
         "id": "S6",
-        "title": "⑥ 复盘：怎么沉淀肌肉记忆",
-        "question": "Ep.04 标准四维复盘手帐、合约换月与亏损降档纪律"
+        "title": "复盘与训练",
+        "question": "当时可见证据、实际结果和反例是什么？"
       }
     ],
     "principles": [
       {
         "id": "P01",
         "stage": "S1",
-        "layer": "第一层 · 预期与时间门",
-        "title": "只抓日内一段高确定性波段，严守纽约时间窗口",
-        "oneLine": "放弃模仿高频多空来回反手，每天只在纽约关键窗口（早盘 08:30–11:00、下午盘 13:30–15:30）捕捉一段干净的单边价格腿；12:00–13:00 午休绝对空仓。",
+        "title": "限定训练模型与风险",
+        "rule": "先记录品种、合约、日期、America/New_York 时区、会话和新闻日历；入场前确定风险上限。",
+        "oneLine": "先记录品种、合约、日期、America/New_York 时区、会话和新闻日历；入场前确定风险上限。",
+        "trap": "将教学演示当成保证盈利的方法。",
         "how": [
-          "先把 TradingView 右下角时区锁定为 New York (UTC-5/夏令时 UTC-4)",
-          "早盘紧盯 08:30 宏观数据脉冲与 09:30 美股现货开盘的流动性猎杀；理想情况下 11:00 前结束战斗",
-          "12:00–13:00 纽约午休画粉红禁区，禁止开新仓；重大消息前若双向扫损无跟随（Seek & Destroy）直接关机"
+          "先记录品种、合约、日期、America/New_York 时区、会话和新闻日历；入场前确定风险上限。"
         ],
-        "misread": "看着 1 分钟图想把每一段小折返都吃到；或在 12:15 午休横盘区强行找 FVG 开单被来回打脸。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P02",
         "stage": "S2",
-        "layer": "第一层 · 流动性磁铁",
-        "title": "日线偏向 (Daily Bias) 与两大流动性磁铁 (DOL)",
-        "oneLine": "价格像回形针被磁铁吸引一样，在日线与高周期上永远只奔向两样东西：① 旧高/低点外侧的止损池 (BSL/SSL)；② 未回补的失衡区 (FVG)。",
+        "title": "观察与解释分开",
+        "rule": "旧高低点和 FVG 是候选位置；DOL 是有条件的方向假设，必须给出失效条件。",
+        "oneLine": "旧高低点和 FVG 是候选位置；DOL 是有条件的方向假设，必须给出失效条件。",
+        "trap": "把价格必然扫损或必然回补作为事实。",
         "how": [
-          "开盘前先看周线与日线下一根 K 线倾向于向哪一侧扩张（不必猜收盘阴阳，只需判断日内扩张方向）",
-          "标出日线最近的旧高点上方 Buy Stops (BSL)、旧低点下方 Sell Stops (SSL) 以及日线 FVG",
-          "若一侧外部流动性已被扫除且未能继续扩张，下一个磁铁必然转向区间内部 50% 均衡位与内部 FVG"
+          "旧高低点和 FVG 是候选位置；DOL 是有条件的方向假设，必须给出失效条件。"
         ],
-        "misread": "把日线看跌等同于今天分时图从早跌到晚——看跌日往往先向上拉升扫掉早盘高点（Judas Swing）才开始下跌。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P03",
         "stage": "S2",
-        "layer": "第一层 · 盘口地图",
-        "title": "15 分钟风向标 (Bellwether) 与相对等高/等低点陷阱",
-        "oneLine": "以 15m 图为日内骨架，标出 08:30 左侧最近的波段高点与波段低点；散户奉为强阻力的“双顶/相对等高点”，正是聪明钱最优先猎杀的买方止损池。",
+        "title": "流动性地图有时效",
+        "rule": "记录可见高低点及形成时刻，BSL/SSL 是框架中的候选止损区域，K 线不能证明实际订单数量。",
+        "oneLine": "记录可见高低点及形成时刻，BSL/SSL 是框架中的候选止损区域，K 线不能证明实际订单数量。",
+        "trap": "等高等低必然被刺穿，或者扫后必然反转。",
         "how": [
-          "在 15m 图画出 08:30 垂直线，向左侧紧邻处标出最近的 Swing High (BSL) 与 Swing Low (SSL)",
-          "同时标出亚盘 (19:00–21:00)、伦敦盘 (02:00–05:00) 高低点以及前日高低点 (PDH/PDL)",
-          "看到干净的 Relative Equal Highs（相对等高点），绝不在等高点下方提前摸顶做空，而是等它被刺穿！"
+          "记录可见高低点及形成时刻，BSL/SSL 是框架中的候选止损区域，K 线不能证明实际订单数量。"
         ],
-        "misread": "看到双顶/等高点就以为阻力很强直接做空，结果把止损刚好放在机构准备猎杀的 Buy Stops 池子里。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P04",
         "stage": "S3",
-        "layer": "第二层 · 猎杀与诱导",
-        "title": "先诱导再猎杀（Sucker Play）与三推蓄势（Three Drives）",
-        "oneLine": "机构建立大额空单需要大量高价买单做对手盘：常先跌破小低点诱导散户追空，或走出三推抬高结构（Three Drives）刺穿旧高点完成 Stop Raid。",
+        "title": "猎杀路径与反例",
+        "rule": "本训练模型观察先清扫候选流动性、再出现反向确认的路径；直接延续或没有清扫时可不交易，不强行解释为陷阱。",
+        "oneLine": "本训练模型观察先清扫候选流动性、再出现反向确认的路径；直接延续或没有清扫时可不交易，不强行解释为陷阱。",
+        "trap": "把没有入场机会误判成市场方向错误。",
         "how": [
-          "开盘前或开盘初若先小幅跌破短期震荡低点，警惕这是诱空陷阱（Sucker Play），观察随后是否迅速拉起去攻上方大级别等高点",
-          "向关键旧高点推进时，若连续走出三个依次抬高的短波段高点（Three Drives），说明正在累积多头跟风盘并完成顶部猎杀",
-          "未刺穿预定 BSL/SSL 池子之前，状态永远保持 Wait（等待）"
+          "本训练模型观察先清扫候选流动性、再出现反向确认的路径；直接延续或没有清扫时可不交易，不强行解释为陷阱。"
         ],
-        "misread": "价格刚在区间中部跌破一个小低点就急着追空，正好掉进算法去扫上方等高点前的诱空坑。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P05",
-        "stage": "S3",
-        "layer": "第二层 · 触发确认",
-        "title": "高能量位移 (Displacement) 与日内市场结构转变 (MSS)",
-        "oneLine": "刺穿流动性池后不猜顶底，切入 5m/2m/1m 等待价格以“大象跳进儿童泳池”式高能量位移反向跌破短期波段低点（或突破短期波段高点）。",
+        "stage": "S4",
+        "title": "MSS 与位移分别记录",
+        "rule": "记录被突破 swing 的价位、确认时刻及突破方式；记录位移幅度、实体和上下文。日内 MSS 不自动意味着多日反转。",
+        "oneLine": "记录被突破 swing 的价位、确认时刻及突破方式；记录位移幅度、实体和上下文。日内 MSS 不自动意味着多日反转。",
+        "trap": "只要大 K 线或任何微小破位就认定 MSS。",
         "how": [
-          "扫掉 BSL 后，锁定推动最后一次冲高的那个短期波段低点（Swing Low）；只有当价格强力砸穿它才确认 Bearish MSS",
-          "扫掉 SSL 后，锁定砸出最低点的那个短期波段高点（Swing High）；盘中刺穿它且三 K 线留下看涨 FVG 即确认 Bullish MSS",
-          "位移必须果断剧烈；若第一波回落既未破波段极值、内部又无 FVG，必须按兵不动，强迫市场二次冲顶后再亮出真底牌"
+          "记录被突破 swing 的价位、确认时刻及突破方式；记录位移幅度、实体和上下文。日内 MSS 不自动意味着多日反转。"
         ],
-        "misread": "刚刺穿前高、连短期 Swing Low 都没跌破也没有 FVG，就凭感觉在第一波软绵绵的回落中摸顶做空。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P06",
-        "stage": "S3",
-        "layer": "第二层 · 算法内核",
-        "title": "订单块 (Order Block) = 交付状态的改变 (Change in State of Delivery)",
-        "oneLine": "刺穿 SSL 的连续阴线合为一个看涨订单块，突破其第一根阴线开盘价即由卖转买；刺穿 BSL 的连续阳线合为看跌订单块，跌破其第一根阳线开盘价即由买转卖。",
+        "stage": "S4",
+        "title": "OB 与交付变化不替代结构",
+        "rule": "记录阴阳线串及采用的开盘价；交付变化、MSS 和位移分开核验，CISD 不作为替代 MSS 的或条件。",
+        "oneLine": "记录阴阳线串及采用的开盘价；交付变化、MSS 和位移分开核验，CISD 不作为替代 MSS 的或条件。",
+        "trap": "任意阴线都叫看涨 OB，或单凭开盘价突破立即入场。",
         "how": [
-          "把扫向止损池的那一串连续同色 K 线视为一个整体订单块（而非只看最后一根）",
-          "用水平线标出该连续序列第一根 K 线的开盘价（Opening Price）：价格反向越过该线的一刻，算法交付状态正式翻转",
-          "当订单块开盘价与位移留下的 FVG 发生重合时，是胜率最高的黄金狙击带"
+          "记录阴阳线串及采用的开盘价；交付变化、MSS 和位移分开核验，CISD 不作为替代 MSS 的或条件。"
         ],
-        "misread": "在还没有突破连续阴线/阳线开盘价之前，随便拿中间一根阴线当订单块盲目接飞刀。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P07",
-        "stage": "S4",
-        "layer": "第三层 · 位置与挂单",
-        "title": "50% 均衡点 (Equilibrium) 溢价/折价矩阵与三K线 FVG 进场",
-        "oneLine": "从交易区间低点拉到高点取 50% 中轴：只允许在 >50% 的溢价区 (Premium) 看跌 FVG 阳线回抽时做空，只允许在 <50% 的折价区 (Discount) 看涨 FVG 阴线回踩时做多。",
+        "stage": "S5",
+        "title": "冻结区间后计算位置",
+        "rule": "事前记录 rangeLow、rangeHigh、rangeAsOf；中点=(低+高)/2。区间均衡与 FVG 的 CE 分开计算。",
+        "oneLine": "事前记录 rangeLow、rangeHigh、rangeAsOf；中点=(低+高)/2。区间均衡与 FVG 的 CE 分开计算。",
+        "trap": "使用未来终点重画区间，把任何入场都解释成折价或溢价。",
         "how": [
-          "确认三根 K 线序列的第 1 根极值与第 3 根极值之间存在无重叠空白（看跌为 SIBI，看涨为 BISI）",
-          "拉斐波那契 0–100% 保留 0.5（50% Equilibrium）：检查该 FVG 是否位于有利的溢价侧（空）或折价侧（多）",
-          "限价挂单放在 FVG 入口边缘（或 50% 中轴 CE），止损放在猎杀波段极值外或位移大 K 线极值外"
+          "事前记录 rangeLow、rangeHigh、rangeAsOf；中点=(低+高)/2。区间均衡与 FVG 的 CE 分开计算。"
         ],
-        "misread": "在低于 50% 的深折价区去追空一个看跌 FVG，结果刚进场就碰到下方内部支撑反抽打止损。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P08",
-        "stage": "S4",
-        "layer": "第三层 · 纪律状态链",
-        "title": "状态机纪律：Wait → Armed → Execute / Cancel / Exit",
-        "oneLine": "每个时刻只处于一个明确状态：未扫池子是 Wait；扫池子+出现 MSS 与 FVG 是 Armed；回抽进 FVG 成交是 Execute；未回抽直接到目标是 Cancel（接受踏空不追单）。",
+        "stage": "S5",
+        "title": "三根已完成 K 线定义 FVG",
+        "rule": "看涨：Low3>High1，区间[High1,Low3]；看跌：High3<Low1，区间[High3,Low1]。限价触价与收盘确认是不同规则。无 FVG 不做仅为本训练模型限制。",
+        "oneLine": "看涨：Low3>High1，区间[High1,Low3]；看跌：High3<Low1，区间[High3,Low1]。限价触价与收盘确认是不同规则。无 FVG 不做仅为本训练模型限制。",
+        "trap": "把中间蜡烛实体称为无成交缺口，或用未收盘第三根确认 FVG。",
         "how": [
-          "Wait：价格在 50% 均衡线附近徘徊，或虽破高点但尚未出现 MSS 与 FVG",
-          "Armed：已完成 Stop Raid + MSS + 溢价/折价区 FVG，限价单与止损 S、目标 T 已明确",
-          "Execute / Exit：回抽触及 FVG 成交；若已成交后收盘重新站回失效侧则按计划 Exit；若未给回抽直接走完目标则 Cancel 原单，绝不半路市价追单"
+          "看涨：Low3>High1，区间[High1,Low3]；看跌：High3<Low1，区间[High3,Low1]。限价触价与收盘确认是不同规则。无 FVG 不做仅为本训练模型限制。"
         ],
-        "misread": "FVG 没回抽直接跌了 50 点，心态失衡在折价区市价追空，结果正好追在算法回补内部流动性的反弹起点。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P09",
         "stage": "S5",
-        "layer": "第四层 · 止盈与下午盘",
-        "title": "内外流动性双重止盈、13:30 下午盘宏与 MOC 收盘加速",
-        "oneLine": "空单过 50% 均衡线后，先在折价区内部看涨 FVG 减仓（内部流动性），余仓看下方波段低点 Sell Stops（外部流动性）；下午盘盯紧 13:30 扫低点启动与 15:40–16:00 MOC 冲刺。",
+        "title": "计划风险、目标和取消条件",
+        "rule": "先验证 E/S/T 方向、合约数、成本与可达目标；目标不要求机械跨过中点。触价仅是模拟触发，实际成交须独立确认。",
+        "oneLine": "先验证 E/S/T 方向、合约数、成本与可达目标；目标不要求机械跨过中点。触价仅是模拟触发，实际成交须独立确认。",
+        "trap": "把看见目标等同于实现盈利，忽略未成交、滑点及挂单失效。",
         "how": [
-          "永远遵循：从外部流动性（扫高/低点）进场 → 在反向内部流动性（50% 另一侧的反向 FVG）落袋主体利润 → 再看反向外部止损池",
-          "下午盘 13:30 后，优先观察是否向下刺穿 13:30 后的首个短期波段低点（或午休低点）诱空，随后突破早盘相对等高点开启单边 Spooling",
-          "若下午走出单边多头趋势，15:40、15:50 至 16:00 常因机构收盘市价单 (MOC) 出现最后加速，于 16:00 前全部平仓"
+          "先验证 E/S/T 方向、合约数、成本与可达目标；目标不要求机械跨过中点。触价仅是模拟触发，实际成交须独立确认。"
         ],
-        "misread": "在溢价区做了空，却还贪心地把止盈设在溢价区，或者死扛单子不肯在折价区内部 FVG 分批落袋。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P10",
-        "stage": "S5",
-        "layer": "第四层 · 进阶结构与SMT",
-        "title": "Power of 3 (AMD)、LTH/ITH/STH 三层结构与跨市场 SMT 背离",
-        "oneLine": "结合午夜 00:00 开盘价识别积累-操纵-派发 (AMD)；用三层高低点 (LTH/ITH/STH) 跟踪趋势；用 ES vs NQ 的不同步创新高/新低 (SMT) 抓机构暗中派发。",
+        "stage": "S1",
+        "title": "分开新开仓与持仓管理",
+        "rule": "Ep.03 [13:09]：早盘通常08:30–11:00，可延至中午；午休避免寻找新机会；下午偏好13:30后。本训练新开仓窗口08:30–12:00、13:30–15:30，16:00前结束日内持仓是训练规则。",
+        "oneLine": "Ep.03 [13:09]：早盘通常08:30–11:00，可延至中午；午休避免寻找新机会；下午偏好13:30后。本训练新开仓窗口08:30–12:00、13:30–15:30，16:00前结束日内持仓是训练规则。",
+        "trap": "把午休不开新仓说成市场算法暂停，或把16:00现金收盘说成期货休市。",
         "how": [
-          "看跌日等待价格拉升至 00:00 午夜开盘价上方完成 Manipulation（犹大摆动 Judas Swing）再做空；看涨日等待砸至 00:00 下方再做多",
-          "回抽 HTF FVG 形成的中期高低点 (ITH/ITL) 不破，则单边结构延续，可将保护止损移至最新 ITH/ITL 外",
-          "在关键 BSL/SSL 处对比 ES 与 NQ：一个破前高而另一个不破前高（看跌 SMT），优先做空那个没创新高的更弱品种"
+          "Ep.03 [13:09]：早盘通常08:30–11:00，可延至中午；午休避免寻找新机会；下午偏好13:30后。本训练新开仓窗口08:30–12:00、13:30–15:30，16:00前结束日内持仓是训练规则。"
         ],
-        "misread": "只看单一品种盲目猜反转，忽略了相关性指数或短周期尚未破坏 ITH/ITL 的趋势延续信号。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P11",
-        "stage": "S6",
-        "layer": "第五层 · 合约与风控",
-        "title": "季度合约换月 (H/M/U/Z)、点值换算与亏损后仓位减半铁律",
-        "oneLine": "熟记 H(3月)/M(6月)/U(9月)/Z(12月) 并在到期前一周按 Barchart 持仓量换月；遭遇止损后若继续交易，下一笔风险仓位必须砍半。",
+        "stage": "S3",
+        "title": "SMT、三推与 AMD 是条件证据",
+        "rule": "SMT 对齐相关品种、时段和 swing，作为辅助而非机构意图证明。三推和 AMD 是候选演化路径，不要求每个交易日出现。",
+        "oneLine": "SMT 对齐相关品种、时段和 swing，作为辅助而非机构意图证明。三推和 AMD 是候选演化路径，不要求每个交易日出现。",
+        "trap": "看见背离就断言机构派发，或按事后日高低拼接 AMD。",
         "how": [
-          "NQ 每整点 (4 ticks) = $20（MNQ = $2）；ES 每整点 = $50（MES = $5）",
-          "每个交割月第 3 个周五到期前一周（周一/周二），在 barchart.com 检查 Open Int，一旦下季合约超过当季合约立即换月",
-          "单日止损后绝不报复性加仓；连续止损后将风险敞口砍半，直至用减半仓位挽回前次亏损的一半以上才恢复原仓位"
+          "SMT 对齐相关品种、时段和 swing，作为辅助而非机构意图证明。三推和 AMD 是候选演化路径，不要求每个交易日出现。"
         ],
-        "misread": "在合约到期周还在死做流动性枯竭的旧合约；或者一笔止损后上头翻倍重仓想一把回本。"
+        "layer": "条件训练框架"
       },
       {
         "id": "P12",
         "stage": "S6",
-        "layer": "第五层 · 复盘手帐",
-        "title": "Ep.04 标准四维复盘手帐 (Study Journal) 与百图回测",
-        "oneLine": "每张复盘截图必须量化记录四项指标：① MSS 到回抽 FVG 耗时；② 进场到目标持仓耗时；③ 最大抗单浮亏 (Heat)；④ 整段波幅点数。",
+        "title": "记录所有结果",
+        "rule": "保留计划、成交、取消、错过、止损与无交易样本；记录观察截止时刻、费用、结果和理由。案例标注练习不等于有统计意义的回测。",
+        "oneLine": "保留计划、成交、取消、错过、止损与无交易样本；记录观察截止时刻、费用、结果和理由。案例标注练习不等于有统计意义的回测。",
+        "trap": "只挑成功的确定性波段，用动作答对率代替交易能力。",
         "how": [
-          "按 Ep.02–05 标准在 TradingView 上框出 BSL/SSL、MSS、FVG 与 50% Equilibrium 截图标注",
-          "在手帐中老实记下成交后向止损方向逆行了多少个点（Heat Weathered），训练对正常回撤的心理耐受度",
-          "区分带提示课堂练习与自己的实盘/模拟盲测记录，积累 100 张标准化历史日内样本"
+          "保留计划、成交、取消、错过、止损与无交易样本；记录观察截止时刻、费用、结果和理由。案例标注练习不等于有统计意义的回测。"
         ],
-        "misread": "只截结果走出来的完美大图自嗨，不记进场等待时间、不记抗单浮亏，导致实盘一遇 3 个点正常回撤就慌乱割肉。"
+        "layer": "条件训练框架"
       }
-    ]
+    ],
+    "sessionPolicy": {
+      "id": "study-ny-v2",
+      "timeZone": "America/New_York",
+      "newEntryWindows": [
+        [
+          "08:30",
+          "12:00"
+        ],
+        [
+          "13:30",
+          "15:30"
+        ]
+      ],
+      "windowEndExclusive": true,
+      "cancelPendingAt": [
+        "12:00",
+        "15:30"
+      ],
+      "trainingFlatBy": "16:00",
+      "source": "主模型训练限制；Ep.03 [13:09] 仅支持一般时段说明。"
+    },
+    "states": {
+      "Wait": "证据不足；可等待或当天不交易。",
+      "Armed": "本训练条件与风险检查已齐，模拟挂单尚未成交。",
+      "Execute": "本练习模拟触发；不授权下单，不证明实际成交。",
+      "Cancel": "未成交且目标先到、结构失效或新开仓窗口结束。",
+      "Exit": "已有持仓达到预设退出条件；区别于取消挂单。"
+    },
+    "boundaries": [
+      "IRL可包含已声明区间内的短期摆动点相关流动性或失衡；ERL随所声明区间而定。",
+      "Opening Range Gap、NDOG、NWOG分别记录RTH/ETH、市场与开闭市锚点，不混用，也不补造课内归属。",
+      "Macro、Killzone、交易会话与数据公布时点分别记录，现金收盘不等于期货休市。",
+      "FVG中点CE、所选区间0.5与OB开盘价是不同坐标。",
+      "百张成功图例不是统计回测；验证需预定义窗口与规则，计入成本、失败样本并保留样本外数据。"
+    ],
+    "macroWindows": [
+      {
+        "time": "08:50–09:10",
+        "session": "AM Pre-Market Macro",
+        "focus": "观察开盘前是否接近候选流动性或失衡区域；不预判09:30方向。",
+        "id": "ny-0850-0910",
+        "evidenceStatus": "pending",
+        "attribution": "用户新增观察笔记；主模型整理",
+        "claimedSeries": "2024，具体年份归属与原课片段待核对",
+        "sourceRefs": []
+      },
+      {
+        "time": "09:50–10:10",
+        "session": "AM Main Macro",
+        "focus": "观察开盘初段之后是否形成清晰路径、位移与结构确认；不将该时段等同于高胜率。",
+        "id": "ny-0950-1010",
+        "evidenceStatus": "pending",
+        "attribution": "用户新增观察笔记；主模型整理",
+        "claimedSeries": "2024，具体年份归属与原课片段待核对",
+        "sourceRefs": []
+      },
+      {
+        "time": "10:50–11:10",
+        "session": "Late Morning Macro",
+        "focus": "观察早盘目标、动能延续或衰减；先记录实际价格证据。",
+        "id": "ny-1050-1110",
+        "evidenceStatus": "pending",
+        "attribution": "用户新增观察笔记；主模型整理",
+        "claimedSeries": "2024，具体年份归属与原课片段待核对",
+        "sourceRefs": []
+      },
+      {
+        "time": "11:50–12:10",
+        "session": "Pre-Lunch Macro",
+        "focus": "观察午休边界附近的回补或清扫候选；12:00后按当前训练不新增交易。",
+        "id": "ny-1150-1210",
+        "evidenceStatus": "pending",
+        "attribution": "用户新增观察笔记；主模型整理",
+        "claimedSeries": "2024，具体年份归属与原课片段待核对",
+        "sourceRefs": []
+      },
+      {
+        "time": "13:15–13:45",
+        "session": "PM Session Macro",
+        "focus": "观察下午盘前后的流动性与结构；13:30前按当前训练不新增交易。",
+        "id": "ny-1315-1345",
+        "evidenceStatus": "pending",
+        "attribution": "用户新增观察笔记；主模型整理",
+        "claimedSeries": "2024，具体年份归属与原课片段待核对",
+        "sourceRefs": []
+      },
+      {
+        "time": "15:15–15:45",
+        "session": "MOC / Closing Macro",
+        "focus": "观察尾盘前的波动与持仓管理；该窗口不等同于NYSE主板收盘竞价不平衡公布时段。",
+        "id": "ny-1515-1545",
+        "evidenceStatus": "pending",
+        "attribution": "用户新增观察笔记；主模型整理",
+        "claimedSeries": "2024，具体年份归属与原课片段待核对",
+        "sourceRefs": []
+      }
+    ],
+    "htfEvolution2023": {
+      "dailyBiasAnchor": "分析日内偏向时，先声明日线或周线所选区间、候选PD Array及流动性位置，并记录分析截止时刻。大周期背景不清时保持偏向待定，不能凭小周期噪声补造方向。",
+      "dealingRangeExpansion": "若所选大周期区间与当前价格证据支持向上扩张，可将看涨路径列为候选，并分别记录逆向回撤与反转的确认、失效条件。大周期偏向可能失败；折价向溢价的路径本身不能证明顺势期望收益更高，也不能把所有看跌信号归为弱回调。",
+      "source": "用户标记为2023–2024演进补充；本轮仅完成概念与系统边界整理，尚未核读对应原课。年份、原话与规则归属待具体视频和时间戳核验。",
+      "evidenceStatus": "pending",
+      "sourceRefs": []
+    },
+    "extensionSourceNotes": {
+      "checkedOn": "2026-10-25",
+      "NYSE": {
+        "url": "https://www.nyse.com/trade/auctions",
+        "status": "official_page_read",
+        "scope": "NYSE主板收盘竞价时间，不能用于证明Macro窗口或方向"
+      },
+      "ICT": {
+        "status": "video_passages_not_read",
+        "note": "检索发现官方Macro相关视频；本轮未取得对应原课正文，不据此核验六个窗口或2023–2024年份归属。"
+      }
+    },
+    "comparativePerspectives": [
+      {
+        "id": "2c-trading",
+        "name": "2C Trading (Al Brooks 裸K价格行为学)",
+        "channel": "YouTube @2C_trading (2025.03–2026.10 · 300+ 实盘与复盘视频，含 2026-09 支阻快速寻找与 2026-10 实盘更新)",
+        "role": "外部对比与补充视角（严禁混淆为 ICT 2022 官方教学）",
+        "evidenceStatus": "external_verified",
+        "localSource": "Documents/trading-notes/methodology/2C_trading_system/",
+        "corePhilosophy": {
+          "oneMethod": "只精通一种方法稳定盈利，熟练后加大仓位，而不是学更多方法",
+          "probabilityMindset": "做的是概率：高概率+盈亏比差可做，低概率+盈亏比好需精确位置；交易频率上升则胜率下降",
+          "disciplineOverTechnique": "走不顺就主动离场（不等止损）；连续不顺就休息；系统赚多少拿多少",
+          "conservativeData": "23天实盘回测只用剥头皮（反转K+50%挂单）：36笔交易，82%胜率，2.2均R，4天零交易"
+        },
+        "keyComparisons": [
+          {
+            "dimension": "核心进场形态",
+            "ict2022": {
+              "title": "FVG (Fair Value Gap) 价值失衡缺口",
+              "mechanism": "3根K线结构位移：第1根与第3根影线不重叠留出缺口，价格回抽触及缺口即为算法再平衡点",
+              "timing": "严格位于 Killzone (08:30–11:00 / 13:30–15:30) 内且在折价/溢价区",
+              "execution": "触价限价入场或收盘确认入场，止损置于摆动点外"
+            },
+            "twoCTrading": {
+              "title": "3根K微通道剥头皮 与 50%波段限价挂单",
+              "mechanism": "通道内3根连续趋势K（实体大、收盘在极值），在整组3根K的50%回调位挂限价单；未破50%极强，破了50%偏弱",
+              "timing": "5分钟为主图，开盘第1-50根K内；必须由 EMA20 动态辅助提供支撑/阻力",
+              "execution": "50%限价单进场，止损置于第1根K或波段起点外1 tick，止盈严格1:1 (1R)"
+            },
+            "synthesis": "两者本质均是在强位移波段寻找机构回踩点。ICT 用 FVG 空间失衡作为磁吸，2C 用 50% 几何平衡点结合 EMA20 作为动力反弹点。"
+          },
+          {
+            "dimension": "反转与结构转变",
+            "ict2022": {
+              "title": "MSS (Market Structure Shift) 市场结构转变",
+              "mechanism": "必须先完成对流动性池（BSL / SSL）的清扫刺穿，随后大实体穿透关键短期摆动高低点，完成交割方向逆转",
+              "timing": "流动性清扫发生后",
+              "execution": "伴随位移形成 FVG 确认，不猜顶底"
+            },
+            "twoCTrading": {
+              "title": "反转K (Reversal Bar) 与形态验证",
+              "mechanism": "连续趋势后第一根反向收盘K即为反转K；但在强趋势中第一次反转K容易失败；交易区间内80%突破为假突破",
+              "timing": "在关键位置（交易区间边缘、高开/低开关键位）出现",
+              "execution": "反转K收盘位直接做，或在反转K 50%挂单，止损放在反转K极值外1 tick"
+            },
+            "synthesis": "ICT 依赖外部流动性清扫与层级结构破坏；2C 关注单根反转K的动量衰竭与交易区间假突破（80%概率反转）。"
+          },
+          {
+            "dimension": "过滤系统与指标哲学",
+            "ict2022": {
+              "title": "纯裸K + Time & Price 算法时间窗口",
+              "mechanism": "杜绝一切传统均线与滞后指标；核心驱动是央行算法按时间交割订单流（Killzone、Macro 窗口、开盘基准价）",
+              "timing": "时间优先于形态",
+              "execution": "非交易窗口完全不开新仓"
+            },
+            "twoCTrading": {
+              "title": "EMA20 动态磁铁与顺势顺风车",
+              "mechanism": "EMA20 是强有力的动态支撑/阻力与趋势基准；日线在 EMA20 上方偏多、下方偏空；K线远离 EMA20 会被拉回，贴近 EMA20 顺势起爆",
+              "timing": "开盘前50根5m K线",
+              "execution": "3根K微通道必须有 EMA20 辅助才能大幅提升止盈率"
+            },
+            "synthesis": "ICT 以「时间基准（Macro/Killzone）」划分有效性，2C 以「均线位置（EMA20/远离拉回）」过滤虚假波动。"
+          },
+          {
+            "dimension": "时间周期与执行颗粒度",
+            "ict2022": {
+              "title": "HTF (1D/1H/15m) 定偏向 → LTF (1m/2m) 精细执行",
+              "mechanism": "大周期确定目标池与 Dealing Range，1m/2m 寻找微观 MSS + FVG，放大盈亏比",
+              "timing": "高低周期嵌套",
+              "execution": "秒级/1m 抓最小止损"
+            },
+            "twoCTrading": {
+              "title": "坚决反对 1m 图 · 5m 主战场 · 15m 看形态",
+              "mechanism": "铁律第4条明确禁止1分钟图（噪音大、过早进场导致被频繁打止损）；15m找收敛/通道/区间，5m执行进出",
+              "timing": "5分钟K线收盘或50%挂单",
+              "execution": "拒绝微观追单，等待5m形态成型"
+            },
+            "synthesis": "ICT 追求极致压缩止损（1m入场），2C 追求信号稳定性（5m主图防震荡陷阱）。初学者使用 2C 5m 图能有效避免在 1m 噪音中过度交易。"
+          },
+          {
+            "dimension": "止盈与离场纪律",
+            "ict2022": {
+              "title": "非对称高盈亏比 (Asymmetric R:R) · 目标对侧流动性",
+              "mechanism": "以大周期的 BSL/SSL 或未回补 FVG 为终极止盈，追求 1:3 甚至更高 R:R",
+              "timing": "价格触及目标流动性池",
+              "execution": "分批减仓（Partial Take Profit），止损移至保本（BE）"
+            },
+            "twoCTrading": {
+              "title": "高概率拿 1R (1:1) · 走不顺主动离场",
+              "mechanism": "高概率形态只拿 1R 利润，极强趋势才拿 2R；坚守概率思维，不贪大波段",
+              "timing": "触及 1:1 或盘面走不顺",
+              "execution": "铁律第1条：走不顺不等止损被动触发，差几点就主动跑；不改大止损，不加仓"
+            },
+            "synthesis": "ICT 靠高盈亏比拉大期望值，2C 靠高胜率（80%+）与坚决主动止损确保账户稳定增长。"
+          }
+        ],
+        "tenBlacklistRules": [
+          {
+            "num": 1,
+            "rule": "不追涨杀跌",
+            "slogan": "高开不追多，低开不追空；宁可错过不可做错"
+          },
+          {
+            "num": 2,
+            "rule": "不在交易区间中间做单",
+            "slogan": "只在区间边缘做高空低多，中间是绝对死区"
+          },
+          {
+            "num": 3,
+            "rule": "收敛三角形不做",
+            "slogan": "收敛末端是观望区，绝不左侧开仓猜突破"
+          },
+          {
+            "num": 4,
+            "rule": "不看1分钟图",
+            "slogan": "1分钟全是杂音与诱骗，过早进场必被打损"
+          },
+          {
+            "num": 5,
+            "rule": "不加仓",
+            "slogan": "盈利想加仓=灾难，一次回调直接打穿本金"
+          },
+          {
+            "num": 6,
+            "rule": "不改止损",
+            "slogan": "进场前算好止损，中途改一次2.5R直接亏空"
+          },
+          {
+            "num": 7,
+            "rule": "低波动日不做",
+            "slogan": "日内预期波幅 <15点直接关电脑休息"
+          },
+          {
+            "num": 8,
+            "rule": "不跟第三推对抗",
+            "slogan": "区间内第三推形成强趋势时立刻离场，绝不逆势抗单"
+          },
+          {
+            "num": 9,
+            "rule": "强趋势不做反转",
+            "slogan": "强单边趋势中顺势做50%回调，不做第1次反转K"
+          },
+          {
+            "num": 10,
+            "rule": "不强迫开单",
+            "slogan": "没有标准形态=最好的交易就是什么都不做"
+          }
+        ],
+        "threeCandleMicroChannelSop": {
+          "title": "3根K微通道剥头皮标准执行 SOP (3-Bar Micro Channel Scalp)",
+          "steps": [
+            "识别条件：在既定趋势通道内，发现连续3根（或4-5根）强趋势K线（实体饱满、无长影线、最后一根创出新极值）",
+            "环境确认：K线顺应 EMA20 方向（EMA20 呈倾斜角度支撑/压制）；不在区间中间或通道最末端",
+            "挂单进场：拉出这3根K线的总体波段，在 50% 回调位提前挂限价单（Limit Order）等待回踩触碰",
+            "止损设定：严格放置在第 1 根 K 线起点外 1 tick（若破 50% 且破第 1 根则形态失效）",
+            "止盈管理：严格 1:1（1R）止盈出场；若行情走势迟疑、回踩跌破 50% 且无买力弹起，主动提前离场"
+          ],
+          "keyframeShowcase": [
+            {
+              "file": "4zkG0jdEsy8_08m.jpg",
+              "caption": "最新实盘支阻：08m 处 K14大阳包吞反转，被套空头平仓买盘转化为强支撑"
+            },
+            {
+              "file": "4zkG0jdEsy8_11m.jpg",
+              "caption": "最新交易区间：11m 处上中下 1/3 规则，上空下多，中间死区不操作"
+            },
+            {
+              "file": "zDCnoIImHHM_18m.jpg",
+              "caption": "最新实盘禁忌：18m 处交易区间内严禁 4 根阳线 50% 挂单（深回撤扫损）与平保跑路"
+            },
+            {
+              "file": "yrtwu3BSnhQ_02m.jpg",
+              "caption": "经典微通道剥头皮：2m 处 3根连续趋势K与50%回调位标记"
+            },
+            {
+              "file": "yrtwu3BSnhQ_05m.jpg",
+              "caption": "经典微通道剥头皮：5m 处 EMA20 支撑与 50% 限价单触发"
+            },
+            {
+              "file": "muShRE-fd_Q_02m.jpg",
+              "caption": "经典开盘反转：大幅高开后反转K出现与 1R 目标设定"
+            }
+          ]
+        },
+        "latestVideoEvolutions2026": {
+          "supportResistanceMechanisms": {
+            "title": "实盘支撑阻力快速判定与被套交易者转化机制 (4zkG0jdEsy8 · 2026-09-07)",
+            "core": "支阻是区域不是单线。当合理做空位置失败时（如K14大阳反转包吞），被套空头回踩其进场点急于平保离场（买入平仓），与多头买盘合流形成强支撑。",
+            "ictComparison": "与 ICT 订单块缓解（Mitigation）及突破块（Breaker Block）底层原理完全共振。"
+          },
+          "rangeExecutionExclusion": {
+            "title": "交易区间中 3 根 K 50% 挂单的核心禁用禁忌 (zDCnoIImHHM · 2026-10-21)",
+            "core": "在强阳强阴交替的震荡交易区间内，严禁使用 3 根 K 50% 挂单；因为区间内缺乏单边动量，极易出现深幅回撤打穿 1 tick 窄止损后再拉起。该挂单法必须局限在清晰的趋势通道中。",
+            "ictComparison": "对应 ICT 在 Seek & Destroy 震荡日中停止使用常规 FVG 挂单的防御铁律。"
+          },
+          "oneMinuteBanEvolution": {
+            "title": "仓位放大后彻底退出 1m 图的心理学根源 (zDCnoIImHHM · 2026-10-21)",
+            "core": "1 分钟图思考时间极度匮乏，极易引发认知超载、动作变形与连续止损后的报复性重仓。成熟阶段坚定只做 5 分钟图剥头皮，少做但做精。",
+            "ictComparison": "为初学者提供重要反思：盲目在 1m 图摸顶抄底是爆仓主因，5m 结构更具统计稳定性。"
+          },
+          "activeBreakevenExit": {
+            "title": "预期不符果断平保（BE）主动跑与单日双损熔断 (zDCnoIImHHM · 2026-10-21)",
+            "core": "入场后行情未如预期爆发而是反向迟疑，给平保机会立即离场，不等打满止损；一单亏损+一单平保立即收工，恪守「涨上去就涨上去呗，涨上去又不赔钱」。",
+            "ictComparison": "与 ICT 的时间止损和未触发撤单规则形成坚固的资金安全网。"
+          }
+        }
+      }
+    ],
+    "extensions": {
+      "role": "optional_observation",
+      "policyVersion": "study-ny-v2",
+      "macros": [
+        {
+          "time": "08:50–09:10",
+          "session": "AM Pre-Market Macro",
+          "focus": "观察开盘前是否接近候选流动性或失衡区域；不预判09:30方向。",
+          "id": "ny-0850-0910",
+          "evidenceStatus": "pending",
+          "attribution": "用户新增观察笔记；主模型整理",
+          "claimedSeries": "2024，具体年份归属与原课片段待核对",
+          "sourceRefs": [],
+          "timeZone": "America/New_York",
+          "durationMinutes": 20,
+          "entryIntersections": [
+            [
+              "08:50",
+              "09:10"
+            ]
+          ],
+          "outsideEntryWindows": []
+        },
+        {
+          "time": "09:50–10:10",
+          "session": "AM Main Macro",
+          "focus": "观察开盘初段之后是否形成清晰路径、位移与结构确认；不将该时段等同于高胜率。",
+          "id": "ny-0950-1010",
+          "evidenceStatus": "pending",
+          "attribution": "用户新增观察笔记；主模型整理",
+          "claimedSeries": "2024，具体年份归属与原课片段待核对",
+          "sourceRefs": [],
+          "timeZone": "America/New_York",
+          "durationMinutes": 20,
+          "entryIntersections": [
+            [
+              "09:50",
+              "10:10"
+            ]
+          ],
+          "outsideEntryWindows": []
+        },
+        {
+          "time": "10:50–11:10",
+          "session": "Late Morning Macro",
+          "focus": "观察早盘目标、动能延续或衰减；先记录实际价格证据。",
+          "id": "ny-1050-1110",
+          "evidenceStatus": "pending",
+          "attribution": "用户新增观察笔记；主模型整理",
+          "claimedSeries": "2024，具体年份归属与原课片段待核对",
+          "sourceRefs": [],
+          "timeZone": "America/New_York",
+          "durationMinutes": 20,
+          "entryIntersections": [
+            [
+              "10:50",
+              "11:10"
+            ]
+          ],
+          "outsideEntryWindows": []
+        },
+        {
+          "time": "11:50–12:10",
+          "session": "Pre-Lunch Macro",
+          "focus": "观察午休边界附近的回补或清扫候选；12:00后按当前训练不新增交易。",
+          "id": "ny-1150-1210",
+          "evidenceStatus": "pending",
+          "attribution": "用户新增观察笔记；主模型整理",
+          "claimedSeries": "2024，具体年份归属与原课片段待核对",
+          "sourceRefs": [],
+          "timeZone": "America/New_York",
+          "durationMinutes": 20,
+          "entryIntersections": [
+            [
+              "11:50",
+              "12:00"
+            ]
+          ],
+          "outsideEntryWindows": [
+            [
+              "12:00",
+              "12:10"
+            ]
+          ]
+        },
+        {
+          "time": "13:15–13:45",
+          "session": "PM Session Macro",
+          "focus": "观察下午盘前后的流动性与结构；13:30前按当前训练不新增交易。",
+          "id": "ny-1315-1345",
+          "evidenceStatus": "pending",
+          "attribution": "用户新增观察笔记；主模型整理",
+          "claimedSeries": "2024，具体年份归属与原课片段待核对",
+          "sourceRefs": [],
+          "timeZone": "America/New_York",
+          "durationMinutes": 30,
+          "entryIntersections": [
+            [
+              "13:30",
+              "13:45"
+            ]
+          ],
+          "outsideEntryWindows": [
+            [
+              "13:15",
+              "13:30"
+            ]
+          ]
+        },
+        {
+          "time": "15:15–15:45",
+          "session": "MOC / Closing Macro",
+          "focus": "观察尾盘前的波动与持仓管理；该窗口不等同于NYSE主板收盘竞价不平衡公布时段。",
+          "id": "ny-1515-1545",
+          "evidenceStatus": "pending",
+          "attribution": "用户新增观察笔记；主模型整理",
+          "claimedSeries": "2024，具体年份归属与原课片段待核对",
+          "sourceRefs": [],
+          "timeZone": "America/New_York",
+          "durationMinutes": 30,
+          "entryIntersections": [
+            [
+              "15:15",
+              "15:30"
+            ]
+          ],
+          "outsideEntryWindows": [
+            [
+              "15:30",
+              "15:45"
+            ]
+          ]
+        }
+      ],
+      "htf": {
+        "dailyBiasAnchor": "分析日内偏向时，先声明日线或周线所选区间、候选PD Array及流动性位置，并记录分析截止时刻。大周期背景不清时保持偏向待定，不能凭小周期噪声补造方向。",
+        "dealingRangeExpansion": "若所选大周期区间与当前价格证据支持向上扩张，可将看涨路径列为候选，并分别记录逆向回撤与反转的确认、失效条件。大周期偏向可能失败；折价向溢价的路径本身不能证明顺势期望收益更高，也不能把所有看跌信号归为弱回调。",
+        "source": "用户标记为2023–2024演进补充；本轮仅完成概念与系统边界整理，尚未核读对应原课。年份、原话与规则归属待具体视频和时间戳核验。",
+        "evidenceStatus": "pending",
+        "sourceRefs": []
+      },
+      "comparative": [
+        {
+          "id": "2c-trading",
+          "name": "2C Trading (Al Brooks 裸K价格行为学)",
+          "channel": "YouTube @2C_trading (2025.03–2026.10 · 300+ 实盘与复盘视频，含 2026-09 支阻快速寻找与 2026-10 实盘更新)",
+          "role": "外部对比与补充视角（严禁混淆为 ICT 2022 官方教学）",
+          "evidenceStatus": "external_verified",
+          "localSource": "Documents/trading-notes/methodology/2C_trading_system/",
+          "corePhilosophy": {
+            "oneMethod": "只精通一种方法稳定盈利，熟练后加大仓位，而不是学更多方法",
+            "probabilityMindset": "做的是概率：高概率+盈亏比差可做，低概率+盈亏比好需精确位置；交易频率上升则胜率下降",
+            "disciplineOverTechnique": "走不顺就主动离场（不等止损）；连续不顺就休息；系统赚多少拿多少",
+            "conservativeData": "23天实盘回测只用剥头皮（反转K+50%挂单）：36笔交易，82%胜率，2.2均R，4天零交易"
+          },
+          "keyComparisons": [
+            {
+              "dimension": "核心进场形态",
+              "ict2022": {
+                "title": "FVG (Fair Value Gap) 价值失衡缺口",
+                "mechanism": "3根K线结构位移：第1根与第3根影线不重叠留出缺口，价格回抽触及缺口即为算法再平衡点",
+                "timing": "严格位于 Killzone (08:30–11:00 / 13:30–15:30) 内且在折价/溢价区",
+                "execution": "触价限价入场或收盘确认入场，止损置于摆动点外"
+              },
+              "twoCTrading": {
+                "title": "3根K微通道剥头皮 与 50%波段限价挂单",
+                "mechanism": "通道内3根连续趋势K（实体大、收盘在极值），在整组3根K的50%回调位挂限价单；未破50%极强，破了50%偏弱",
+                "timing": "5分钟为主图，开盘第1-50根K内；必须由 EMA20 动态辅助提供支撑/阻力",
+                "execution": "50%限价单进场，止损置于第1根K或波段起点外1 tick，止盈严格1:1 (1R)"
+              },
+              "synthesis": "两者本质均是在强位移波段寻找机构回踩点。ICT 用 FVG 空间失衡作为磁吸，2C 用 50% 几何平衡点结合 EMA20 作为动力反弹点。"
+            },
+            {
+              "dimension": "反转与结构转变",
+              "ict2022": {
+                "title": "MSS (Market Structure Shift) 市场结构转变",
+                "mechanism": "必须先完成对流动性池（BSL / SSL）的清扫刺穿，随后大实体穿透关键短期摆动高低点，完成交割方向逆转",
+                "timing": "流动性清扫发生后",
+                "execution": "伴随位移形成 FVG 确认，不猜顶底"
+              },
+              "twoCTrading": {
+                "title": "反转K (Reversal Bar) 与形态验证",
+                "mechanism": "连续趋势后第一根反向收盘K即为反转K；但在强趋势中第一次反转K容易失败；交易区间内80%突破为假突破",
+                "timing": "在关键位置（交易区间边缘、高开/低开关键位）出现",
+                "execution": "反转K收盘位直接做，或在反转K 50%挂单，止损放在反转K极值外1 tick"
+              },
+              "synthesis": "ICT 依赖外部流动性清扫与层级结构破坏；2C 关注单根反转K的动量衰竭与交易区间假突破（80%概率反转）。"
+            },
+            {
+              "dimension": "过滤系统与指标哲学",
+              "ict2022": {
+                "title": "纯裸K + Time & Price 算法时间窗口",
+                "mechanism": "杜绝一切传统均线与滞后指标；核心驱动是央行算法按时间交割订单流（Killzone、Macro 窗口、开盘基准价）",
+                "timing": "时间优先于形态",
+                "execution": "非交易窗口完全不开新仓"
+              },
+              "twoCTrading": {
+                "title": "EMA20 动态磁铁与顺势顺风车",
+                "mechanism": "EMA20 是强有力的动态支撑/阻力与趋势基准；日线在 EMA20 上方偏多、下方偏空；K线远离 EMA20 会被拉回，贴近 EMA20 顺势起爆",
+                "timing": "开盘前50根5m K线",
+                "execution": "3根K微通道必须有 EMA20 辅助才能大幅提升止盈率"
+              },
+              "synthesis": "ICT 以「时间基准（Macro/Killzone）」划分有效性，2C 以「均线位置（EMA20/远离拉回）」过滤虚假波动。"
+            },
+            {
+              "dimension": "时间周期与执行颗粒度",
+              "ict2022": {
+                "title": "HTF (1D/1H/15m) 定偏向 → LTF (1m/2m) 精细执行",
+                "mechanism": "大周期确定目标池与 Dealing Range，1m/2m 寻找微观 MSS + FVG，放大盈亏比",
+                "timing": "高低周期嵌套",
+                "execution": "秒级/1m 抓最小止损"
+              },
+              "twoCTrading": {
+                "title": "坚决反对 1m 图 · 5m 主战场 · 15m 看形态",
+                "mechanism": "铁律第4条明确禁止1分钟图（噪音大、过早进场导致被频繁打止损）；15m找收敛/通道/区间，5m执行进出",
+                "timing": "5分钟K线收盘或50%挂单",
+                "execution": "拒绝微观追单，等待5m形态成型"
+              },
+              "synthesis": "ICT 追求极致压缩止损（1m入场），2C 追求信号稳定性（5m主图防震荡陷阱）。初学者使用 2C 5m 图能有效避免在 1m 噪音中过度交易。"
+            },
+            {
+              "dimension": "止盈与离场纪律",
+              "ict2022": {
+                "title": "非对称高盈亏比 (Asymmetric R:R) · 目标对侧流动性",
+                "mechanism": "以大周期的 BSL/SSL 或未回补 FVG 为终极止盈，追求 1:3 甚至更高 R:R",
+                "timing": "价格触及目标流动性池",
+                "execution": "分批减仓（Partial Take Profit），止损移至保本（BE）"
+              },
+              "twoCTrading": {
+                "title": "高概率拿 1R (1:1) · 走不顺主动离场",
+                "mechanism": "高概率形态只拿 1R 利润，极强趋势才拿 2R；坚守概率思维，不贪大波段",
+                "timing": "触及 1:1 或盘面走不顺",
+                "execution": "铁律第1条：走不顺不等止损被动触发，差几点就主动跑；不改大止损，不加仓"
+              },
+              "synthesis": "ICT 靠高盈亏比拉大期望值，2C 靠高胜率（80%+）与坚决主动止损确保账户稳定增长。"
+            }
+          ],
+          "tenBlacklistRules": [
+            {
+              "num": 1,
+              "rule": "不追涨杀跌",
+              "slogan": "高开不追多，低开不追空；宁可错过不可做错"
+            },
+            {
+              "num": 2,
+              "rule": "不在交易区间中间做单",
+              "slogan": "只在区间边缘做高空低多，中间是绝对死区"
+            },
+            {
+              "num": 3,
+              "rule": "收敛三角形不做",
+              "slogan": "收敛末端是观望区，绝不左侧开仓猜突破"
+            },
+            {
+              "num": 4,
+              "rule": "不看1分钟图",
+              "slogan": "1分钟全是杂音与诱骗，过早进场必被打损"
+            },
+            {
+              "num": 5,
+              "rule": "不加仓",
+              "slogan": "盈利想加仓=灾难，一次回调直接打穿本金"
+            },
+            {
+              "num": 6,
+              "rule": "不改止损",
+              "slogan": "进场前算好止损，中途改一次2.5R直接亏空"
+            },
+            {
+              "num": 7,
+              "rule": "低波动日不做",
+              "slogan": "日内预期波幅 <15点直接关电脑休息"
+            },
+            {
+              "num": 8,
+              "rule": "不跟第三推对抗",
+              "slogan": "区间内第三推形成强趋势时立刻离场，绝不逆势抗单"
+            },
+            {
+              "num": 9,
+              "rule": "强趋势不做反转",
+              "slogan": "强单边趋势中顺势做50%回调，不做第1次反转K"
+            },
+            {
+              "num": 10,
+              "rule": "不强迫开单",
+              "slogan": "没有标准形态=最好的交易就是什么都不做"
+            }
+          ],
+          "threeCandleMicroChannelSop": {
+            "title": "3根K微通道剥头皮标准执行 SOP (3-Bar Micro Channel Scalp)",
+            "steps": [
+              "识别条件：在既定趋势通道内，发现连续3根（或4-5根）强趋势K线（实体饱满、无长影线、最后一根创出新极值）",
+              "环境确认：K线顺应 EMA20 方向（EMA20 呈倾斜角度支撑/压制）；不在区间中间或通道最末端",
+              "挂单进场：拉出这3根K线的总体波段，在 50% 回调位提前挂限价单（Limit Order）等待回踩触碰",
+              "止损设定：严格放置在第 1 根 K 线起点外 1 tick（若破 50% 且破第 1 根则形态失效）",
+              "止盈管理：严格 1:1（1R）止盈出场；若行情走势迟疑、回踩跌破 50% 且无买力弹起，主动提前离场"
+            ],
+            "keyframeShowcase": [
+              {
+                "file": "4zkG0jdEsy8_08m.jpg",
+                "caption": "最新实盘支阻：08m 处 K14大阳包吞反转，被套空头平仓买盘转化为强支撑"
+              },
+              {
+                "file": "4zkG0jdEsy8_11m.jpg",
+                "caption": "最新交易区间：11m 处上中下 1/3 规则，上空下多，中间死区不操作"
+              },
+              {
+                "file": "zDCnoIImHHM_18m.jpg",
+                "caption": "最新实盘禁忌：18m 处交易区间内严禁 4 根阳线 50% 挂单（深回撤扫损）与平保跑路"
+              },
+              {
+                "file": "yrtwu3BSnhQ_02m.jpg",
+                "caption": "经典微通道剥头皮：2m 处 3根连续趋势K与50%回调位标记"
+              },
+              {
+                "file": "yrtwu3BSnhQ_05m.jpg",
+                "caption": "经典微通道剥头皮：5m 处 EMA20 支撑与 50% 限价单触发"
+              },
+              {
+                "file": "muShRE-fd_Q_02m.jpg",
+                "caption": "经典开盘反转：大幅高开后反转K出现与 1R 目标设定"
+              }
+            ]
+          },
+          "latestVideoEvolutions2026": {
+            "supportResistanceMechanisms": {
+              "title": "实盘支撑阻力快速判定与被套交易者转化机制 (4zkG0jdEsy8 · 2026-09-07)",
+              "core": "支阻是区域不是单线。当合理做空位置失败时（如K14大阳反转包吞），被套空头回踩其进场点急于平保离场（买入平仓），与多头买盘合流形成强支撑。",
+              "ictComparison": "与 ICT 订单块缓解（Mitigation）及突破块（Breaker Block）底层原理完全共振。"
+            },
+            "rangeExecutionExclusion": {
+              "title": "交易区间中 3 根 K 50% 挂单的核心禁用禁忌 (zDCnoIImHHM · 2026-10-21)",
+              "core": "在强阳强阴交替的震荡交易区间内，严禁使用 3 根 K 50% 挂单；因为区间内缺乏单边动量，极易出现深幅回撤打穿 1 tick 窄止损后再拉起。该挂单法必须局限在清晰的趋势通道中。",
+              "ictComparison": "对应 ICT 在 Seek & Destroy 震荡日中停止使用常规 FVG 挂单的防御铁律。"
+            },
+            "oneMinuteBanEvolution": {
+              "title": "仓位放大后彻底退出 1m 图的心理学根源 (zDCnoIImHHM · 2026-10-21)",
+              "core": "1 分钟图思考时间极度匮乏，极易引发认知超载、动作变形与连续止损后的报复性重仓。成熟阶段坚定只做 5 分钟图剥头皮，少做但做精。",
+              "ictComparison": "为初学者提供重要反思：盲目在 1m 图摸顶抄底是爆仓主因，5m 结构更具统计稳定性。"
+            },
+            "activeBreakevenExit": {
+              "title": "预期不符果断平保（BE）主动跑与单日双损熔断 (zDCnoIImHHM · 2026-10-21)",
+              "core": "入场后行情未如预期爆发而是反向迟疑，给平保机会立即离场，不等打满止损；一单亏损+一单平保立即收工，恪守「涨上去就涨上去呗，涨上去又不赔钱」。",
+              "ictComparison": "与 ICT 的时间止损和未触发撤单规则形成坚固的资金安全网。"
+            }
+          }
+        }
+      ],
+      "notice": "选学观察材料，来源待核对。Macro 不新增入场权限，不自动提高信号等级；基础训练与题库规则继续独立适用。"
+    }
   },
   "lessons": {
     "ep01": {
-      "status": "current",
-      "core": "摒弃 1 分钟高频多空来回反手，每天只在 E-mini 股指期货（NQ/ES）上利用可重复的流动性模型捕捉一段高确定性的日内主波段。",
-      "cases": [
-        {
-          "title": "高频反手交割单 vs 单一主跌浪目标",
-          "gist": "顶尖交易员的高频多空反手依赖极深盘感，普通学习者应只截取右侧最干净的一段单边位移波段（如 NQ 123 点主跌浪），用确定性代替交易频率。",
-          "scene": "ICT 展示自己在 Thinkorswim 1 分钟图上从 10:30 到 11:45 连续做多、反手做空、再做多、再在 14,798.25 做空至 14,675.75 的实盘交割记录。",
-          "figureGuide": "对比左图满屏的多空买卖箭头与右图蓝色高亮指向的 14,798.25 → 14,675.75 单边主跌浪。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep01_tos_live_executions.png",
-              "caption": "Ep.01 [00:40]：ICT 在 Thinkorswim 1m 图上的高频多空反手交割单"
-            },
-            {
-              "src": "lesson-assets/ep01_target_one_big_leg.png",
-              "caption": "Ep.01 [04:50]：课程真正要求掌握的目标——只取右侧 14,798 空到 14,675 的 123 点单边主波段"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "10:30–11:15 之间有多笔短线多空来回成交，最后在顶部 14,784.5 与 14,798.25 建立空单，于下方 14,675.75 平仓。"
-            },
-            {
-              "who": "老师",
-              "text": "不要试图模仿我左侧那种高频抓反转的操作；你只需要学会抓最右边从 798 到 675 这一笔 123 个 handles 的大波段就足够财富自由了。"
-            },
-            {
-              "who": "主模型",
-              "text": "明确 NQ 1 Handle = 4 Ticks = $20（MNQ = $2），ES 1 Handle = $50（MES = $5）；TradingView 需注意延时数据，实盘以实时报价为准。"
-            }
-          ],
-          "plan": [
-            "根据账户资金量选定 NQ/ES 或微型合约 MNQ/MES，每天只等一个 A+ 级单边波段",
-            "不挂任何均线/MACD指标，保持裸 K 图表用于标注流动性池与失衡区"
-          ],
-          "trap": "看到别人晒多空通吃的交割单就手痒在震荡区频繁反手，把本金磨损在主波段启动之前。",
-          "principles": [
-            "P01",
-            "P11"
-          ]
-        }
-      ],
-      "drill": "如果 NQ 从 14,798.25 做空到 14,675.25 平仓，一共捕获了多少个 Handles（整点）？1 手标准 NQ 和 1 手微型 MNQ 分别对应多少美元？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep02": {
-      "status": "current",
-      "core": "自上而下四步闭环：先由周/日线锁定流动性磁铁（DOL），等 15m 诱空后向上刺穿相对等高点买方止损（BSL），再切入 2m/1m 等跌破短期波段低点（BMS）并回抽溢价区 FVG 做空，拿到 50% 折价区以下的内部 FVG 止盈。",
-      "cases": [
-        {
-          "title": "周/日线偏向（DOL）与 1H/15m 诱空猎杀相对等高点",
-          "gist": "在大级别看跌（下方旧低点 SSL 未扫）背景下，开盘初先跌破短期小低点往往是诱空陷阱（Sucker Play），真正的做空时机在价格随掉头刺穿上方相对等高点买方止损（BSL）之后。",
-          "scene": "2022 年 1 月 21 日周五 NQ（3月合约）：周线向下扩张，日线下方 2021 年 10 月旧低点 14,366.75 存在厚重 Sell Stops；15m 图在 14,820 存在清晰的相对等高点。",
-          "figureGuide": "依次观察周线阴线扩张 → 日线 14,366.75 红线磁铁 → 1H/15m 先破 14,600 Sell Stops 再拉升刺穿 14,820 Buy Stops。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep02_daily_ssl_and_imbalance.png",
-              "caption": "Ep.02 [01:55] 日线 1D：下方 14,366.75 旧低点下方的卖方止损池作为价格磁铁 (DOL)"
-            },
-            {
-              "src": "lesson-assets/ep02_15m_equal_highs_stop_hunt.png",
-              "caption": "Ep.02 [07:20] 15m 图：先跌破 14,602 Sell Stops 诱空，再冲高刺穿 14,820 相对等高点 Buy Stops"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师",
-              "text": "日线图上价格永远只找两样东西：旧高低点的止损（Liquidity）或失衡区（Imbalance）。这里下方 14,366.75 的卖方止损就像磁铁吸回形针一样吸引价格。"
-            },
-            {
-              "who": "老师图",
-              "text": "15 分钟图在 10:15 先跌破 14,602 的 Sellside Liquidity，随后 V 型拉升超过 220 点，在 11:20 刺穿 14,820 相对等高点上方的 Buyside Liquidity。"
-            },
-            {
-              "who": "老师",
-              "text": "散户教科书认为双顶等高点是强阻力，把空头止损全放在 14,820 上方；聪明钱先破小低点诱空，再拉上去触发 14,820 上方的 Buy Stops，用散户的高价买单作为自己建仓空单的对手方。"
-            }
-          ],
-          "plan": [
-            "盘前标出日线 DOL 目标（14,366.75）及 15m 相对等高点（14,820）",
-            "早盘价格在区间下部跌破小低点时不追空，耐心等待价格拉升刺穿 14,820 BSL"
-          ],
-          "trap": "在 10:15 跌破 14,602 小低点时当作顺势突破追空，被随后的 220 点拉升直接爆仓；或者在 14,820 等高点下方提前摸顶做空被扫止损。",
-          "principles": [
-            "P02",
-            "P03",
-            "P04"
-          ]
-        },
-        {
-          "title": "2m 结构跌破（BMS）+ 溢价区 FVG 进场与 50% 折价区止盈矩阵",
-          "gist": "当高周期流动性池被刺穿后，降维到 2m/1m 等待跌破最近的短期波段低点（BMS）且位移内部留下三 K 线看跌 FVG，在 >50% 溢价区回抽 FVG 时做空，并在 <50% 折价区的内部看涨 FVG 分批平仓。",
-          "scene": "NQ 刺穿 14,820 BSL 创出 14,855 高点后，切入 2 分钟图寻找进场扳机与止盈位置。",
-          "figureGuide": "看 2m 图右上角：跌破短期波段低点后留下的橙色小框（看跌 FVG），以及红绿双色斐波那契 50% 均衡框与下方两条蓝线止盈位。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep02_2m_bms_and_fvg_entry.png",
-              "caption": "Ep.02 [11:35] 2m 触发：刺穿 14,820 后跌破短期波段低点 (BMS)，并在位移腿内留下橙色看跌 FVG"
-            },
-            {
-              "src": "lesson-assets/ep02_2m_full_setup_annotated.png",
-              "caption": "Ep.02 [15:05] 2m 均衡矩阵与止盈：50% 以上红色溢价区 FVG 进场，50% 以下绿色折价区内部看涨失衡（蓝线）止盈"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师",
-              "text": "高频算法运行在 1m/2m/3m 级别。当 15m 买方止损被扫后，在 2m 图等它跌破 14,808 这个短期 Swing Low（BMS），然后找这波下跌里三根 K 线不重叠的 Fair Value Gap。"
-            },
-            {
-              "who": "老师图",
-              "text": "从 14,535 低点拉斐波那契到 14,855 高点：橙色看跌 FVG 位于远高于 50% 的红色溢价区顶端，随后阳线回抽进橙色框精准受阻下跌，穿过 50% 中轴直达绿色折价区内的两条蓝色水平线（14,680 与 14,650）。"
-            },
-            {
-              "who": "主模型",
-              "text": "构建『外部流动性猎杀 (14,820 BSL) → 溢价区 FVG 进场 (14,798) → 折价区内部 FVG 止盈 (14,675) → 外部 SSL 终极目标』的标准矩阵。"
-            }
-          ],
-          "plan": [
-            "看到 2m 跌破短期 Swing Low 且留下三 K 线看跌 FVG，将状态从 Wait 切换为 Armed",
-            "在 FVG 下沿挂限价空单，止损设在 14,855 波段高点上方，第一、二止盈设在 50% 以下的内部看涨 FVG"
-          ],
-          "trap": "不等阳线回抽进 FVG 就在跌破瞬间市价追空，导致止损过宽；或者在还没跌过 50% 均衡线时就早早平仓。",
-          "principles": [
-            "P05",
-            "P07",
-            "P08",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "为什么在 Ep.02 中，空单的第一止盈位必须设在 50% 斐波那契均衡线（Equilibrium）以下的看涨 FVG 处，而不能设在 50% 以上？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep03": {
-      "status": "current",
-      "core": "日内多空完全对称：早盘先扫下方 SSL 触发看涨 MSS + 看涨 FVG 可做多至上方 BSL，扫完上方 BSL 触发看跌 MSS + 看跌 FVG 可反手做空；连续阴/阳线开盘价被突破即代表算法『交付状态的改变』（Order Block 本质）。",
+      "status": "partial_transcript_checked",
+      "core": "原稿区分日内结构变化与可能持续多日的结构破坏；不能由日内 MSS 直接推出多日反转。；这一具体案例允许突破短期高点而不要求收盘在其上；随后等待蜡烛收盘检查 FVG。不可把两种确认时点混为一谈。；原稿说早盘通常08:30–11:00，可延长至中午；午休避免找新机会，下午偏好13:30后。没有在此要求12:00强制平掉所有持仓。",
       "cases": [
         {
-          "title": "同一交易日内的多空双向闭环（2m Bullish MSS → Bearish MSS）",
-          "gist": "只要关键流动性池被刺穿并在短周期产生反向 MSS + FVG，无论顺大势还是日内逆势波段，都遵循完全一致的进出场法则。",
-          "scene": "依然是 2022 年 1 月 21 日 NQ 2m 图：早盘 08:30 后，10:20 先向下扫掉 14,600 SSL，11:25 再向上扫掉 14,820 BSL。",
-          "figureGuide": "观察左下角灰色框（Stop Raid + 橙色上三角 Bullish MSS + 橙色灯泡看涨 FVG）与右上角灰色框（Stop Raid + 橙色下三角 Bearish MSS + 橙色灯泡看跌 FVG）。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep03_2m_bullish_mss_fvg_ob.png",
-              "caption": "Ep.03 [05:10] 2m 多头闭环：10:20 扫完 14,600 SSL 后刺穿 14,634 触发 Bullish MSS，回踩橙色灯泡看涨 FVG 做多至 14,820"
-            },
-            {
-              "src": "lesson-assets/ep03_2m_bearish_mss_fvg_targets.png",
-              "caption": "Ep.03 [06:45] 2m 空头闭环：11:25 扫完 14,820 BSL 后触发 Bearish MSS，回抽看跌 FVG 反手做空"
-            }
-          ],
+          "title": "[01:05] 日内 MSS 的作用范围",
+          "gist": "原稿区分日内结构变化与可能持续多日的结构破坏；不能由日内 MSS 直接推出多日反转。",
+          "scene": "已核对本地 No-Rant Ep.03 [01:05] 字幕；摘要不等于逐字引文。",
+          "figures": [],
           "read": [
             {
-              "who": "老师",
-              "text": "很多人问我：既然 10:20 先扫了下方 14,600 的 Sell Stops，能不能做多去拿上方 14,820？完全可以！看 10:20 扫低点后向上突破 14,634 短期高点（甚至不需要收盘站上，只要盘中刺穿且留下三 K 线 FVG），回踩 FVG 就是绝佳多单。"
-            },
-            {
-              "who": "老师图",
-              "text": "2m 图清晰标出左下角 Bullish Market Structure Shift 与右上角 Bearish Market Structure Shift，两处都在突破波段极值的位移腿内留下橙色灯泡标识的 FVG。"
+              "who": "主模型核读摘要",
+              "text": "原稿区分日内结构变化与可能持续多日的结构破坏；不能由日内 MSS 直接推出多日反转。"
             }
           ],
-          "plan": [
-            "早盘 08:30 后标出上下两侧最近的 15m 止损池（14,600 SSL 与 14,820 BSL）",
-            "哪一侧先被刺穿并走出反向 MSS + FVG，就以另一侧止损池作为该笔日内波段的目标位"
-          ],
-          "trap": "混淆日内 MSS（捕捉几十至上百点的日内单腿）与日线级 MSB（跨日大反转），在多单到达 14,820 BSL 池子后仍死拿不平仓。",
-          "principles": [
-            "P03",
-            "P05",
-            "P07"
-          ]
+          "principles": [],
+          "evidenceId": "ep03-t65",
+          "sourceSHA256": "6bdefcca492172728dd9c29da3ed114218a1871159d7ffb0ba8ae67464859539"
         },
         {
-          "title": "订单块 (Order Block) 本质：算法 Spooling 与交付状态的改变",
-          "gist": "刺穿止损池的一连串连续阴线（或连续阳线）构成一个整体订单块；当价格反向突破这串 K 线第一根的开盘价时，算法的交付状态（State of Delivery）正式翻转。",
-          "scene": "切入 1 分钟图精细观察 10:20 底部与 11:25 顶部的 K 线序列。",
-          "figureGuide": "看 1m 图中刺穿高低点的连续同色 K 线序列及其起始开盘价水平线。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep03_1m_orderblock_state_of_delivery.png",
-              "caption": "Ep.03 [09:30] 1m 拆解：连续阳线刺穿 BSL 构成看跌订单块，跌破起始开盘价即改变交付状态"
-            },
-            {
-              "src": "lesson-assets/ep03_1m_full_lipstick_chart.png",
-              "caption": "Ep.03 [11:45] 1m 完整标注图：1m 级别比 2m 更早触发结构转变与 FVG"
-            }
-          ],
+          "title": "[04:05] 结构突破与 FVG 确认时点",
+          "gist": "这一具体案例允许突破短期高点而不要求收盘在其上；随后等待蜡烛收盘检查 FVG。不可把两种确认时点混为一谈。",
+          "scene": "已核对本地 No-Rant Ep.03 [04:05] 字幕；摘要不等于逐字引文。",
+          "figures": [],
           "read": [
             {
-              "who": "老师",
-              "text": "不是成交量推动了价格，而是算法在 Spooling（像线轴放线一样连续报高或报低价格）。向下刺穿 14,600 的那一串连续收阴的 K 线合起来就是一个看涨订单块；当价格向上越过这串阴线第一根 K 线的开盘价时，State of Delivery（交付状态）就从卖方切换成了买方！"
-            },
-            {
-              "who": "主模型",
-              "text": "将『突破连续同色 K 线开盘价（OB 交付状态改变）』与『突破短期摆动高低点（MSS）+ 留下 FVG』结合，可实现双重确认。"
+              "who": "主模型核读摘要",
+              "text": "这一具体案例允许突破短期高点而不要求收盘在其上；随后等待蜡烛收盘检查 FVG。不可把两种确认时点混为一谈。"
             }
           ],
-          "plan": [
-            "在 1m/2m 图上找到刺穿止损池的那串连续阴线（看涨 OB）或连续阳线（看跌 OB），画出第一根 K 线的开盘价线",
-            "等待价格突破该开盘价并留下 FVG，在价格回抽 FVG 与 OB 开盘价重合区时进场"
+          "principles": [],
+          "evidenceId": "ep03-t245",
+          "sourceSHA256": "6bdefcca492172728dd9c29da3ed114218a1871159d7ffb0ba8ae67464859539"
+        },
+        {
+          "title": "[13:09] 纽约交易时段",
+          "gist": "原稿说早盘通常08:30–11:00，可延长至中午；午休避免找新机会，下午偏好13:30后。没有在此要求12:00强制平掉所有持仓。",
+          "scene": "已核对本地 No-Rant Ep.03 [13:09] 字幕；摘要不等于逐字引文。",
+          "figures": [],
+          "read": [
+            {
+              "who": "主模型核读摘要",
+              "text": "原稿说早盘通常08:30–11:00，可延长至中午；午休避免找新机会，下午偏好13:30后。没有在此要求12:00强制平掉所有持仓。"
+            }
           ],
-          "trap": "随便在图表中间找一根孤立的阴线/阳线就当成 Order Block 挂单，忽略了订单块必须发生于刺穿关键流动性池（Stop Raid）之时。",
-          "principles": [
-            "P06",
-            "P01"
-          ]
+          "principles": [],
+          "evidenceId": "ep03-t789",
+          "sourceSHA256": "6bdefcca492172728dd9c29da3ed114218a1871159d7ffb0ba8ae67464859539"
         }
       ],
-      "drill": "按照 ICT 在 Ep.03 中的定义，当价格向下刺穿 Sellside Liquidity 时出现了一串连续 4 根阴线，哪一个具体价格被向上突破才标志着『交付状态的改变（Change in the State of Delivery）』？",
-      "gaps": ""
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep04": {
-      "status": "current",
-      "core": "当价格刺穿买方止损（BSL）后，若第一波回落没有跌破波段低点或内部没有 FVG，必须忍住不动手，『强迫市场先亮出底牌』，等二次冲高走出真位移 + FVG 再扣扳机，并按四维标准记录复盘手帐。",
-      "cases": [
-        {
-          "title": "ES 2m 与 NQ 5m：过滤无 FVG 的首次假回落，等待二次冲高真位移",
-          "gist": "破高点后的第一次回调若 K 线重叠无 FVG 或未破短期 Swing Low，属于诱空洗盘，必须放弃并等待二次冲顶后的真 MSS + FVG。",
-          "scene": "2022 年 1 月 26 日 ES 2m 图（08:30 后扫掉 4,423.25 BSL）与 1 月 27 日 NQ 5m 图（扫掉 14,282 相对等高点 BSL）。",
-          "figureGuide": "观察两张图中突破 Buyside Liquidity 后的第一波小回落（无标注、无缺口）与第二次冲高后的长阴线真跌破（橙色三角 + 橙色灯泡/FVG 红线）。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep04_es_2m_830_zoomed_journal.png",
-              "caption": "Ep.04 [02:15] ES 2m 局部放大：首次回落无 FVG 过滤不进；二次冲高跌破波段低点（橙色三角）并留下看跌 FVG（橙色灯泡）做空"
-            },
-            {
-              "src": "lesson-assets/ep04_nq_5m_wait_for_fvg_entry.png",
-              "caption": "Ep.04 [04:50] NQ 5m：突破 14,282 后首次回调既无 MSS 也无 FVG，耐心等到 14,405 二次冲顶后长阴砸出 FVG 再进场"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师",
-              "text": "看 ES 2m 图：过掉 Buyside Liquidity 后第一次往下跌破了一个小低点，但里面有 Fair Value Gap 吗？没有！所以什么都别做。等它再往上拱一下，然后啪地砸下来跌破波段低点并留下这个橙色灯泡 FVG，回抽 4,419 做空，一直拿到 50% 以下的 4,382（37 个 ES handles）。"
-            },
-            {
-              "who": "老师",
-              "text": "再看 NQ 5m 图：我称之为 Forcing the market to tip its hand（强迫市场先亮底牌）。第一次过 14,282 后的回调既没破 Swing Low 也没留 FVG，谁在那里盲目摸顶就会被拉到 14,405 止损出局；等真正砸出 FVG 再回抽进场，才能稳稳拿到 50%（14,127）以下的眼睛图标目标位。"
-            },
-            {
-              "who": "主模型",
-              "text": "同时确立 Study Journal（复盘手帐）四项必记数据：MSS 到进场耗时、进场到目标耗时、最大抗单浮亏 (Heat)、总捕获点数。"
-            }
-          ],
-          "plan": [
-            "价格刺穿 BSL/SSL 后，用放大镜检查第一波反向运动是否同时具备『突破 Swing High/Low』与『无重叠三 K 线 FVG』",
-            "缺任何一个条件立即保持 Wait，等待市场再探一次极值后的第二波高能量位移"
-          ],
-          "trap": "生怕踏空行情，只要看到价格刺穿前高收了一根阴线就立刻市价做空，被随后的二次冲顶精准扫掉止损。",
-          "principles": [
-            "P05",
-            "P08",
-            "P12"
-          ]
-        }
-      ],
-      "drill": "复盘手帐（Study Journal）要求在每张截图旁记录哪 4 项量化指标？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep05": {
-      "status": "current",
-      "core": "建立全天日内订单流剧本：盘前核对 H/M/U/Z 持仓量换月并在 15m 风向标画出 08:30 左侧高低点；早盘抓三推诱多（Three Drives）后的『大象跳泳池』式位移；12:00–13:00 午休空仓；下午盘抓 13:30 扫低点启动的买方 Spooling 与 15:40–16:00 MOC 收盘冲刺。",
-      "cases": [
-        {
-          "title": "15m 风向标、早盘三推诱多 (Three Drives) 与高能量位移做空",
-          "gist": "当早盘价格以三推抬高结构（Three Drives）缓慢拱穿 08:30 左侧的 15m 波段高点后，等待一记如“大象跳进儿童泳池”般的长阴线位移与 FVG 做空至早盘低点。",
-          "scene": "2022 年 2 月 1 日 ES（ESH2022）：15m 图在 08:30 左侧有 03:00 伦敦高点 4,514.50 与 05:00 低点 4,482.00。",
-          "figureGuide": "先看 15m 图的整体日内三段切割（早盘 / 粉色午休禁区 / 下午盘），再看 5m 图早盘刺穿 4,514.50 的三推结构与 09:30 长阴位移 FVG。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep05_15m_daily_range_830_lunch.png",
-              "caption": "Ep.05 [04:15] 15m 风向标：08:30 左侧波段高低点（4,514.50 & 4,482.00）与 12:00–13:00 粉色午休禁区"
-            },
-            {
-              "src": "lesson-assets/ep05_5m_fvg_zoomed_in.png",
-              "caption": "Ep.05 [07:50] 5m 早盘放大：三推刺穿 4,514.50 后长阴线砸出看跌 FVG（鼠标箭头处），回抽即空直达 4,482"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师",
-              "text": "15 分钟图是我们的 Bellwether（风向标）。在 08:30 垂直线左边标出最近的 Swing High (4,514.50) 和 Swing Low (4,482)。切换到 5m 图，价格走出 1-2-3 Three Drives（三推形态）刺穿 4,514.50。"
-            },
-            {
-              "who": "老师",
-              "text": "怎么知道它是真反转？我要看到 Displacement（位移）——不是软绵绵的回调，而是像一头大象跳进儿童泳池里一样水花四溅！看 09:30 这根大阴线直接砸穿短期支撑并留下 5m FVG，下一根 K 线回抽 FVG 做空，15 分钟就砸穿了下方 4,482 卖方止损池！"
-            }
-          ],
-          "plan": [
-            "每天 08:30 前在 15m 图画好 08:30 垂直线、12:00–13:00 午休禁区以及左侧最近的 Swing High/Low",
-            "早盘出现 Three Drives 刺穿旧高点后，等待“大象跳泳池”式大阴线留出 FVG，回抽进场做空，目标直指 08:30 左侧波段低点"
-          ],
-          "trap": "在三推形态的第 1 推或第 2 推还没刺穿 4,514.50 旧高点、也没出现长阴位移时就过早入场做空。",
-          "principles": [
-            "P01",
-            "P03",
-            "P04",
-            "P05"
-          ]
-        },
-        {
-          "title": "下午盘 13:30 扫低点诱空、买方程序 Spooling 与 15:40–16:00 MOC 冲刺",
-          "gist": "早盘完成高低点双扫并在高位留下干净等高点后，午休 12:00–13:00 绝不交易；13:30 后等待刺穿下午盘第一个短期波段低点完成洗盘，随后突破早盘高点开启连续阳线逼空（Spooling）直至收盘 MOC 加速。",
-          "scene": "同一天（2022 年 2 月 1 日 ES 5m）下午盘 13:00–16:00 的走势。",
-          "figureGuide": "观察粉色午休区右侧：14:15 紫色手势指出的小低点刺穿，以及 14:55 大阳线突破早盘等高点后一路连阳逼空至 16:00。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep05_5m_pm_session_130_stop_hunt.png",
-              "caption": "Ep.05 [10:40] 5m 下午盘启动：13:30 后向下刺穿首个短期波段低点（手势高亮处）洗盘后启动买方程序"
-            },
-            {
-              "src": "lesson-assets/ep05_5m_pm_spooling_moc.png",
-              "caption": "Ep.05 [14:35] 5m 下午盘 Spooling 与 MOC：14:55 大阳线突破早盘等高点并留下 FVG，连续阳线逼空至 15:40–16:00 收盘高潮"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师",
-              "text": "早盘在 11:00–12:00 形成了非常干净的相对等高点（4,515）。12:00–13:00 纽约午休去吃午饭别看盘。13:30 算法宏启动后，先等它形成第一个短期 Swing Low，然后在 14:15 往下刺穿这个小低点扫掉跟风多头止损，接着开启 Buy Program Spooling！"
-            },
-            {
-              "who": "老师",
-              "text": "如果你没在扫低点时进，就等 14:55 这根大阳线向上突破并留下 5m 看涨 FVG 时回踩做多。注意看下午单边趋势在 15:40、15:50 到 16:00 会因为 Market-on-Close (MOC) 指令再次加速冲高，在 16:00 前平仓收工！"
-            }
-          ],
-          "plan": [
-            "12:00–13:00 强制离开屏幕休息",
-            "13:30 后标出首个短期波段低点与早盘相对等高点：扫低点收回或向上位移留出 5m FVG 时做多，持仓至 15:45–16:00 MOC 脉冲平仓"
-          ],
-          "trap": "在 12:30 午休下探时误以为空头趋势重启去追空；或者在下午盘算法开启单边阳线 Spooling 时不断逆势摸顶做空。",
-          "principles": [
-            "P01",
-            "P08",
-            "P09",
-            "P11"
-          ]
-        }
-      ],
-      "drill": "股指期货的四个季度交割月份字母代码分别是什么？在到期前一周如何利用 Barchart.com 判断该在哪一天切换主力合约？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep06": {
-      "status": "current",
-      "core": "理解市场效率范式：散户把等高/等低点当支撑阻力，而聪明钱把它们当作建仓与平仓的对手盘止损池。",
-      "cases": [
-        {
-          "title": "[00:01] 市场效率范式（Market Efficiency Paradigm）与散户思维盲区",
-          "gist": "传统技术分析教导的形态与指标往往把散户引导成为大资金的流动性提供者（对手盘）。理解每笔止损单背后都是强制市价单，才能看懂价格为何总去刺穿明显的高低点。",
-          "scene": "Ep.06《ep. 6 - Market Efficiency Paradigm & Institutional Order Flow》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep06_fvg_concept_diagram.png",
-              "caption": "[06:15 Schema] 三 K 线看跌 FVG 机构订单流结构原理：经典看跌 FVG 形成原理：刺穿买方流动性 (BSL) 后，第 1 根 K 线低点与第 3 根 K 线高点之间留下清晰的不重叠失衡缺口。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[06:15 Schema] 三 K 线看跌 FVG 机构订单流结构原理：经典看跌 FVG 形成原理：刺穿买方流动性 (BSL) 后，第 1 根 K 线低点与第 3 根 K 线高点之间留下清晰的不重叠失衡缺口。"
-            },
-            {
-              "who": "老师",
-              "text": "传统技术分析教导的形态与指标往往把散户引导成为大资金的流动性提供者（对手盘）。理解每笔止损单背后都是强制市价单，才能看懂价格为何总去刺穿明显的高低点。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P03",
-            "P04"
-          ]
-        },
-        {
-          "title": "[06:00] 高时间框架缺口回补后的日内预期调整",
-          "gist": "当价格已经回补了日线/4小时看跌失衡区并接近底部支撑时，不能再盲目死空，而要观察日内是否通过扫低点来完成多头建仓。",
-          "scene": "Ep.06《ep. 6 - Market Efficiency Paradigm & Institutional Order Flow》原片时间轴 [06:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [06:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep06_15m_nq_execution.png",
-              "caption": "[14:30 15m] 15m 价格回踩日线 FVG 后的多头建仓走势：大周期失衡区被完全回补后，日内通过刺穿短期卖方流动性 (SSL) 诱空，随后展开强力反抽。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[14:30 15m] 15m 价格回踩日线 FVG 后的多头建仓走势：大周期失衡区被完全回补后，日内通过刺穿短期卖方流动性 (SSL) 诱空，随后展开强力反抽。"
-            },
-            {
-              "who": "老师",
-              "text": "当价格已经回补了日线/4小时看跌失衡区并接近底部支撑时，不能再盲目死空，而要观察日内是否通过扫低点来完成多头建仓。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [06:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P03",
-            "P04"
-          ]
-        },
-        {
-          "title": "[12:00] 08:30 至 09:30 开盘前后的诱导与实盘订单管理",
-          "gist": "拆解美股现货开盘前先向下假跌破、09:30 后向上拉升突破并回踩看涨 FVG 的完整实盘执行细节。",
-          "scene": "Ep.06《ep. 6 - Market Efficiency Paradigm & Institutional Order Flow》原片时间轴 [12:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [12:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep06_fvg_concept_diagram.png",
-              "caption": "[06:15 Schema] 三 K 线看跌 FVG 机构订单流结构原理：经典看跌 FVG 形成原理：刺穿买方流动性 (BSL) 后，第 1 根 K 线低点与第 3 根 K 线高点之间留下清晰的不重叠失衡缺口。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[06:15 Schema] 三 K 线看跌 FVG 机构订单流结构原理：经典看跌 FVG 形成原理：刺穿买方流动性 (BSL) 后，第 1 根 K 线低点与第 3 根 K 线高点之间留下清晰的不重叠失衡缺口。"
-            },
-            {
-              "who": "老师",
-              "text": "拆解美股现货开盘前先向下假跌破、09:30 后向上拉升突破并回踩看涨 FVG 的完整实盘执行细节。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [12:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P03",
-            "P04"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.06），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep07": {
-      "status": "current",
-      "core": "大幅单边扩张日之后常进入区间整固（Consolidation Hurdles）：外部止损池被扫后，目标自动切换回区间内部 50% 均衡位与内部 FVG。",
-      "cases": [
-        {
-          "title": "[00:01] 为什么大幅单边日之后很难直接延续趋势？",
-          "gist": "大阳/大阴日之后常伴随内部回撤与震荡整固，此时需在日线及 4H/1H 级别标出大区间的高低点与 50% 均衡位。",
-          "scene": "Ep.07《ep. 7 - Daily Bias & Consolidation Hurdles》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep07_daily_bias_consolidation.png",
-              "caption": "[04:45 1D] 日线偏向在均衡位震荡时的障碍识别：当价格在日线 50% 均衡位附近盘整纠缠时，切勿盲目预测大单边，必须等待日线突破整固跳栏障碍 (Consolidation Hurdles)。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:45 1D] 日线偏向在均衡位震荡时的障碍识别：当价格在日线 50% 均衡位附近盘整纠缠时，切勿盲目预测大单边，必须等待日线突破整固跳栏障碍 (Consolidation Hurdles)。"
-            },
-            {
-              "who": "老师",
-              "text": "大阳/大阴日之后常伴随内部回撤与震荡整固，此时需在日线及 4H/1H 级别标出大区间的高低点与 50% 均衡位。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P07",
-            "P09"
-          ]
-        },
-        {
-          "title": "[04:00] 外部止损池与内部 FVG 的乒乓交替法则",
-          "gist": "一旦价格扫掉了某一侧的外部止损（BSL/SSL）却未能继续扩张，下一个高确定性磁铁必然是区间内部的 50% 均衡位及内部失衡区（Internal Range Liquidity）。",
-          "scene": "Ep.07《ep. 7 - Daily Bias & Consolidation Hurdles》原片时间轴 [04:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [04:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep07_15m_liquidity_run.png",
-              "caption": "[09:20 15m] 15m 图清扫流动性池后的单边破位：刺穿前期相对平头高点 (Equal Highs) 拿掉买方止损后，大阴线放量跌破结构低点。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[09:20 15m] 15m 图清扫流动性池后的单边破位：刺穿前期相对平头高点 (Equal Highs) 拿掉买方止损后，大阴线放量跌破结构低点。"
-            },
-            {
-              "who": "老师",
-              "text": "一旦价格扫掉了某一侧的外部止损（BSL/SSL）却未能继续扩张，下一个高确定性磁铁必然是区间内部的 50% 均衡位及内部失衡区（Internal Range Liquidity）。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [04:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P07",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.07），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep08": {
-      "status": "current",
-      "core": "ICT 2022 模型在外汇直盘（EURUSD / GBPUSD）完全通用：锁定伦敦盘 (02:00–05:00) 与纽约外汇盘 (07:00–10:00) 的高低点猎杀 + MSS + FVG。",
-      "cases": [
-        {
-          "title": "[00:01] 外汇与股指共用同一套算法定价逻辑（IPDA）",
-          "gist": "无论是股指还是外汇，算法在特定 Killzone 时间窗口内猎杀旧高低点并在 15m/5m/1m 留下 FVG 的机制完全一致。",
-          "scene": "Ep.08《ep. 8 - Applying Institutional Order Flow To Forex Markets》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep08_forex_3m_fvg_discount.png",
-              "caption": "[03:30 3m] 外汇 3 分钟图跌破摆动低点进入折价区 FVG：EURUSD 快速下砸刺穿短期摆动低点制造折价区，随后在 3m 看涨 FVG 给出教科书级别顺势反弹。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:30 3m] 外汇 3 分钟图跌破摆动低点进入折价区 FVG：EURUSD 快速下砸刺穿短期摆动低点制造折价区，随后在 3m 看涨 FVG 给出教科书级别顺势反弹。"
-            },
-            {
-              "who": "老师",
-              "text": "无论是股指还是外汇，算法在特定 Killzone 时间窗口内猎杀旧高低点并在 15m/5m/1m 留下 FVG 的机制完全一致。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P05",
-            "P07"
-          ]
-        },
-        {
-          "title": "[04:00] EURUSD 与 GBPUSD 多周期嵌套实战拆解",
-          "gist": "从日线/1H 流动性池定位，切入 15m/5m 观察伦敦开盘诱多/诱空后的结构转变与 FVG 进场。",
-          "scene": "Ep.08《ep. 8 - Applying Institutional Order Flow To Forex Markets》原片时间轴 [04:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [04:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep08_london_killzone_bracket.png",
-              "caption": "[06:20 15m] 伦敦杀手时区 (2:00-5:00 AM NY) 挂单与区间划分：利用伦敦盘开盘初段的犹大秋千 (Judas Swing) 假摔锁定全天极端高/低点，顺应日线偏向入场。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[06:20 15m] 伦敦杀手时区 (2:00-5:00 AM NY) 挂单与区间划分：利用伦敦盘开盘初段的犹大秋千 (Judas Swing) 假摔锁定全天极端高/低点，顺应日线偏向入场。"
-            },
-            {
-              "who": "老师",
-              "text": "从日线/1H 流动性池定位，切入 15m/5m 观察伦敦开盘诱多/诱空后的结构转变与 FVG 进场。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [04:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P05",
-            "P07"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.08），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep09": {
-      "status": "current",
-      "core": "Power of 3 (AMD)：以纽约午夜 00:00 开盘价为界，看跌日先在 00:00 开盘价上方制造诱多上影线（Judas Swing），看涨日先在下方制造诱空下影线。",
-      "cases": [
-        {
-          "title": "[00:01] 日 K 线 OHLC 形成的底层解剖：Power of 3 (AMD)",
-          "gist": "看涨日 K 线：开盘（Open）→ 向下操纵形成最低价（Low，积累多头）→ 向上派发拉升 → 收盘于高位（Close）。看跌日 K 线：开盘 → 向上操纵形成最高价（High，积累空头）→ 向下派发砸盘 → 收盘于低位。",
-          "scene": "Ep.09《BmZ-8I_ep. 9 - Power of 3 & New York PM Session Opportunities》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep09_power_of_3_amd_schema.png",
-              "caption": "[04:15 Model] Power of 3（AMD 积累-操纵-派发）K 线阶段模型：全天 K 线解密：开盘后的积累 (Accumulation) → 刺穿开盘价反向诱敌的操纵 (Manipulation / Judas Swing) → 顺应大势的大单边派发 (Distribution)。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:15 Model] Power of 3（AMD 积累-操纵-派发）K 线阶段模型：全天 K 线解密：开盘后的积累 (Accumulation) → 刺穿开盘价反向诱敌的操纵 (Manipulation / Judas Swing) → 顺应大势的大单边派发 (Distribution)。"
-            },
-            {
-              "who": "老师",
-              "text": "看涨日 K 线：开盘（Open）→ 向下操纵形成最低价（Low，积累多头）→ 向上派发拉升 → 收盘于高位（Close）。看跌日 K 线：开盘 → 向上操纵形成最高价（High，积累空头）→ 向下派发砸盘 → 收盘于低位。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P04",
-            "P10"
-          ]
-        },
-        {
-          "title": "[04:00] 纽约午夜 00:00 开盘价与 08:30 犹大摆动（Judas Swing）",
-          "gist": "当天看空时，只等价格拉升到 00:00 午夜开盘价（及 08:30 开盘价）上方扫掉 BSL 再做空；当天看多时，只等价格砸到 00:00 开盘价下方扫掉 SSL 再做多。",
-          "scene": "Ep.09《BmZ-8I_ep. 9 - Power of 3 & New York PM Session Opportunities》原片时间轴 [04:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [04:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep09_judas_swing_pm_rally.png",
-              "caption": "[09:50 5m] 犹大秋千假摔诱空与下午盘单边反转：13:30 下午盘窗口向下假刺穿午休低点完成诱空洗盘，随后机构算法连续收阳逼空直奔早盘等高点。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[09:50 5m] 犹大秋千假摔诱空与下午盘单边反转：13:30 下午盘窗口向下假刺穿午休低点完成诱空洗盘，随后机构算法连续收阳逼空直奔早盘等高点。"
-            },
-            {
-              "who": "老师",
-              "text": "当天看空时，只等价格拉升到 00:00 午夜开盘价（及 08:30 开盘价）上方扫掉 BSL 再做空；当天看多时，只等价格砸到 00:00 开盘价下方扫掉 SSL 再做多。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [04:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P04",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.09），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep10": {
-      "status": "current",
-      "core": "用经济日历（ForexFactory）锁定操纵段触发时刻：08:30 数据脉冲与 09:30 美股开盘不是方向的原因，而是算法扫除流动性池的时间扳机。",
-      "cases": [
-        {
-          "title": "[00:01] 用 ForexFactory 锁定每日高波动时间注入点",
-          "gist": "不需要预测非农、CPI 或利率决议的利多利空，只需知道数据公布那一刻（如 08:30 或 10:00）算法会借机完成 Stop Raid。",
-          "scene": "Ep.10《ep. 10 - Implementing Economic Calendar Events With The Open》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep10_economic_calendar_830_spike.png",
-              "caption": "[03:30 Calendar] 08:30 宏观经济数据解禁时的算法瞬间脉冲：宏观数据禁令在 08:30 解除的瞬间，算法以极高速度扫荡两侧挂单并留下大跨度 FVG，绝不在数据发布前 1 分钟凭运气押注。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:30 Calendar] 08:30 宏观经济数据解禁时的算法瞬间脉冲：宏观数据禁令在 08:30 解除的瞬间，算法以极高速度扫荡两侧挂单并留下大跨度 FVG，绝不在数据发布前 1 分钟凭运气押注。"
-            },
-            {
-              "who": "老师",
-              "text": "不需要预测非农、CPI 或利率决议的利多利空，只需知道数据公布那一刻（如 08:30 或 10:00）算法会借机完成 Stop Raid。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P04",
-            "P10"
-          ]
-        },
-        {
-          "title": "[05:00] 08:30 期货数据脉冲与 09:30 美股现货开盘的协同剧本",
-          "gist": "观察 08:30 如何先行构建诱导或第一重猎杀，09:30 现货开盘如何完成最终极值扫荡并启动全天主派发段（Distribution）。",
-          "scene": "Ep.10《ep. 10 - Implementing Economic Calendar Events With The Open》原片时间轴 [05:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [05:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep10_power_of_3_nq_chart.png",
-              "caption": "[08:45 15m] 结合日历事件的 Power of 3 实盘走盘对照：早盘数据脉冲充当操纵腿 (Manipulation)，刺穿日内高点后迅速掉头进入派发阶段。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[08:45 15m] 结合日历事件的 Power of 3 实盘走盘对照：早盘数据脉冲充当操纵腿 (Manipulation)，刺穿日内高点后迅速掉头进入派发阶段。"
-            },
-            {
-              "who": "老师",
-              "text": "观察 08:30 如何先行构建诱导或第一重猎杀，09:30 现货开盘如何完成最终极值扫荡并启动全天主派发段（Distribution）。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [05:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P04",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.10），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep11": {
-      "status": "current",
-      "core": "09:30 美股现货开盘常出现上下双扫（Whipsaw）：耐心等待开盘首波噪音结束、真正刺穿 15m 关键位并走出 5m/2m/1m 同向 FVG 后再执行。",
-      "cases": [
-        {
-          "title": "[00:01] 为什么 09:30 开盘第一分钟极易发生双向扫损？",
-          "gist": "现货开盘瞬间涌入大量隔夜指令，算法常先向一个方向假突破诱单，再向反方向刺穿真正的 15m 高低点。",
-          "scene": "Ep.11《ep. 11 - Reinforcing Past Lessons & Trading Executions》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep11_830_fake_rally_trap.png",
-              "caption": "[04:20 5m] 08:30 开盘假涨破位与散户诱多陷阱：早盘开盘后诱导性连续推高让散户误以为是顺势大牛市，实则是大资金在买方流动性池建立空头对手盘。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:20 5m] 08:30 开盘假涨破位与散户诱多陷阱：早盘开盘后诱导性连续推高让散户误以为是顺势大牛市，实则是大资金在买方流动性池建立空头对手盘。"
-            },
-            {
-              "who": "老师",
-              "text": "现货开盘瞬间涌入大量隔夜指令，算法常先向一个方向假突破诱单，再向反方向刺穿真正的 15m 高低点。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P05",
-            "P08"
-          ]
-        },
-        {
-          "title": "[06:00] 5m / 3m / 2m / 1m 多周期 FVG 嵌套对比",
-          "gist": "当大级别（15m/5m）与小级别（2m/1m）同时在同一价格带留下重叠 FVG 时，进场胜率与爆发力最高。",
-          "scene": "Ep.11《ep. 11 - Reinforcing Past Lessons & Trading Executions》原片时间轴 [06:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [06:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep11_3m_mss_fvg_confirmation.png",
-              "caption": "[08:50 3m] 3m 图结构转变 MSS 与看跌 FVG 顺势做空：大阴线跌破波段低点产生看跌 MSS，价格回抽进溢价区三 K 线看跌 FVG，止损放高点外，目标对侧 SSL。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[08:50 3m] 3m 图结构转变 MSS 与看跌 FVG 顺势做空：大阴线跌破波段低点产生看跌 MSS，价格回抽进溢价区三 K 线看跌 FVG，止损放高点外，目标对侧 SSL。"
-            },
-            {
-              "who": "老师",
-              "text": "当大级别（15m/5m）与小级别（2m/1m）同时在同一价格带留下重叠 FVG 时，进场胜率与爆发力最高。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [06:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P05",
-            "P08"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.11），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep12": {
-      "status": "current",
-      "core": "三层波段结构（LTH / ITH / STH）：只要回抽 HTF FVG 形成的中期高低点（ITH/ITL）未被突破，单边趋势就健康延续，止损只移至已确认的 ITH/ITL 外。",
-      "cases": [
-        {
-          "title": "[00:01] STH/STL（短期）、ITH/ITL（中期）、LTH/LTL（长期）三层结构定义",
-          "gist": "1) 短期高低点（STH/STL）：基础三 K 线摆动极值；2) 中期高低点（ITH/ITL）：左右两侧各有一个更低的 STH（或更高的 STL）烘托的极值，或回抽高时间框架 FVG 形成的波段极值；3) 长期高低点（LTH/LTL）：大级别关键流动性反转点。",
-          "scene": "Ep.12《ep. 12 - Advanced Price Action Theory》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep12_market_structure_hierarchy.png",
-              "caption": "[05:15 Hierarchy] 短期摆动点 (STH/STL) 与中继摆动点 (ITH/ITL) 嵌套体系：市场结构分层体系：一个有效的中继高点 (ITH) 必须左右各有一个更低的短期高点 (STH)，跌破中继低点才构成真正的结构破坏。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[05:15 Hierarchy] 短期摆动点 (STH/STL) 与中继摆动点 (ITH/ITL) 嵌套体系：市场结构分层体系：一个有效的中继高点 (ITH) 必须左右各有一个更低的短期高点 (STH)，跌破中继低点才构成真正的结构破坏。"
-            },
-            {
-              "who": "老师",
-              "text": "1) 短期高低点（STH/STL）：基础三 K 线摆动极值；2) 中期高低点（ITH/ITL）：左右两侧各有一个更低的 STH（或更高的 STL）烘托的极值，或回抽高时间框架 FVG 形成的波段极值；3) 长期高低点（LTH/LTL）：大级别关键流动性反转点。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P05",
-            "P08",
-            "P10"
-          ]
-        },
-        {
-          "title": "[05:00] 利用 ITH/ITL 判断趋势健康度与禁止过早移止损法则",
-          "gist": "在空头趋势中，每一个反弹触及 FVG 形成的新 ITH 都不应被随后的反弹突破；只有当新的位移腿突破前低后，才将止损移至最近的 ITH 上方。",
-          "scene": "Ep.12《ep. 12 - Advanced Price Action Theory》原片时间轴 [05:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [05:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep12_nested_mss_nq_chart.png",
-              "caption": "[11:30 5m] 中继波段低点被大实体阴线跌破的真破位确认：实体饱满的位移大阴线收盘在中继波段低点下方，彻底打破多头交付状态，确认空头主导。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[11:30 5m] 中继波段低点被大实体阴线跌破的真破位确认：实体饱满的位移大阴线收盘在中继波段低点下方，彻底打破多头交付状态，确认空头主导。"
-            },
-            {
-              "who": "老师",
-              "text": "在空头趋势中，每一个反弹触及 FVG 形成的新 ITH 都不应被随后的反弹突破；只有当新的位移腿突破前低后，才将止损移至最近的 ITH 上方。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 2 · 日线偏向与 AMD 权力三段 (Ep 06–12)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [05:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P05",
-            "P08",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.12），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep13": {
-      "status": "current",
-      "core": "分形市场结构实战：在 15m/5m 确认 LTH 与 ITH 后，降维到 1m 图在每一次 STH 演化与小级别 FVG 回抽中顺势加仓或进场。",
-      "cases": [
-        {
-          "title": "[00:01] 在实盘图表中逐一标注 LTH、ITH 与 STH",
-          "gist": "通过真实 NQ/ES 盘面演示：一旦高时间框架 FVG 孕育出 ITH，后续短周期的每一次小反弹都是顺势做空机会。",
-          "scene": "Ep.13《ep. 13 - Advanced Price Action Theory - In Action》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep13_order_block_50_discount.png",
-              "caption": "[03:45 1H/5m] 1小时看跌K线作为看涨OB，50%均衡线以下进场：跌破流动性后的大实体阳线吞没前阴线，阴线实体构筑看涨 Order Block，回踩 OB 与折价 FVG 时挂单做多。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:45 1H/5m] 1小时看跌K线作为看涨OB，50%均衡线以下进场：跌破流动性后的大实体阳线吞没前阴线，阴线实体构筑看涨 Order Block，回踩 OB 与折价 FVG 时挂单做多。"
-            },
-            {
-              "who": "老师",
-              "text": "通过真实 NQ/ES 盘面演示：一旦高时间框架 FVG 孕育出 ITH，后续短周期的每一次小反弹都是顺势做空机会。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P06",
-            "P07",
-            "P10"
-          ]
-        },
-        {
-          "title": "[08:00] 如何避免把正常的内部回撤误判为趋势反转",
-          "gist": "只要最新的 ITH（空头中）或 ITL（多头中）未被破坏，短周期的小结构突破只是为了回补内部失衡，而非趋势终结。",
-          "scene": "Ep.13《ep. 13 - Advanced Price Action Theory - In Action》原片时间轴 [08:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [08:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep13_order_block_50_discount.png",
-              "caption": "[03:45 1H/5m] 1小时看跌K线作为看涨OB，50%均衡线以下进场：跌破流动性后的大实体阳线吞没前阴线，阴线实体构筑看涨 Order Block，回踩 OB 与折价 FVG 时挂单做多。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:45 1H/5m] 1小时看跌K线作为看涨OB，50%均衡线以下进场：跌破流动性后的大实体阳线吞没前阴线，阴线实体构筑看涨 Order Block，回踩 OB 与折价 FVG 时挂单做多。"
-            },
-            {
-              "who": "老师",
-              "text": "只要最新的 ITH（空头中）或 ITL（多头中）未被破坏，短周期的小结构突破只是为了回补内部失衡，而非趋势终结。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [08:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P06",
-            "P07",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.13），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep14": {
-      "status": "current",
-      "core": "当单边位移腿内出现多个 FVG 时，优先选择处于 50% 均衡点溢价侧（做空）或折价侧（做多）且与 Order Block 重合的缺口挂单。",
-      "cases": [
-        {
-          "title": "[00:01] 位移腿中出现多个 FVG 时的优先级排序",
-          "gist": "处于 50% Equilibrium 极值侧（做空选上方溢价区 FVG，做多选下方折价区 FVG）且紧贴 Order Block 的缺口最具机构防守价值。",
-          "scene": "Ep.14《ep. 14 - Live Trading The Model》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep14_live_execution_fvg_run.png",
-              "caption": "[01:30 1m] 实操多头扩张与入场跟踪：1 分钟实盘快节奏跟单：在价格强力扩张时锁定内部 FVG 回抽机会，果断在对侧等高点止盈。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[01:30 1m] 实操多头扩张与入场跟踪：1 分钟实盘快节奏跟单：在价格强力扩张时锁定内部 FVG 回抽机会，果断在对侧等高点止盈。"
-            },
-            {
-              "who": "老师",
-              "text": "处于 50% Equilibrium 极值侧（做空选上方溢价区 FVG，做多选下方折价区 FVG）且紧贴 Order Block 的缺口最具机构防守价值。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P07",
-            "P08",
-            "P09"
-          ]
-        },
-        {
-          "title": "[04:00] 什么情况下算法只回踩第一个浅层 FVG 就直接加速？",
-          "gist": "当价格已经完成深度回撤并在 ITH/ITL 处启动第二波加速腿（Expansion Leg）时，浅层 FVG（Breakaway/Measuring Gap）往往直接充当加速跳板。",
-          "scene": "Ep.14《ep. 14 - Live Trading The Model》原片时间轴 [04:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [04:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep14_live_execution_fvg_run.png",
-              "caption": "[01:30 1m] 实操多头扩张与入场跟踪：1 分钟实盘快节奏跟单：在价格强力扩张时锁定内部 FVG 回抽机会，果断在对侧等高点止盈。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[01:30 1m] 实操多头扩张与入场跟踪：1 分钟实盘快节奏跟单：在价格强力扩张时锁定内部 FVG 回抽机会，果断在对侧等高点止盈。"
-            },
-            {
-              "who": "老师",
-              "text": "当价格已经完成深度回撤并在 ITH/ITL 处启动第二波加速腿（Expansion Leg）时，浅层 FVG（Breakaway/Measuring Gap）往往直接充当加速跳板。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [04:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P07",
-            "P08",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.14），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep15": {
-      "status": "current",
-      "core": "实盘走盘（Live Tape Reading）：当看涨/看跌订单块开盘价与 FVG 重叠时，价格常在缺口入口或 50% 中轴（CE）出现毫秒级反应。",
-      "cases": [
-        {
-          "title": "[00:01] Order Block 与 FVG 重叠区的黄金进场位",
-          "gist": "当 FVG 内部恰好包含前期订单块的开盘价或中轴（Mean Threshold 50%）时，价格往往在此出现毫秒级精准反应。",
-          "scene": "Ep.15《ep. 15 - Live Trading & Tape Reading FOMC》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep15_fomc_tape_reading_fvg.png",
-              "caption": "[01:45 2m] FOMC 现场走盘失衡区识别与收盘止盈：美联储利率决议公布后的高波动走势：利用大阴线留下的失衡缺口分批挂单做空，顺势收割。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[01:45 2m] FOMC 现场走盘失衡区识别与收盘止盈：美联储利率决议公布后的高波动走势：利用大阴线留下的失衡缺口分批挂单做空，顺势收割。"
-            },
-            {
-              "who": "老师",
-              "text": "当 FVG 内部恰好包含前期订单块的开盘价或中轴（Mean Threshold 50%）时，价格往往在此出现毫秒级精准反应。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P06",
-            "P07",
-            "P08"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.15），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep16": {
-      "status": "current",
-      "core": "单日双波段连击：早盘（08:30–11:00）达标后坚决落袋并空仓度过午休，下午盘（13:30 后）以早盘新高低点重新拉取 50% 均衡线寻找第二波机会。",
-      "cases": [
-        {
-          "title": "[00:01] 早盘目标达成后的离场与等待午休重置",
-          "gist": "早盘一旦触及预设的折价/溢价目标池即刻平仓，绝不把盈利单拖进 12:00–13:00 午休区。",
-          "scene": "Ep.16《NVdhSuEsjI_ep. 16 - Multiple Trading Setups Per Session》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep16_multiple_setups_manipulation.png",
-              "caption": "[03:30 15m] 开盘价上方操纵与下破相对等低点：同一交易日内捕获双重机会：早盘冲高刺穿开盘价完成操纵做空，下午盘在对侧相对等低点反手。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:30 15m] 开盘价上方操纵与下破相对等低点：同一交易日内捕获双重机会：早盘冲高刺穿开盘价完成操纵做空，下午盘在对侧相对等低点反手。"
-            },
-            {
-              "who": "老师",
-              "text": "早盘一旦触及预设的折价/溢价目标池即刻平仓，绝不把盈利单拖进 12:00–13:00 午休区。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P08",
-            "P09"
-          ]
-        },
-        {
-          "title": "[04:00] 下午盘重新划定 Dealing Range 与二次入场",
-          "gist": "以早盘形成的新高点与新低点重新拉取 50% 均衡线，在 13:30 后寻找二次 MSS + FVG 机会。",
-          "scene": "Ep.16《NVdhSuEsjI_ep. 16 - Multiple Trading Setups Per Session》原片时间轴 [04:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [04:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep16_multiple_setups_manipulation.png",
-              "caption": "[03:30 15m] 开盘价上方操纵与下破相对等低点：同一交易日内捕获双重机会：早盘冲高刺穿开盘价完成操纵做空，下午盘在对侧相对等低点反手。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:30 15m] 开盘价上方操纵与下破相对等低点：同一交易日内捕获双重机会：早盘冲高刺穿开盘价完成操纵做空，下午盘在对侧相对等低点反手。"
-            },
-            {
-              "who": "老师",
-              "text": "以早盘形成的新高点与新低点重新拉取 50% 均衡线，在 13:30 后寻找二次 MSS + FVG 机会。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [04:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P08",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.16），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep17": {
-      "status": "current",
-      "core": "外汇多周期联动：先看美元指数（DXY）奔向哪个日线流动性池，再在 EURUSD/GBPUSD 上寻找镜像的 Stop Raid + MSS + SIBI/BISI。",
-      "cases": [
-        {
-          "title": "[00:01] 美元指数（DXY）与非美货币的镜像印证",
-          "gist": "当 DXY 正在奔向日线 BSL（看涨美元）时，在 EURUSD / GBPUSD 上只寻找冲高扫掉短期高点后的看跌 MSS + SIBI（看跌 FVG）做空机会。",
-          "scene": "Ep.17《ep. 17 - Forex Application With The Model》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep17_forex_judas_swing_london.png",
-              "caption": "[04:15 5m] 外汇开盘犹大秋千诱空与反手做多：GBPUSD 在伦敦开盘初段向下急速假摔击穿亚洲盘低点，随后 V 型反转并留下看涨 FVG。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:15 5m] 外汇开盘犹大秋千诱空与反手做多：GBPUSD 在伦敦开盘初段向下急速假摔击穿亚洲盘低点，随后 V 型反转并留下看涨 FVG。"
-            },
-            {
-              "who": "老师",
-              "text": "当 DXY 正在奔向日线 BSL（看涨美元）时，在 EURUSD / GBPUSD 上只寻找冲高扫掉短期高点后的看跌 MSS + SIBI（看跌 FVG）做空机会。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P07",
-            "P10"
-          ]
-        },
-        {
-          "title": "[06:00] 伦敦盘确立日内极值后，纽约盘如何回撤续势",
-          "gist": "若伦敦盘已走出强劲首波位移，纽约盘（07:00–08:30）常回撤至伦敦波段的 50%–70.5% OTE 区及内部 FVG 提供二次上车点。",
-          "scene": "Ep.17《ep. 17 - Forex Application With The Model》原片时间轴 [06:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [06:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep17_forex_judas_swing_london.png",
-              "caption": "[04:15 5m] 外汇开盘犹大秋千诱空与反手做多：GBPUSD 在伦敦开盘初段向下急速假摔击穿亚洲盘低点，随后 V 型反转并留下看涨 FVG。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:15 5m] 外汇开盘犹大秋千诱空与反手做多：GBPUSD 在伦敦开盘初段向下急速假摔击穿亚洲盘低点，随后 V 型反转并留下看涨 FVG。"
-            },
-            {
-              "who": "老师",
-              "text": "若伦敦盘已走出强劲首波位移，纽约盘（07:00–08:30）常回撤至伦敦波段的 50%–70.5% OTE 区及内部 FVG 提供二次上车点。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [06:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P07",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.17），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep18": {
-      "status": "current",
-      "core": "严禁在真空地带找 1m FVG：只有当价格触碰高时间框架（Daily/4H/1H/15m）关键 PD Array 的那一刻，1m/2m 的 MSS + FVG 才有机构背书。",
-      "cases": [
-        {
-          "title": "[00:01] 不要在真空地带找 1 分钟 FVG！",
-          "gist": "新手最大的亏损来源是在没有任何 15m/1H/Daily 关键流动性或失衡区配合的区间中部，随便找一个 1m 小缺口频繁交易。",
-          "scene": "Ep.18《ep. 18 - Additional Insights Into Order Block Theory》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep18_daily_dividers_15m_ob.png",
-              "caption": "[04:30 15m] 15m 垂直日期分割线与午夜基准价：在图表上画出午夜 00:00 与早盘 08:30 垂直基准线，以此作为判断当日价格处于溢价或折价的算法中轴。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:30 15m] 15m 垂直日期分割线与午夜基准价：在图表上画出午夜 00:00 与早盘 08:30 垂直基准线，以此作为判断当日价格处于溢价或折价的算法中轴。"
-            },
-            {
-              "who": "老师",
-              "text": "新手最大的亏损来源是在没有任何 15m/1H/Daily 关键流动性或失衡区配合的区间中部，随便找一个 1m 小缺口频繁交易。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P05",
-            "P07"
-          ]
-        },
-        {
-          "title": "[05:00] HTF 关键位触碰 + LTF 结构转变的双重锁死",
-          "gist": "耐心等待价格刺入 1H/15m 的 FVG 或扫掉 1H/15m 高低点后，再降维到 1m/2m 寻找反向 MSS。",
-          "scene": "Ep.18《ep. 18 - Additional Insights Into Order Block Theory》原片时间轴 [05:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [05:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep18_daily_dividers_15m_ob.png",
-              "caption": "[04:30 15m] 15m 垂直日期分割线与午夜基准价：在图表上画出午夜 00:00 与早盘 08:30 垂直基准线，以此作为判断当日价格处于溢价或折价的算法中轴。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[04:30 15m] 15m 垂直日期分割线与午夜基准价：在图表上画出午夜 00:00 与早盘 08:30 垂直基准线，以此作为判断当日价格处于溢价或折价的算法中轴。"
-            },
-            {
-              "who": "老师",
-              "text": "耐心等待价格刺入 1H/15m 的 FVG 或扫掉 1H/15m 高低点后，再降维到 1m/2m 寻找反向 MSS。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [05:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P05",
-            "P07"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.18），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep19": {
-      "status": "current",
-      "core": "构建日内叙事（Narrative）：先回答价格刚从哪个池子出来、下一个反向池子在哪、当前时间窗口需要先诱骗哪一方。",
-      "cases": [
-        {
-          "title": "[00:01] 什么是机构日内叙事（Intraday Narrative）？",
-          "gist": "回答三个问题：1) 价格刚刚从哪个流动性池出来？2) 下一个最具吸引力的反向池子在哪？3) 当前时间窗口（8:30/9:30/13:30）算法需要先诱骗哪一方？",
-          "scene": "Ep.19《ep. 19 - Order Blocks, Judas Swing & Power Of 3》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep19_order_block_delivery_shift.png",
-              "caption": "[05:10 1D/15m] 订单块交付状态转变 Change in State of Delivery：当价格向上吞没最后看跌 K 线时，机构算法的交付状态正式由空转多，旧阻力全面转为买方支撑。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[05:10 1D/15m] 订单块交付状态转变 Change in State of Delivery：当价格向上吞没最后看跌 K 线时，机构算法的交付状态正式由空转多，旧阻力全面转为买方支撑。"
-            },
-            {
-              "who": "老师",
-              "text": "回答三个问题：1) 价格刚刚从哪个流动性池出来？2) 下一个最具吸引力的反向池子在哪？3) 当前时间窗口（8:30/9:30/13:30）算法需要先诱骗哪一方？"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P02",
-            "P09"
-          ]
-        },
-        {
-          "title": "[09:00] 连续案例对比：顺势回踩单与逆势摸顶单的盈亏差异",
-          "gist": "顺应日线/4H 主交付方向的日内波段往往势如破竹，而逆大势的日内反弹一旦触及内部 50% FVG 就会迅速夭折。",
-          "scene": "Ep.19《ep. 19 - Order Blocks, Judas Swing & Power Of 3》原片时间轴 [09:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [09:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep19_order_block_delivery_shift.png",
-              "caption": "[05:10 1D/15m] 订单块交付状态转变 Change in State of Delivery：当价格向上吞没最后看跌 K 线时，机构算法的交付状态正式由空转多，旧阻力全面转为买方支撑。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[05:10 1D/15m] 订单块交付状态转变 Change in State of Delivery：当价格向上吞没最后看跌 K 线时，机构算法的交付状态正式由空转多，旧阻力全面转为买方支撑。"
-            },
-            {
-              "who": "老师",
-              "text": "顺应日线/4H 主交付方向的日内波段往往势如破竹，而逆大势的日内反弹一旦触及内部 50% FVG 就会迅速夭折。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [09:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P02",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.19），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep20": {
-      "status": "current",
-      "core": "若夜盘/伦敦盘已提前透支大波幅并触及日线目标，纽约早盘往往先回撤至伦敦波段的 50%–70.5% 区域修整，切忌开盘盲目追高杀跌。",
-      "cases": [
-        {
-          "title": "[00:01] 夜盘/伦敦盘透支波幅后的纽约早盘特征",
-          "gist": "若伦敦盘已大幅扩张并触及日线级目标，纽约早盘 08:30–10:00 往往先进行深幅回撤（回补伦敦盘留下的 50% 与 FVG）或进入箱体震荡，切忌在开盘高点盲目追涨杀跌。",
-          "scene": "Ep.20《eYCkBsrM_ep. 20 - London Session Forex》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep20_london_ote_continuation.png",
-              "caption": "[02:40 15m] 伦敦盘低点形成后的 OTE 顺势回踩：伦敦低点确立后，价格展开拉升并在 62%–79% Optimal Trade Entry (OTE) 区间给出二次安全上车点。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:40 15m] 伦敦盘低点形成后的 OTE 顺势回踩：伦敦低点确立后，价格展开拉升并在 62%–79% Optimal Trade Entry (OTE) 区间给出二次安全上车点。"
-            },
-            {
-              "who": "老师",
-              "text": "若伦敦盘已大幅扩张并触及日线级目标，纽约早盘 08:30–10:00 往往先进行深幅回撤（回补伦敦盘留下的 50% 与 FVG）或进入箱体震荡，切忌在开盘高点盲目追涨杀跌。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 3 · 订单块、多重失衡与多时段扩展 (Ep 13–20)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P07",
-            "P08"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.20），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep21": {
-      "status": "current",
-      "core": "跨市场 SMT 背离（Smart Money Technique）：在关键高低点对比 ES、NQ、YM，若一个破前高而另一个拒破前高，即为机构暗中派发做空的铁证。",
-      "cases": [
-        {
-          "title": "[00:01] 顶部看跌 SMT 背离与底部看涨 SMT 背离的判定标准",
-          "gist": "顶部看跌 SMT：在关键阻力/BSL 处，NQ 刺穿前高而 ES 未能刺穿前高（或反之），说明上涨并非全市场真实买盘，而是针对单一品种的止损猎杀。底部看涨 SMT：在关键支撑/SSL 处，一个品种破前低而另一个品种守住前低形成更高低点。",
-          "scene": "Ep.21《ep. 21 - Risk On VS Risk Off Market》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep21_dxy_es_equal_lows.png",
-              "caption": "[02:15 1H] 美元指数与标普相对等低点关联分析：当美元指数向上冲击日线流动性目标时，股指期货向下同步吸附向相对平头低点 (Equal Lows)。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:15 1H] 美元指数与标普相对等低点关联分析：当美元指数向上冲击日线流动性目标时，股指期货向下同步吸附向相对平头低点 (Equal Lows)。"
-            },
-            {
-              "who": "老师",
-              "text": "顶部看跌 SMT：在关键阻力/BSL 处，NQ 刺穿前高而 ES 未能刺穿前高（或反之），说明上涨并非全市场真实买盘，而是针对单一品种的止损猎杀。底部看涨 SMT：在关键支撑/SSL 处，一个品种破前低而另一个品种守住前低形成更高低点。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P03",
-            "P05",
-            "P10"
-          ]
-        },
-        {
-          "title": "[04:00] 用 SMT 选出当天最强势做多品种或最弱势做空品种",
-          "gist": "做空时选顶部没能创新高（相对更弱）的那个指数；做多时选底部拒绝创新低（相对更强）的那个指数！",
-          "scene": "Ep.21《ep. 21 - Risk On VS Risk Off Market》原片时间轴 [04:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [04:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep21_dxy_es_equal_lows.png",
-              "caption": "[02:15 1H] 美元指数与标普相对等低点关联分析：当美元指数向上冲击日线流动性目标时，股指期货向下同步吸附向相对平头低点 (Equal Lows)。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:15 1H] 美元指数与标普相对等低点关联分析：当美元指数向上冲击日线流动性目标时，股指期货向下同步吸附向相对平头低点 (Equal Lows)。"
-            },
-            {
-              "who": "老师",
-              "text": "做空时选顶部没能创新高（相对更弱）的那个指数；做多时选底部拒绝创新低（相对更强）的那个指数！"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [04:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P03",
-            "P05",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.21），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep22": {
-      "status": "current",
-      "core": "美联储 FOMC 议息日生存法则：14:00 利率决议第一波脉冲常为假突破扫损，必须等到 14:30 新闻发布会扫清流动性并走出干净 MSS + FVG 再参与。",
+      "status": "partial_transcript_checked",
+      "core": "开头回顾 S&P 日线、看跌订单块、风险背景和相对等低点，随后转入小时图。本段不支持旧稿的 FOMC 14:00/14:30 时间标签。",
       "cases": [
         {
-          "title": "[00:01] FOMC 当天的生存铁律：14:00 第一波脉冲绝不追单",
-          "gist": "14:00 利率决议公布瞬间点差扩大、算法上下扫盘清场，必须等 14:30 发布会开始、某一侧关键流动性被彻底扫清并出现 5m/1m MSS + FVG 后再决定是否轻仓参与。",
-          "scene": "Ep.22《ep. 22 - ICT SMT Divergence》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep22_smt_divergence_es_nq.png",
-              "caption": "[03:30 15m] ES 创新高 vs NQ 未破高的 SMT 背离：经典 SMT 跨市场背离：标普 ES 突破前期高点创出新高，但纳指 NQ 显露疲态未破高点，预示大资金正在悄悄派发，做空最高胜率信号。"
-            }
-          ],
+          "title": "[00:00] 日线背景与候选流动性",
+          "gist": "开头回顾 S&P 日线、看跌订单块、风险背景和相对等低点，随后转入小时图。本段不支持旧稿的 FOMC 14:00/14:30 时间标签。",
+          "scene": "已核对本地 No-Rant Ep.22 [00:00] 字幕；摘要不等于逐字引文。",
+          "figures": [],
           "read": [
             {
-              "who": "老师图",
-              "text": "[03:30 15m] ES 创新高 vs NQ 未破高的 SMT 背离：经典 SMT 跨市场背离：标普 ES 突破前期高点创出新高，但纳指 NQ 显露疲态未破高点，预示大资金正在悄悄派发，做空最高胜率信号。"
-            },
-            {
-              "who": "老师",
-              "text": "14:00 利率决议公布瞬间点差扩大、算法上下扫盘清场，必须等 14:30 发布会开始、某一侧关键流动性被彻底扫清并出现 5m/1m MSS + FVG 后再决定是否轻仓参与。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
+              "who": "主模型核读摘要",
+              "text": "开头回顾 S&P 日线、看跌订单块、风险背景和相对等低点，随后转入小时图。本段不支持旧稿的 FOMC 14:00/14:30 时间标签。"
             }
           ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P08",
-            "P11"
-          ]
+          "principles": [],
+          "evidenceId": "ep22-t0",
+          "sourceSHA256": "df97319ea5462d3604b904194217b1b7b6a737db1644c45b9d47e06231ecf1c7"
         }
       ],
-      "drill": "回看本集（Ep.22），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep23": {
-      "status": "current",
-      "core": "FOMC 次日（周四）剧本：利用前一日剧烈波动形成的大区间 50% 均衡位与未回补 FVG，顺应主趋势捕捉高确定性次日波段。",
-      "cases": [
-        {
-          "title": "[00:01] 重大消息日次日的均衡回归与趋势延续",
-          "gist": "FOMC 制造的大区间确立了新的高低点边界，次日早盘往往先回抽该区间 50% 均衡点或前一日尾盘 FVG，再沿主方向继续推进。",
-          "scene": "Ep.23《i1eTw_ep. 23 - Post FOMC Live Tape Reading + FIB Channels》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep23_fomc_fib_channel_targets.png",
-              "caption": "[02:30 5m] FOMC 次日回踩高周期 FVG 与斐波通道：FOMC 大波动次日，价格向上回踩高周期未回补 FVG 后受阻，顺着斐波那契通道精准向下测算止盈。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:30 5m] FOMC 次日回踩高周期 FVG 与斐波通道：FOMC 大波动次日，价格向上回踩高周期未回补 FVG 后受阻，顺着斐波那契通道精准向下测算止盈。"
-            },
-            {
-              "who": "老师",
-              "text": "FOMC 制造的大区间确立了新的高低点边界，次日早盘往往先回抽该区间 50% 均衡点或前一日尾盘 FVG，再沿主方向继续推进。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P07",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.23），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep24": {
-      "status": "current",
-      "core": "高位迟滞反转处理：当价格刺穿 BSL 后未立刻暴跌而在高位筑顶震荡时，把结构跌破线（MSS）牢牢锚定在最后一次冲高前的关键 Swing Low。",
-      "cases": [
-        {
-          "title": "[00:01] 高位派发耗时较长时的结构锚点选择",
-          "gist": "不要在顶部小震荡箱体内部过早猜顶，把结构跌破线（MSS）牢牢设在推动最后一次冲高的那个关键波段低点下方。",
-          "scene": "Ep.24《ep. 24 - Avoid This And Enter A Trade Properly》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep24_avoid_false_break_entry.png",
-              "caption": "[02:45 2m] 避免假摔与等待确定性 FVG 挂单：避坑指南：刺穿流动性池后如果只出现碎步小阳/小阴，绝不开仓；必须等到大阳线位移带出 FVG 才动手。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:45 2m] 避免假摔与等待确定性 FVG 挂单：避坑指南：刺穿流动性池后如果只出现碎步小阳/小阴，绝不开仓；必须等到大阳线位移带出 FVG 才动手。"
-            },
-            {
-              "who": "老师",
-              "text": "不要在顶部小震荡箱体内部过早猜顶，把结构跌破线（MSS）牢牢设在推动最后一次冲高的那个关键波段低点下方。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P05",
-            "P06",
-            "P08"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.24），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep25": {
-      "status": "current",
-      "core": "1 分钟极速执行微操：挂单设在 FVG 入口边缘留 1–2 ticks 缓冲，或盯紧 FVG 的 50% 中轴（Consequent Encroachment, CE）收紧止损。",
-      "cases": [
-        {
-          "title": "[00:01] 挂单位置微调：FVG 上沿/下沿 vs 50% 中轴（Consequent Encroachment）",
-          "gist": "最稳妥的成交位是 FVG 的入口边缘（做空取下沿、做多取上沿）再留 1–2 ticks 缓冲；若追求极致盈亏比则关注 FVG 的 50% 中轴（CE）。",
-          "scene": "Ep.25《ep. 25 - Daily Rebalance Theory》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep25_daily_rebalance_old_lows.png",
-              "caption": "[03:20 1D] 跌破日线旧低点后的再平衡反弹：日线连续阴线杀跌破旧低点拿掉卖方止损后，空头动能耗尽，日线级别启动向均衡位的回补再平衡。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[03:20 1D] 跌破日线旧低点后的再平衡反弹：日线连续阴线杀跌破旧低点拿掉卖方止损后，空头动能耗尽，日线级别启动向均衡位的回补再平衡。"
-            },
-            {
-              "who": "老师",
-              "text": "最稳妥的成交位是 FVG 的入口边缘（做空取下沿、做多取上沿）再留 1–2 ticks 缓冲；若追求极致盈亏比则关注 FVG 的 50% 中轴（CE）。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P07",
-            "P08",
-            "P12"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.25），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep26": {
-      "status": "current",
-      "core": "区分顺势扩张日与逆势回撤日：顺日线主势时目标可看外部远端高低点；逆日线主势做日内回撤时，触及首个 15m 内部 FVG 即平仓落袋。",
-      "cases": [
-        {
-          "title": "[00:01] 什么时候该拿大波段，什么时候该吃一口就跑？",
-          "gist": "当周线、日线、1H 与日内方向完全同向时拿向外部高低点；当与日线主趋势相反或处于大行情次日时，触及首个 15m 内部 FVG 即平仓 80%–100%。",
-          "scene": "Ep.26《c_ep. 26 - Example Of Tape Reading Practice》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep26_counter_trend_tape_reading.png",
-              "caption": "[02:20 5m] 逆势日实盘读盘与止损推保护技巧：逆势交易铁律：目标必须缩水、止损必须快速推保本（Breakeven），只吃确定性波段不抱幻想。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:20 5m] 逆势日实盘读盘与止损推保护技巧：逆势交易铁律：目标必须缩水、止损必须快速推保本（Breakeven），只吃确定性波段不抱幻想。"
-            },
-            {
-              "who": "老师",
-              "text": "当周线、日线、1H 与日内方向完全同向时拿向外部高低点；当与日线主趋势相反或处于大行情次日时，触及首个 15m 内部 FVG 即平仓 80%–100%。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P09",
-            "P11"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.26），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep27": {
-      "status": "current",
-      "core": "震荡与密集新闻周的制胜关键是做减法：没有清晰的 15m 止损池猎杀 + 高能量位移 FVG，宁可全天 0 交易。",
-      "cases": [
-        {
-          "title": "[00:01] 过滤垃圾时间的黄金准则",
-          "gist": "如果图表上高低点模糊、K 线大量重叠、双向都没去触碰清晰的 15m/1H 止损池，最佳操作就是关掉交易软件。",
-          "scene": "Ep.27《ep. 27 - Counter Trend Ideas》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep27_equal_lows_afternoon_reversal.png",
-              "caption": "[02:40 15m] 扫等低点后的下午盘回撤修复：早盘深踩打穿等低点诱空，13:30 下午盘多头算法发力回补早盘留下的看跌失衡区。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:40 15m] 扫等低点后的下午盘回撤修复：早盘深踩打穿等低点诱空，13:30 下午盘多头算法发力回补早盘留下的看跌失衡区。"
-            },
-            {
-              "who": "老师",
-              "text": "如果图表上高低点模糊、K 线大量重叠、双向都没去触碰清晰的 15m/1H 止损池，最佳操作就是关掉交易软件。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P08",
-            "P11"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.27），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep28": {
-      "status": "current",
-      "core": "周内演化档案（Weekly Profile）：周一积累、周二或周三上午常借数据刺穿日线关键位形成全周高低点（周级 Manipulation），周三下午至周五单边派发。",
-      "cases": [
-        {
-          "title": "[00:01] 周线级别的 AMD 与周中反转窗口",
-          "gist": "观察周一至周三上午是否一直在逆周线主趋势诱多/诱空并刺穿日线级关键位；一旦在周二/周三触及日线 PD Array 并发生 1H/15m MSS，周四与周五往往提供极顺畅的波段机会。",
-          "scene": "Ep.28《ep. 28 - Live Trade Execution》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep28_live_scalp_execution.png",
-              "caption": "[01:45 1m] 实盘极速剥头皮执行与平仓：1 分钟超短线示范：在 1m FVG 触碰瞬间市价入场，3–5 根 K 线内跨过均衡位在短线流动性高点果断落袋。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[01:45 1m] 实盘极速剥头皮执行与平仓：1 分钟超短线示范：在 1m FVG 触碰瞬间市价入场，3–5 根 K 线内跨过均衡位在短线流动性高点果断落袋。"
-            },
-            {
-              "who": "老师",
-              "text": "观察周一至周三上午是否一直在逆周线主趋势诱多/诱空并刺穿日线级关键位；一旦在周二/周三触及日线 PD Array 并发生 1H/15m MSS，周四与周五往往提供极顺畅的波段机会。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P09",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.28），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep29": {
-      "status": "current",
-      "core": "早盘跳空缺口（Opening Range Gap / NDOG / NWOG）：09:30 开盘与前日 16:00 收盘价之间的跳空缺口是日内极强磁铁，常先回补缺口或其中轴再启动趋势。",
+      "status": "partial_transcript_checked",
+      "core": "开头回顾2022-05-16的看涨偏向、Nasdaq相对等高点及S&P一分图；次段讨论美联储主席讲话前波动可能收缩。本段不支持旧稿的隔夜缺口标签。",
       "cases": [
         {
-          "title": "[00:01] 16:00 收盘价至次日 09:30 开盘价缺口（Opening Range Gap）",
-          "gist": "当早盘出现明显跳空高开或低开时，前一日 16:00 现货收盘价往往成为早盘回补的第一目标位，或回补 50%（CE）后启动反向趋势。",
-          "scene": "Ep.29《ep. 29 - Trading Bullish Narrow Range Days》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep29_pre_fed_narrow_range_1m.png",
-              "caption": "[03:15 1m] 美联储前窄幅震荡日 1m 结构破坏：在美联储主席讲话前夕的极低波动率日，降低预期，仅在极窄日内区间两端做高低点清扫后的快进快出。"
-            }
-          ],
+          "title": "[00:00] 窄幅看涨日案例的背景",
+          "gist": "开头回顾2022-05-16的看涨偏向、Nasdaq相对等高点及S&P一分图；次段讨论美联储主席讲话前波动可能收缩。本段不支持旧稿的隔夜缺口标签。",
+          "scene": "已核对本地 No-Rant Ep.29 [00:00] 字幕；摘要不等于逐字引文。",
+          "figures": [],
           "read": [
             {
-              "who": "老师图",
-              "text": "[03:15 1m] 美联储前窄幅震荡日 1m 结构破坏：在美联储主席讲话前夕的极低波动率日，降低预期，仅在极窄日内区间两端做高低点清扫后的快进快出。"
-            },
-            {
-              "who": "老师",
-              "text": "当早盘出现明显跳空高开或低开时，前一日 16:00 现货收盘价往往成为早盘回补的第一目标位，或回补 50%（CE）后启动反向趋势。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 4 · 跨市场 SMT 背离与特种行情 (Ep 21–29)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
+              "who": "主模型核读摘要",
+              "text": "开头回顾2022-05-16的看涨偏向、Nasdaq相对等高点及S&P一分图；次段讨论美联储主席讲话前波动可能收缩。本段不支持旧稿的隔夜缺口标签。"
             }
           ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P03",
-            "P07",
-            "P09"
-          ]
+          "principles": [],
+          "evidenceId": "ep29-t0",
+          "sourceSHA256": "088acc0a1d09c9ef103140c86b7697f634d13531e1c0e2be4de880ef3ca49a1c"
         }
       ],
-      "drill": "回看本集（Ep.29），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep30": {
-      "status": "current",
-      "core": "PD Array 矩阵与平衡价格区间（BPR）：当快速拉升的看涨 FVG 被快速下砸的看跌 FVG 双向覆盖时，重叠区构成极强阻力的 BPR。",
-      "cases": [
-        {
-          "title": "[00:01] PD Array 优先级矩阵与 BPR（Balanced Price Range）",
-          "gist": "当一段快速拉升留下看涨 FVG、随即立刻被一段快速下砸留下看跌 FVG 双向覆盖时，两者重叠区构成极具阻力的平衡价格区间（BPR）。",
-          "scene": "Ep.30《ep. 30 - PM Session Trading with Fed Chair Volatility》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep30_fed_chair_volatility_ob.png",
-              "caption": "[02:15 2m] 鲍威尔讲话下午盘订单块承接：下午 14:00 鲍威尔讲话引发剧烈上下扫荡，待第一波脉冲释放后在底部的看涨订单块获得强力支撑。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:15 2m] 鲍威尔讲话下午盘订单块承接：下午 14:00 鲍威尔讲话引发剧烈上下扫荡，待第一波脉冲释放后在底部的看涨订单块获得强力支撑。"
-            },
-            {
-              "who": "老师",
-              "text": "当一段快速拉升留下看涨 FVG、随即立刻被一段快速下砸留下看跌 FVG 双向覆盖时，两者重叠区构成极具阻力的平衡价格区间（BPR）。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P06",
-            "P07",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.30），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep31": {
-      "status": "current",
-      "core": "空头宏观周期下的高胜率法则：在日线不断创新低的熊市结构中，专注等待日内早盘向上扫掉前高进入溢价区 FVG 的顺势做空机会。",
-      "cases": [
-        {
-          "title": "[00:01] 顺应宏观日线空头流向的日内复利",
-          "gist": "在日线不断创出新低的熊市阶段，每一次日内早盘向上扫掉前一日高点或早盘高点的拉升，都是机构在溢价区派发空单的礼物。",
-          "scene": "Ep.31《ep. 31 - AM Session Example & Sellside Liquidity At Old Lows》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep31_am_session_ssl_liquidity.png",
-              "caption": "[01:30 5m] 早盘清扫旧低点卖方流动性 SSL 案例：早盘开盘后单边砸穿昨低与亚洲盘低点，精准在卖方流动性极值处反转拉升。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[01:30 5m] 早盘清扫旧低点卖方流动性 SSL 案例：早盘开盘后单边砸穿昨低与亚洲盘低点，精准在卖方流动性极值处反转拉升。"
-            },
-            {
-              "who": "老师",
-              "text": "在日线不断创出新低的熊市阶段，每一次日内早盘向上扫掉前一日高点或早盘高点的拉升，都是机构在溢价区派发空单的礼物。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P07",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.31），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep32": {
-      "status": "current",
-      "core": "15m FVG 与 1m MSS 分形嵌套：当 15m FVG 过宽时，等价格刺入 15m FVG 内部（尤其 50% 中轴），再切到 1m 图等微型 MSS + 1m FVG 进场以压缩止损。",
-      "cases": [
-        {
-          "title": "[00:01] 用 15m/5m 缺口定位置，用 1m 结构定扳机",
-          "gist": "当 15m FVG 宽度超过 20–30 点时，不必在边缘盲挂；等价格刺入 15m FVG（尤其是触及其中轴 50% CE）并在 1m 图走出反向 MSS + 1m FVG 时进场。",
-          "scene": "Ep.32《ep. 32 - Consolidation Day & Market On Close Profile》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep32_outside_day_50_equilibrium.png",
-              "caption": "[02:45 15m] 外包日高低点 50% 均衡位与尾盘 MOC：外包日（Outside Day）区间极大，从当日高低点拉 50% 均衡线，尾盘 15:00 MOC 资金顺应单边倾泻。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:45 15m] 外包日高低点 50% 均衡位与尾盘 MOC：外包日（Outside Day）区间极大，从当日高低点拉 50% 均衡线，尾盘 15:00 MOC 资金顺应单边倾泻。"
-            },
-            {
-              "who": "老师",
-              "text": "当 15m FVG 宽度超过 20–30 点时，不必在边缘盲挂；等价格刺入 15m FVG（尤其是触及其中轴 50% CE）并在 1m 图走出反向 MSS + 1m FVG 时进场。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P05",
-            "P07",
-            "P10"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.32），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep33": {
-      "status": "current",
-      "core": "亏损后的风控降档铁律：遭遇止损后严禁报复性加仓；若连续亏损，下一笔必须将风险仓位砍半，直到用半仓赢回前次亏损的一半以上才恢复标准仓位。",
-      "cases": [
-        {
-          "title": "[00:01] 止损后的风控降档法则（Cutting Risk After a Loss）",
-          "gist": "单日一旦出现一笔止损，当天若没有绝对 A+ 级机会直接收工；若遭遇连续亏损，下一笔交易必须将风险仓位砍半，直到用减半仓位重新赢回前一次亏损额的一半以上，才允许恢复标准仓位。",
-          "scene": "Ep.33《ep. 33 - More Insights On FVG & Intraday Market Structure》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep33_fvg_imbalance_target.png",
-              "caption": "[01:40 1H/5m] 跌破 5 月 12 日低点后向上回补 FVG：历史性大低点被击穿后，空头获利盘兑现，行情向上大步流星回补上方未平衡的 FVG 磁铁。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[01:40 1H/5m] 跌破 5 月 12 日低点后向上回补 FVG：历史性大低点被击穿后，空头获利盘兑现，行情向上大步流星回补上方未平衡的 FVG 磁铁。"
-            },
-            {
-              "who": "老师",
-              "text": "单日一旦出现一笔止损，当天若没有绝对 A+ 级机会直接收工；若遭遇连续亏损，下一笔交易必须将风险仓位砍半，直到用减半仓位重新赢回前一次亏损额的一半以上，才允许恢复标准仓位。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P08",
-            "P11"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.33），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep34": {
-      "status": "current",
-      "core": "跨日流动性地图：每天盘前必标前日最高价（PDH）与前日最低价（PDL），它们是次日早盘 08:30/09:30 最优先攻击的靶标。",
-      "cases": [
-        {
-          "title": "[00:01] PDH（前日高点）与 PDL（前日低点）的核心磁吸效应",
-          "gist": "每天开盘前先标出 PDH 与 PDL。如果早盘价格距离 PDH/PDL 很近，08:30/09:30 极大概率会先去刺穿它，从而触发日内反转或加速。",
-          "scene": "Ep.34《ep. 34 - Using The Sunday Gap Opening》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep34_opening_price_order_block.png",
-              "caption": "[02:30 5m] 开盘价基准线与看跌订单块回踩：早盘 09:30 现货开盘价是一根关键标尺，价格冲过开盘价触碰看跌 Order Block 后遭遇算法无情砸盘。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:30 5m] 开盘价基准线与看跌订单块回踩：早盘 09:30 现货开盘价是一根关键标尺，价格冲过开盘价触碰看跌 Order Block 后遭遇算法无情砸盘。"
-            },
-            {
-              "who": "老师",
-              "text": "每天开盘前先标出 PDH 与 PDL。如果早盘价格距离 PDH/PDL 很近，08:30/09:30 极大概率会先去刺穿它，从而触发日内反转或加速。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P02",
-            "P03",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.34），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep35": {
-      "status": "current",
-      "core": "识别 Seek & Destroy（搜寻与摧毁）绞肉机日：早盘先扫高点跌回中轴、再扫低点拉回中轴且无位移跟进（常见于非农/CPI前夕），发现后立刻关机观望。",
-      "cases": [
-        {
-          "title": "[00:01] Seek & Destroy（双向扫损绞肉机）的典型征兆",
-          "gist": "通常出现在重大宏观数据（非农/CPI/FOMC）公布前夕，或前一日刚经历极端超大幅度单边波动之后。一旦发现早盘扫完高点跌回中轴、扫完低点又拉回中轴且无持续跟进，立即停止当日交易。",
-          "scene": "Ep.35《ep. 35 - Order Block And SMT Divergence》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep35_smt_ob_continuation.png",
-              "caption": "[02:40 15m] 午夜小幅犹大秋千与订单块延续向上：纽约午夜仅走出极小幅度的诱空假摔，随后依托看涨 Order Block 连续阳线破高推进。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:40 15m] 午夜小幅犹大秋千与订单块延续向上：纽约午夜仅走出极小幅度的诱空假摔，随后依托看涨 Order Block 连续阳线破高推进。"
-            },
-            {
-              "who": "老师",
-              "text": "通常出现在重大宏观数据（非农/CPI/FOMC）公布前夕，或前一日刚经历极端超大幅度单边波动之后。一旦发现早盘扫完高点跌回中轴、扫完低点又拉回中轴且无持续跟进，立即停止当日交易。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P04",
-            "P08"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.35），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep36": {
-      "status": "current",
-      "core": "全流程实盘合成：从盘前 HTF DOL 定位 → 15m 标高低点 → 等 08:30/09:30 猎杀 → 2m/1m MSS + 溢价/折价 FVG 挂单 → 内外流动性分批止盈。",
-      "cases": [
-        {
-          "title": "[00:01] 把复杂分析简化为机械化的 6 步清单",
-          "gist": "盘前看清大方向与流动性池，盘中只等“时间窗口 + 扫池子 + 位移 MSS + 溢价/折价 FVG”四个条件同时亮绿灯。",
-          "scene": "Ep.36《ep. 36 - Trading Example Premium⧸Discount》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep36_premium_discount_mss.png",
-              "caption": "[02:30 1H/5m] 小时图摆动低点刺穿后的结构破坏：小时级别波段低点被实体打穿，小周期一切反弹至溢价区的 FVG 都是送上门的做空机会。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:30 1H/5m] 小时图摆动低点刺穿后的结构破坏：小时级别波段低点被实体打穿，小周期一切反弹至溢价区的 FVG 都是送上门的做空机会。"
-            },
-            {
-              "who": "老师",
-              "text": "盘前看清大方向与流动性池，盘中只等“时间窗口 + 扫池子 + 位移 MSS + 溢价/折价 FVG”四个条件同时亮绿灯。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P05",
-            "P07",
-            "P09"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.36），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     },
     "ep37": {
-      "status": "current",
-      "core": "大结局（One Model for Life）：亲手在 TradingView 上完成 100 张标准化历史复盘截图（Study Deck），按『模拟盘 → 微型合约 MNQ/MES → 标准合约』阶梯晋级。",
-      "cases": [
-        {
-          "title": "[00:01] 构建属于你自己的 100 张标注图库（Study Deck）",
-          "gist": "不要听信任何人的嘴炮，亲手在 TradingView 上把过去数月的每一天按 Ep.01–05 的标准截图标注归档，建立肌肉记忆。",
-          "scene": "Ep.37《XoM_ep. 37 - ICT Power Of 3 (AMD)》原片时间轴 [00:01] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [00:01] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep37_power_of_3_final_summary.png",
-              "caption": "[02:30 Grand Summary] Power of 3 与非农日规避终极总结：全 37 集收官总结：用 AMD 模型锁定算法节奏，避开非农等极端噪音日，在确定性最高的时段执行最简单的一招鲜。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:30 Grand Summary] Power of 3 与非农日规避终极总结：全 37 集收官总结：用 AMD 模型锁定算法节奏，避开非农等极端噪音日，在确定性最高的时段执行最简单的一招鲜。"
-            },
-            {
-              "who": "老师",
-              "text": "不要听信任何人的嘴炮，亲手在 TradingView 上把过去数月的每一天按 Ep.01–05 的标准截图标注归档，建立肌肉记忆。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [00:01] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P11",
-            "P12"
-          ]
-        },
-        {
-          "title": "[05:00] 从模拟盘（Demo）到微型合约（MNQ/MES）再到标准合约的晋级阶梯",
-          "gist": "先在模拟账户或 1 手微型合约上实现连续数周稳定正向执行，用利润垫和纪律证明自己，再逐步放大合约手数。",
-          "scene": "Ep.37《XoM_ep. 37 - ICT Power Of 3 (AMD)》原片时间轴 [05:00] 核心教学案例。",
-          "figureGuide": "重点核对原片关键帧 [05:00] 处的价格结构转变与失衡区形态。",
-          "figures": [
-            {
-              "src": "lesson-assets/ep37_power_of_3_final_summary.png",
-              "caption": "[02:30 Grand Summary] Power of 3 与非农日规避终极总结：全 37 集收官总结：用 AMD 模型锁定算法节奏，避开非农等极端噪音日，在确定性最高的时段执行最简单的一招鲜。"
-            }
-          ],
-          "read": [
-            {
-              "who": "老师图",
-              "text": "[02:30 Grand Summary] Power of 3 与非农日规避终极总结：全 37 集收官总结：用 AMD 模型锁定算法节奏，避开非农等极端噪音日，在确定性最高的时段执行最简单的一招鲜。"
-            },
-            {
-              "who": "老师",
-              "text": "先在模拟账户或 1 手微型合约上实现连续数周稳定正向执行，用利润垫和纪律证明自己，再逐步放大合约手数。"
-            },
-            {
-              "who": "主模型",
-              "text": "将此教学点纳入【Module 5 · 实盘走盘回放、风控与终极闭环 (Ep 30–37)】的核心执行清单，在纽约关键窗口（08:30/09:30/13:30）严格验证。"
-            }
-          ],
-          "plan": [
-            "在原片 [05:00] 处核对图表结构，并在 TradingView 历史盘面找出至少 2 个同类样本",
-            "未满足时间窗口与流动性猎杀前提时保持 Wait，回踩 FVG 成立后执行限价挂单"
-          ],
-          "trap": "脱离高时间框架流动性背景（DOL）与纽约关键时间窗口，单独套用局部形态。",
-          "principles": [
-            "P01",
-            "P11",
-            "P12"
-          ]
-        }
-      ],
-      "drill": "回看本集（Ep.37），这条规则在你的 6 步实盘核对清单中主要强化了哪一环？什么情况下该条件失效？",
-      "gaps": ""
+      "status": "pending",
+      "core": "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+      "cases": [],
+      "gaps": "其余中文推演、图注和跨平台时间偏移待核验。",
+      "drill": "指出原稿中的观察事实、作者解释、你的推断和可能反例；证据不足时保持待核验。"
     }
   },
-  "principleCases": {
-    "P01": [
-      {
-        "lesson": "ep01",
-        "case": 0,
-        "date": "Ep.01",
-        "gist": "顶尖交易员的高频多空反手依赖极深盘感，普通学习者应只截取右侧最干净的一段单边位移波段（如 NQ 123 点主跌浪），用确定性代替交易频率。"
-      },
-      {
-        "lesson": "ep03",
-        "case": 1,
-        "date": "Ep.03",
-        "gist": "刺穿止损池的一连串连续阴线（或连续阳线）构成一个整体订单块；当价格反向突破这串 K 线第一根的开盘价时，算法的交付状态（State of Delivery）正式翻转。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 0,
-        "date": "Ep.05",
-        "gist": "当早盘价格以三推抬高结构（Three Drives）缓慢拱穿 08:30 左侧的 15m 波段高点后，等待一记如“大象跳进儿童泳池”般的长阴线位移与 FVG 做空至早盘低点。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 1,
-        "date": "Ep.05",
-        "gist": "早盘完成高低点双扫并在高位留下干净等高点后，午休 12:00–13:00 绝不交易；13:30 后等待刺穿下午盘第一个短期波段低点完成洗盘，随后突破早盘高点开启连续阳线逼空（Spooling）直至收盘 MOC 加速。"
-      },
-      {
-        "lesson": "ep08",
-        "case": 0,
-        "date": "Ep.08",
-        "gist": "无论是股指还是外汇，算法在特定 Killzone 时间窗口内猎杀旧高低点并在 15m/5m/1m 留下 FVG 的机制完全一致。"
-      },
-      {
-        "lesson": "ep08",
-        "case": 1,
-        "date": "Ep.08",
-        "gist": "从日线/1H 流动性池定位，切入 15m/5m 观察伦敦开盘诱多/诱空后的结构转变与 FVG 进场。"
-      },
-      {
-        "lesson": "ep10",
-        "case": 0,
-        "date": "Ep.10",
-        "gist": "不需要预测非农、CPI 或利率决议的利多利空，只需知道数据公布那一刻（如 08:30 或 10:00）算法会借机完成 Stop Raid。"
-      },
-      {
-        "lesson": "ep10",
-        "case": 1,
-        "date": "Ep.10",
-        "gist": "观察 08:30 如何先行构建诱导或第一重猎杀，09:30 现货开盘如何完成最终极值扫荡并启动全天主派发段（Distribution）。"
-      },
-      {
-        "lesson": "ep11",
-        "case": 0,
-        "date": "Ep.11",
-        "gist": "现货开盘瞬间涌入大量隔夜指令，算法常先向一个方向假突破诱单，再向反方向刺穿真正的 15m 高低点。"
-      },
-      {
-        "lesson": "ep11",
-        "case": 1,
-        "date": "Ep.11",
-        "gist": "当大级别（15m/5m）与小级别（2m/1m）同时在同一价格带留下重叠 FVG 时，进场胜率与爆发力最高。"
-      },
-      {
-        "lesson": "ep16",
-        "case": 0,
-        "date": "Ep.16",
-        "gist": "早盘一旦触及预设的折价/溢价目标池即刻平仓，绝不把盈利单拖进 12:00–13:00 午休区。"
-      },
-      {
-        "lesson": "ep16",
-        "case": 1,
-        "date": "Ep.16",
-        "gist": "以早盘形成的新高点与新低点重新拉取 50% 均衡线，在 13:30 后寻找二次 MSS + FVG 机会。"
-      },
-      {
-        "lesson": "ep19",
-        "case": 0,
-        "date": "Ep.19",
-        "gist": "回答三个问题：1) 价格刚刚从哪个流动性池出来？2) 下一个最具吸引力的反向池子在哪？3) 当前时间窗口（8:30/9:30/13:30）算法需要先诱骗哪一方？"
-      },
-      {
-        "lesson": "ep19",
-        "case": 1,
-        "date": "Ep.19",
-        "gist": "顺应日线/4H 主交付方向的日内波段往往势如破竹，而逆大势的日内反弹一旦触及内部 50% FVG 就会迅速夭折。"
-      },
-      {
-        "lesson": "ep20",
-        "case": 0,
-        "date": "Ep.20",
-        "gist": "若伦敦盘已大幅扩张并触及日线级目标，纽约早盘 08:30–10:00 往往先进行深幅回撤（回补伦敦盘留下的 50% 与 FVG）或进入箱体震荡，切忌在开盘高点盲目追涨杀跌。"
-      },
-      {
-        "lesson": "ep22",
-        "case": 0,
-        "date": "Ep.22",
-        "gist": "14:00 利率决议公布瞬间点差扩大、算法上下扫盘清场，必须等 14:30 发布会开始、某一侧关键流动性被彻底扫清并出现 5m/1m MSS + FVG 后再决定是否轻仓参与。"
-      },
-      {
-        "lesson": "ep27",
-        "case": 0,
-        "date": "Ep.27",
-        "gist": "如果图表上高低点模糊、K 线大量重叠、双向都没去触碰清晰的 15m/1H 止损池，最佳操作就是关掉交易软件。"
-      },
-      {
-        "lesson": "ep33",
-        "case": 0,
-        "date": "Ep.33",
-        "gist": "单日一旦出现一笔止损，当天若没有绝对 A+ 级机会直接收工；若遭遇连续亏损，下一笔交易必须将风险仓位砍半，直到用减半仓位重新赢回前一次亏损额的一半以上，才允许恢复标准仓位。"
-      },
-      {
-        "lesson": "ep35",
-        "case": 0,
-        "date": "Ep.35",
-        "gist": "通常出现在重大宏观数据（非农/CPI/FOMC）公布前夕，或前一日刚经历极端超大幅度单边波动之后。一旦发现早盘扫完高点跌回中轴、扫完低点又拉回中轴且无持续跟进，立即停止当日交易。"
-      },
-      {
-        "lesson": "ep37",
-        "case": 0,
-        "date": "Ep.37",
-        "gist": "不要听信任何人的嘴炮，亲手在 TradingView 上把过去数月的每一天按 Ep.01–05 的标准截图标注归档，建立肌肉记忆。"
-      },
-      {
-        "lesson": "ep37",
-        "case": 1,
-        "date": "Ep.37",
-        "gist": "先在模拟账户或 1 手微型合约上实现连续数周稳定正向执行，用利润垫和纪律证明自己，再逐步放大合约手数。"
-      }
-    ],
-    "P02": [
-      {
-        "lesson": "ep02",
-        "case": 0,
-        "date": "Ep.02",
-        "gist": "在大级别看跌（下方旧低点 SSL 未扫）背景下，开盘初先跌破短期小低点往往是诱空陷阱（Sucker Play），真正的做空时机在价格随掉头刺穿上方相对等高点买方止损（BSL）之后。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 0,
-        "date": "Ep.06",
-        "gist": "传统技术分析教导的形态与指标往往把散户引导成为大资金的流动性提供者（对手盘）。理解每笔止损单背后都是强制市价单，才能看懂价格为何总去刺穿明显的高低点。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 1,
-        "date": "Ep.06",
-        "gist": "当价格已经回补了日线/4小时看跌失衡区并接近底部支撑时，不能再盲目死空，而要观察日内是否通过扫低点来完成多头建仓。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 2,
-        "date": "Ep.06",
-        "gist": "拆解美股现货开盘前先向下假跌破、09:30 后向上拉升突破并回踩看涨 FVG 的完整实盘执行细节。"
-      },
-      {
-        "lesson": "ep07",
-        "case": 0,
-        "date": "Ep.07",
-        "gist": "大阳/大阴日之后常伴随内部回撤与震荡整固，此时需在日线及 4H/1H 级别标出大区间的高低点与 50% 均衡位。"
-      },
-      {
-        "lesson": "ep07",
-        "case": 1,
-        "date": "Ep.07",
-        "gist": "一旦价格扫掉了某一侧的外部止损（BSL/SSL）却未能继续扩张，下一个高确定性磁铁必然是区间内部的 50% 均衡位及内部失衡区（Internal Range Liquidity）。"
-      },
-      {
-        "lesson": "ep09",
-        "case": 0,
-        "date": "Ep.09",
-        "gist": "看涨日 K 线：开盘（Open）→ 向下操纵形成最低价（Low，积累多头）→ 向上派发拉升 → 收盘于高位（Close）。看跌日 K 线：开盘 → 向上操纵形成最高价（High，积累空头）→ 向下派发砸盘 → 收盘于低位。"
-      },
-      {
-        "lesson": "ep09",
-        "case": 1,
-        "date": "Ep.09",
-        "gist": "当天看空时，只等价格拉升到 00:00 午夜开盘价（及 08:30 开盘价）上方扫掉 BSL 再做空；当天看多时，只等价格砸到 00:00 开盘价下方扫掉 SSL 再做多。"
-      },
-      {
-        "lesson": "ep17",
-        "case": 0,
-        "date": "Ep.17",
-        "gist": "当 DXY 正在奔向日线 BSL（看涨美元）时，在 EURUSD / GBPUSD 上只寻找冲高扫掉短期高点后的看跌 MSS + SIBI（看跌 FVG）做空机会。"
-      },
-      {
-        "lesson": "ep17",
-        "case": 1,
-        "date": "Ep.17",
-        "gist": "若伦敦盘已走出强劲首波位移，纽约盘（07:00–08:30）常回撤至伦敦波段的 50%–70.5% OTE 区及内部 FVG 提供二次上车点。"
-      },
-      {
-        "lesson": "ep18",
-        "case": 0,
-        "date": "Ep.18",
-        "gist": "新手最大的亏损来源是在没有任何 15m/1H/Daily 关键流动性或失衡区配合的区间中部，随便找一个 1m 小缺口频繁交易。"
-      },
-      {
-        "lesson": "ep18",
-        "case": 1,
-        "date": "Ep.18",
-        "gist": "耐心等待价格刺入 1H/15m 的 FVG 或扫掉 1H/15m 高低点后，再降维到 1m/2m 寻找反向 MSS。"
-      },
-      {
-        "lesson": "ep19",
-        "case": 0,
-        "date": "Ep.19",
-        "gist": "回答三个问题：1) 价格刚刚从哪个流动性池出来？2) 下一个最具吸引力的反向池子在哪？3) 当前时间窗口（8:30/9:30/13:30）算法需要先诱骗哪一方？"
-      },
-      {
-        "lesson": "ep19",
-        "case": 1,
-        "date": "Ep.19",
-        "gist": "顺应日线/4H 主交付方向的日内波段往往势如破竹，而逆大势的日内反弹一旦触及内部 50% FVG 就会迅速夭折。"
-      },
-      {
-        "lesson": "ep23",
-        "case": 0,
-        "date": "Ep.23",
-        "gist": "FOMC 制造的大区间确立了新的高低点边界，次日早盘往往先回抽该区间 50% 均衡点或前一日尾盘 FVG，再沿主方向继续推进。"
-      },
-      {
-        "lesson": "ep26",
-        "case": 0,
-        "date": "Ep.26",
-        "gist": "当周线、日线、1H 与日内方向完全同向时拿向外部高低点；当与日线主趋势相反或处于大行情次日时，触及首个 15m 内部 FVG 即平仓 80%–100%。"
-      },
-      {
-        "lesson": "ep28",
-        "case": 0,
-        "date": "Ep.28",
-        "gist": "观察周一至周三上午是否一直在逆周线主趋势诱多/诱空并刺穿日线级关键位；一旦在周二/周三触及日线 PD Array 并发生 1H/15m MSS，周四与周五往往提供极顺畅的波段机会。"
-      },
-      {
-        "lesson": "ep31",
-        "case": 0,
-        "date": "Ep.31",
-        "gist": "在日线不断创出新低的熊市阶段，每一次日内早盘向上扫掉前一日高点或早盘高点的拉升，都是机构在溢价区派发空单的礼物。"
-      },
-      {
-        "lesson": "ep34",
-        "case": 0,
-        "date": "Ep.34",
-        "gist": "每天开盘前先标出 PDH 与 PDL。如果早盘价格距离 PDH/PDL 很近，08:30/09:30 极大概率会先去刺穿它，从而触发日内反转或加速。"
-      }
-    ],
-    "P03": [
-      {
-        "lesson": "ep02",
-        "case": 0,
-        "date": "Ep.02",
-        "gist": "在大级别看跌（下方旧低点 SSL 未扫）背景下，开盘初先跌破短期小低点往往是诱空陷阱（Sucker Play），真正的做空时机在价格随掉头刺穿上方相对等高点买方止损（BSL）之后。"
-      },
-      {
-        "lesson": "ep03",
-        "case": 0,
-        "date": "Ep.03",
-        "gist": "只要关键流动性池被刺穿并在短周期产生反向 MSS + FVG，无论顺大势还是日内逆势波段，都遵循完全一致的进出场法则。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 0,
-        "date": "Ep.05",
-        "gist": "当早盘价格以三推抬高结构（Three Drives）缓慢拱穿 08:30 左侧的 15m 波段高点后，等待一记如“大象跳进儿童泳池”般的长阴线位移与 FVG 做空至早盘低点。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 0,
-        "date": "Ep.06",
-        "gist": "传统技术分析教导的形态与指标往往把散户引导成为大资金的流动性提供者（对手盘）。理解每笔止损单背后都是强制市价单，才能看懂价格为何总去刺穿明显的高低点。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 1,
-        "date": "Ep.06",
-        "gist": "当价格已经回补了日线/4小时看跌失衡区并接近底部支撑时，不能再盲目死空，而要观察日内是否通过扫低点来完成多头建仓。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 2,
-        "date": "Ep.06",
-        "gist": "拆解美股现货开盘前先向下假跌破、09:30 后向上拉升突破并回踩看涨 FVG 的完整实盘执行细节。"
-      },
-      {
-        "lesson": "ep21",
-        "case": 0,
-        "date": "Ep.21",
-        "gist": "顶部看跌 SMT：在关键阻力/BSL 处，NQ 刺穿前高而 ES 未能刺穿前高（或反之），说明上涨并非全市场真实买盘，而是针对单一品种的止损猎杀。底部看涨 SMT：在关键支撑/SSL 处，一个品种破前低而另一个品种守住前低形成更高低点。"
-      },
-      {
-        "lesson": "ep21",
-        "case": 1,
-        "date": "Ep.21",
-        "gist": "做空时选顶部没能创新高（相对更弱）的那个指数；做多时选底部拒绝创新低（相对更强）的那个指数！"
-      },
-      {
-        "lesson": "ep29",
-        "case": 0,
-        "date": "Ep.29",
-        "gist": "当早盘出现明显跳空高开或低开时，前一日 16:00 现货收盘价往往成为早盘回补的第一目标位，或回补 50%（CE）后启动反向趋势。"
-      },
-      {
-        "lesson": "ep34",
-        "case": 0,
-        "date": "Ep.34",
-        "gist": "每天开盘前先标出 PDH 与 PDL。如果早盘价格距离 PDH/PDL 很近，08:30/09:30 极大概率会先去刺穿它，从而触发日内反转或加速。"
-      }
-    ],
-    "P04": [
-      {
-        "lesson": "ep02",
-        "case": 0,
-        "date": "Ep.02",
-        "gist": "在大级别看跌（下方旧低点 SSL 未扫）背景下，开盘初先跌破短期小低点往往是诱空陷阱（Sucker Play），真正的做空时机在价格随掉头刺穿上方相对等高点买方止损（BSL）之后。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 0,
-        "date": "Ep.05",
-        "gist": "当早盘价格以三推抬高结构（Three Drives）缓慢拱穿 08:30 左侧的 15m 波段高点后，等待一记如“大象跳进儿童泳池”般的长阴线位移与 FVG 做空至早盘低点。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 0,
-        "date": "Ep.06",
-        "gist": "传统技术分析教导的形态与指标往往把散户引导成为大资金的流动性提供者（对手盘）。理解每笔止损单背后都是强制市价单，才能看懂价格为何总去刺穿明显的高低点。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 1,
-        "date": "Ep.06",
-        "gist": "当价格已经回补了日线/4小时看跌失衡区并接近底部支撑时，不能再盲目死空，而要观察日内是否通过扫低点来完成多头建仓。"
-      },
-      {
-        "lesson": "ep06",
-        "case": 2,
-        "date": "Ep.06",
-        "gist": "拆解美股现货开盘前先向下假跌破、09:30 后向上拉升突破并回踩看涨 FVG 的完整实盘执行细节。"
-      },
-      {
-        "lesson": "ep09",
-        "case": 0,
-        "date": "Ep.09",
-        "gist": "看涨日 K 线：开盘（Open）→ 向下操纵形成最低价（Low，积累多头）→ 向上派发拉升 → 收盘于高位（Close）。看跌日 K 线：开盘 → 向上操纵形成最高价（High，积累空头）→ 向下派发砸盘 → 收盘于低位。"
-      },
-      {
-        "lesson": "ep09",
-        "case": 1,
-        "date": "Ep.09",
-        "gist": "当天看空时，只等价格拉升到 00:00 午夜开盘价（及 08:30 开盘价）上方扫掉 BSL 再做空；当天看多时，只等价格砸到 00:00 开盘价下方扫掉 SSL 再做多。"
-      },
-      {
-        "lesson": "ep10",
-        "case": 0,
-        "date": "Ep.10",
-        "gist": "不需要预测非农、CPI 或利率决议的利多利空，只需知道数据公布那一刻（如 08:30 或 10:00）算法会借机完成 Stop Raid。"
-      },
-      {
-        "lesson": "ep10",
-        "case": 1,
-        "date": "Ep.10",
-        "gist": "观察 08:30 如何先行构建诱导或第一重猎杀，09:30 现货开盘如何完成最终极值扫荡并启动全天主派发段（Distribution）。"
-      },
-      {
-        "lesson": "ep35",
-        "case": 0,
-        "date": "Ep.35",
-        "gist": "通常出现在重大宏观数据（非农/CPI/FOMC）公布前夕，或前一日刚经历极端超大幅度单边波动之后。一旦发现早盘扫完高点跌回中轴、扫完低点又拉回中轴且无持续跟进，立即停止当日交易。"
-      }
-    ],
-    "P05": [
-      {
-        "lesson": "ep02",
-        "case": 1,
-        "date": "Ep.02",
-        "gist": "当高周期流动性池被刺穿后，降维到 2m/1m 等待跌破最近的短期波段低点（BMS）且位移内部留下三 K 线看跌 FVG，在 >50% 溢价区回抽 FVG 时做空，并在 <50% 折价区的内部看涨 FVG 分批平仓。"
-      },
-      {
-        "lesson": "ep03",
-        "case": 0,
-        "date": "Ep.03",
-        "gist": "只要关键流动性池被刺穿并在短周期产生反向 MSS + FVG，无论顺大势还是日内逆势波段，都遵循完全一致的进出场法则。"
-      },
-      {
-        "lesson": "ep04",
-        "case": 0,
-        "date": "Ep.04",
-        "gist": "破高点后的第一次回调若 K 线重叠无 FVG 或未破短期 Swing Low，属于诱空洗盘，必须放弃并等待二次冲顶后的真 MSS + FVG。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 0,
-        "date": "Ep.05",
-        "gist": "当早盘价格以三推抬高结构（Three Drives）缓慢拱穿 08:30 左侧的 15m 波段高点后，等待一记如“大象跳进儿童泳池”般的长阴线位移与 FVG 做空至早盘低点。"
-      },
-      {
-        "lesson": "ep08",
-        "case": 0,
-        "date": "Ep.08",
-        "gist": "无论是股指还是外汇，算法在特定 Killzone 时间窗口内猎杀旧高低点并在 15m/5m/1m 留下 FVG 的机制完全一致。"
-      },
-      {
-        "lesson": "ep08",
-        "case": 1,
-        "date": "Ep.08",
-        "gist": "从日线/1H 流动性池定位，切入 15m/5m 观察伦敦开盘诱多/诱空后的结构转变与 FVG 进场。"
-      },
-      {
-        "lesson": "ep11",
-        "case": 0,
-        "date": "Ep.11",
-        "gist": "现货开盘瞬间涌入大量隔夜指令，算法常先向一个方向假突破诱单，再向反方向刺穿真正的 15m 高低点。"
-      },
-      {
-        "lesson": "ep11",
-        "case": 1,
-        "date": "Ep.11",
-        "gist": "当大级别（15m/5m）与小级别（2m/1m）同时在同一价格带留下重叠 FVG 时，进场胜率与爆发力最高。"
-      },
-      {
-        "lesson": "ep12",
-        "case": 0,
-        "date": "Ep.12",
-        "gist": "1) 短期高低点（STH/STL）：基础三 K 线摆动极值；2) 中期高低点（ITH/ITL）：左右两侧各有一个更低的 STH（或更高的 STL）烘托的极值，或回抽高时间框架 FVG 形成的波段极值；3) 长期高低点（LTH/LTL）：大级别关键流动性反转点。"
-      },
-      {
-        "lesson": "ep12",
-        "case": 1,
-        "date": "Ep.12",
-        "gist": "在空头趋势中，每一个反弹触及 FVG 形成的新 ITH 都不应被随后的反弹突破；只有当新的位移腿突破前低后，才将止损移至最近的 ITH 上方。"
-      },
-      {
-        "lesson": "ep18",
-        "case": 0,
-        "date": "Ep.18",
-        "gist": "新手最大的亏损来源是在没有任何 15m/1H/Daily 关键流动性或失衡区配合的区间中部，随便找一个 1m 小缺口频繁交易。"
-      },
-      {
-        "lesson": "ep18",
-        "case": 1,
-        "date": "Ep.18",
-        "gist": "耐心等待价格刺入 1H/15m 的 FVG 或扫掉 1H/15m 高低点后，再降维到 1m/2m 寻找反向 MSS。"
-      },
-      {
-        "lesson": "ep21",
-        "case": 0,
-        "date": "Ep.21",
-        "gist": "顶部看跌 SMT：在关键阻力/BSL 处，NQ 刺穿前高而 ES 未能刺穿前高（或反之），说明上涨并非全市场真实买盘，而是针对单一品种的止损猎杀。底部看涨 SMT：在关键支撑/SSL 处，一个品种破前低而另一个品种守住前低形成更高低点。"
-      },
-      {
-        "lesson": "ep21",
-        "case": 1,
-        "date": "Ep.21",
-        "gist": "做空时选顶部没能创新高（相对更弱）的那个指数；做多时选底部拒绝创新低（相对更强）的那个指数！"
-      },
-      {
-        "lesson": "ep24",
-        "case": 0,
-        "date": "Ep.24",
-        "gist": "不要在顶部小震荡箱体内部过早猜顶，把结构跌破线（MSS）牢牢设在推动最后一次冲高的那个关键波段低点下方。"
-      },
-      {
-        "lesson": "ep32",
-        "case": 0,
-        "date": "Ep.32",
-        "gist": "当 15m FVG 宽度超过 20–30 点时，不必在边缘盲挂；等价格刺入 15m FVG（尤其是触及其中轴 50% CE）并在 1m 图走出反向 MSS + 1m FVG 时进场。"
-      },
-      {
-        "lesson": "ep36",
-        "case": 0,
-        "date": "Ep.36",
-        "gist": "盘前看清大方向与流动性池，盘中只等“时间窗口 + 扫池子 + 位移 MSS + 溢价/折价 FVG”四个条件同时亮绿灯。"
-      }
-    ],
-    "P06": [
-      {
-        "lesson": "ep03",
-        "case": 1,
-        "date": "Ep.03",
-        "gist": "刺穿止损池的一连串连续阴线（或连续阳线）构成一个整体订单块；当价格反向突破这串 K 线第一根的开盘价时，算法的交付状态（State of Delivery）正式翻转。"
-      },
-      {
-        "lesson": "ep13",
-        "case": 0,
-        "date": "Ep.13",
-        "gist": "通过真实 NQ/ES 盘面演示：一旦高时间框架 FVG 孕育出 ITH，后续短周期的每一次小反弹都是顺势做空机会。"
-      },
-      {
-        "lesson": "ep13",
-        "case": 1,
-        "date": "Ep.13",
-        "gist": "只要最新的 ITH（空头中）或 ITL（多头中）未被破坏，短周期的小结构突破只是为了回补内部失衡，而非趋势终结。"
-      },
-      {
-        "lesson": "ep15",
-        "case": 0,
-        "date": "Ep.15",
-        "gist": "当 FVG 内部恰好包含前期订单块的开盘价或中轴（Mean Threshold 50%）时，价格往往在此出现毫秒级精准反应。"
-      },
-      {
-        "lesson": "ep24",
-        "case": 0,
-        "date": "Ep.24",
-        "gist": "不要在顶部小震荡箱体内部过早猜顶，把结构跌破线（MSS）牢牢设在推动最后一次冲高的那个关键波段低点下方。"
-      },
-      {
-        "lesson": "ep30",
-        "case": 0,
-        "date": "Ep.30",
-        "gist": "当一段快速拉升留下看涨 FVG、随即立刻被一段快速下砸留下看跌 FVG 双向覆盖时，两者重叠区构成极具阻力的平衡价格区间（BPR）。"
-      }
-    ],
-    "P07": [
-      {
-        "lesson": "ep02",
-        "case": 1,
-        "date": "Ep.02",
-        "gist": "当高周期流动性池被刺穿后，降维到 2m/1m 等待跌破最近的短期波段低点（BMS）且位移内部留下三 K 线看跌 FVG，在 >50% 溢价区回抽 FVG 时做空，并在 <50% 折价区的内部看涨 FVG 分批平仓。"
-      },
-      {
-        "lesson": "ep03",
-        "case": 0,
-        "date": "Ep.03",
-        "gist": "只要关键流动性池被刺穿并在短周期产生反向 MSS + FVG，无论顺大势还是日内逆势波段，都遵循完全一致的进出场法则。"
-      },
-      {
-        "lesson": "ep07",
-        "case": 0,
-        "date": "Ep.07",
-        "gist": "大阳/大阴日之后常伴随内部回撤与震荡整固，此时需在日线及 4H/1H 级别标出大区间的高低点与 50% 均衡位。"
-      },
-      {
-        "lesson": "ep07",
-        "case": 1,
-        "date": "Ep.07",
-        "gist": "一旦价格扫掉了某一侧的外部止损（BSL/SSL）却未能继续扩张，下一个高确定性磁铁必然是区间内部的 50% 均衡位及内部失衡区（Internal Range Liquidity）。"
-      },
-      {
-        "lesson": "ep08",
-        "case": 0,
-        "date": "Ep.08",
-        "gist": "无论是股指还是外汇，算法在特定 Killzone 时间窗口内猎杀旧高低点并在 15m/5m/1m 留下 FVG 的机制完全一致。"
-      },
-      {
-        "lesson": "ep08",
-        "case": 1,
-        "date": "Ep.08",
-        "gist": "从日线/1H 流动性池定位，切入 15m/5m 观察伦敦开盘诱多/诱空后的结构转变与 FVG 进场。"
-      },
-      {
-        "lesson": "ep13",
-        "case": 0,
-        "date": "Ep.13",
-        "gist": "通过真实 NQ/ES 盘面演示：一旦高时间框架 FVG 孕育出 ITH，后续短周期的每一次小反弹都是顺势做空机会。"
-      },
-      {
-        "lesson": "ep13",
-        "case": 1,
-        "date": "Ep.13",
-        "gist": "只要最新的 ITH（空头中）或 ITL（多头中）未被破坏，短周期的小结构突破只是为了回补内部失衡，而非趋势终结。"
-      },
-      {
-        "lesson": "ep14",
-        "case": 0,
-        "date": "Ep.14",
-        "gist": "处于 50% Equilibrium 极值侧（做空选上方溢价区 FVG，做多选下方折价区 FVG）且紧贴 Order Block 的缺口最具机构防守价值。"
-      },
-      {
-        "lesson": "ep14",
-        "case": 1,
-        "date": "Ep.14",
-        "gist": "当价格已经完成深度回撤并在 ITH/ITL 处启动第二波加速腿（Expansion Leg）时，浅层 FVG（Breakaway/Measuring Gap）往往直接充当加速跳板。"
-      },
-      {
-        "lesson": "ep15",
-        "case": 0,
-        "date": "Ep.15",
-        "gist": "当 FVG 内部恰好包含前期订单块的开盘价或中轴（Mean Threshold 50%）时，价格往往在此出现毫秒级精准反应。"
-      },
-      {
-        "lesson": "ep17",
-        "case": 0,
-        "date": "Ep.17",
-        "gist": "当 DXY 正在奔向日线 BSL（看涨美元）时，在 EURUSD / GBPUSD 上只寻找冲高扫掉短期高点后的看跌 MSS + SIBI（看跌 FVG）做空机会。"
-      },
-      {
-        "lesson": "ep17",
-        "case": 1,
-        "date": "Ep.17",
-        "gist": "若伦敦盘已走出强劲首波位移，纽约盘（07:00–08:30）常回撤至伦敦波段的 50%–70.5% OTE 区及内部 FVG 提供二次上车点。"
-      },
-      {
-        "lesson": "ep18",
-        "case": 0,
-        "date": "Ep.18",
-        "gist": "新手最大的亏损来源是在没有任何 15m/1H/Daily 关键流动性或失衡区配合的区间中部，随便找一个 1m 小缺口频繁交易。"
-      },
-      {
-        "lesson": "ep18",
-        "case": 1,
-        "date": "Ep.18",
-        "gist": "耐心等待价格刺入 1H/15m 的 FVG 或扫掉 1H/15m 高低点后，再降维到 1m/2m 寻找反向 MSS。"
-      },
-      {
-        "lesson": "ep20",
-        "case": 0,
-        "date": "Ep.20",
-        "gist": "若伦敦盘已大幅扩张并触及日线级目标，纽约早盘 08:30–10:00 往往先进行深幅回撤（回补伦敦盘留下的 50% 与 FVG）或进入箱体震荡，切忌在开盘高点盲目追涨杀跌。"
-      },
-      {
-        "lesson": "ep23",
-        "case": 0,
-        "date": "Ep.23",
-        "gist": "FOMC 制造的大区间确立了新的高低点边界，次日早盘往往先回抽该区间 50% 均衡点或前一日尾盘 FVG，再沿主方向继续推进。"
-      },
-      {
-        "lesson": "ep25",
-        "case": 0,
-        "date": "Ep.25",
-        "gist": "最稳妥的成交位是 FVG 的入口边缘（做空取下沿、做多取上沿）再留 1–2 ticks 缓冲；若追求极致盈亏比则关注 FVG 的 50% 中轴（CE）。"
-      },
-      {
-        "lesson": "ep29",
-        "case": 0,
-        "date": "Ep.29",
-        "gist": "当早盘出现明显跳空高开或低开时，前一日 16:00 现货收盘价往往成为早盘回补的第一目标位，或回补 50%（CE）后启动反向趋势。"
-      },
-      {
-        "lesson": "ep30",
-        "case": 0,
-        "date": "Ep.30",
-        "gist": "当一段快速拉升留下看涨 FVG、随即立刻被一段快速下砸留下看跌 FVG 双向覆盖时，两者重叠区构成极具阻力的平衡价格区间（BPR）。"
-      },
-      {
-        "lesson": "ep31",
-        "case": 0,
-        "date": "Ep.31",
-        "gist": "在日线不断创出新低的熊市阶段，每一次日内早盘向上扫掉前一日高点或早盘高点的拉升，都是机构在溢价区派发空单的礼物。"
-      },
-      {
-        "lesson": "ep32",
-        "case": 0,
-        "date": "Ep.32",
-        "gist": "当 15m FVG 宽度超过 20–30 点时，不必在边缘盲挂；等价格刺入 15m FVG（尤其是触及其中轴 50% CE）并在 1m 图走出反向 MSS + 1m FVG 时进场。"
-      },
-      {
-        "lesson": "ep36",
-        "case": 0,
-        "date": "Ep.36",
-        "gist": "盘前看清大方向与流动性池，盘中只等“时间窗口 + 扫池子 + 位移 MSS + 溢价/折价 FVG”四个条件同时亮绿灯。"
-      }
-    ],
-    "P08": [
-      {
-        "lesson": "ep02",
-        "case": 1,
-        "date": "Ep.02",
-        "gist": "当高周期流动性池被刺穿后，降维到 2m/1m 等待跌破最近的短期波段低点（BMS）且位移内部留下三 K 线看跌 FVG，在 >50% 溢价区回抽 FVG 时做空，并在 <50% 折价区的内部看涨 FVG 分批平仓。"
-      },
-      {
-        "lesson": "ep04",
-        "case": 0,
-        "date": "Ep.04",
-        "gist": "破高点后的第一次回调若 K 线重叠无 FVG 或未破短期 Swing Low，属于诱空洗盘，必须放弃并等待二次冲顶后的真 MSS + FVG。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 1,
-        "date": "Ep.05",
-        "gist": "早盘完成高低点双扫并在高位留下干净等高点后，午休 12:00–13:00 绝不交易；13:30 后等待刺穿下午盘第一个短期波段低点完成洗盘，随后突破早盘高点开启连续阳线逼空（Spooling）直至收盘 MOC 加速。"
-      },
-      {
-        "lesson": "ep11",
-        "case": 0,
-        "date": "Ep.11",
-        "gist": "现货开盘瞬间涌入大量隔夜指令，算法常先向一个方向假突破诱单，再向反方向刺穿真正的 15m 高低点。"
-      },
-      {
-        "lesson": "ep11",
-        "case": 1,
-        "date": "Ep.11",
-        "gist": "当大级别（15m/5m）与小级别（2m/1m）同时在同一价格带留下重叠 FVG 时，进场胜率与爆发力最高。"
-      },
-      {
-        "lesson": "ep12",
-        "case": 0,
-        "date": "Ep.12",
-        "gist": "1) 短期高低点（STH/STL）：基础三 K 线摆动极值；2) 中期高低点（ITH/ITL）：左右两侧各有一个更低的 STH（或更高的 STL）烘托的极值，或回抽高时间框架 FVG 形成的波段极值；3) 长期高低点（LTH/LTL）：大级别关键流动性反转点。"
-      },
-      {
-        "lesson": "ep12",
-        "case": 1,
-        "date": "Ep.12",
-        "gist": "在空头趋势中，每一个反弹触及 FVG 形成的新 ITH 都不应被随后的反弹突破；只有当新的位移腿突破前低后，才将止损移至最近的 ITH 上方。"
-      },
-      {
-        "lesson": "ep14",
-        "case": 0,
-        "date": "Ep.14",
-        "gist": "处于 50% Equilibrium 极值侧（做空选上方溢价区 FVG，做多选下方折价区 FVG）且紧贴 Order Block 的缺口最具机构防守价值。"
-      },
-      {
-        "lesson": "ep14",
-        "case": 1,
-        "date": "Ep.14",
-        "gist": "当价格已经完成深度回撤并在 ITH/ITL 处启动第二波加速腿（Expansion Leg）时，浅层 FVG（Breakaway/Measuring Gap）往往直接充当加速跳板。"
-      },
-      {
-        "lesson": "ep15",
-        "case": 0,
-        "date": "Ep.15",
-        "gist": "当 FVG 内部恰好包含前期订单块的开盘价或中轴（Mean Threshold 50%）时，价格往往在此出现毫秒级精准反应。"
-      },
-      {
-        "lesson": "ep16",
-        "case": 0,
-        "date": "Ep.16",
-        "gist": "早盘一旦触及预设的折价/溢价目标池即刻平仓，绝不把盈利单拖进 12:00–13:00 午休区。"
-      },
-      {
-        "lesson": "ep16",
-        "case": 1,
-        "date": "Ep.16",
-        "gist": "以早盘形成的新高点与新低点重新拉取 50% 均衡线，在 13:30 后寻找二次 MSS + FVG 机会。"
-      },
-      {
-        "lesson": "ep20",
-        "case": 0,
-        "date": "Ep.20",
-        "gist": "若伦敦盘已大幅扩张并触及日线级目标，纽约早盘 08:30–10:00 往往先进行深幅回撤（回补伦敦盘留下的 50% 与 FVG）或进入箱体震荡，切忌在开盘高点盲目追涨杀跌。"
-      },
-      {
-        "lesson": "ep22",
-        "case": 0,
-        "date": "Ep.22",
-        "gist": "14:00 利率决议公布瞬间点差扩大、算法上下扫盘清场，必须等 14:30 发布会开始、某一侧关键流动性被彻底扫清并出现 5m/1m MSS + FVG 后再决定是否轻仓参与。"
-      },
-      {
-        "lesson": "ep24",
-        "case": 0,
-        "date": "Ep.24",
-        "gist": "不要在顶部小震荡箱体内部过早猜顶，把结构跌破线（MSS）牢牢设在推动最后一次冲高的那个关键波段低点下方。"
-      },
-      {
-        "lesson": "ep25",
-        "case": 0,
-        "date": "Ep.25",
-        "gist": "最稳妥的成交位是 FVG 的入口边缘（做空取下沿、做多取上沿）再留 1–2 ticks 缓冲；若追求极致盈亏比则关注 FVG 的 50% 中轴（CE）。"
-      },
-      {
-        "lesson": "ep27",
-        "case": 0,
-        "date": "Ep.27",
-        "gist": "如果图表上高低点模糊、K 线大量重叠、双向都没去触碰清晰的 15m/1H 止损池，最佳操作就是关掉交易软件。"
-      },
-      {
-        "lesson": "ep33",
-        "case": 0,
-        "date": "Ep.33",
-        "gist": "单日一旦出现一笔止损，当天若没有绝对 A+ 级机会直接收工；若遭遇连续亏损，下一笔交易必须将风险仓位砍半，直到用减半仓位重新赢回前一次亏损额的一半以上，才允许恢复标准仓位。"
-      },
-      {
-        "lesson": "ep35",
-        "case": 0,
-        "date": "Ep.35",
-        "gist": "通常出现在重大宏观数据（非农/CPI/FOMC）公布前夕，或前一日刚经历极端超大幅度单边波动之后。一旦发现早盘扫完高点跌回中轴、扫完低点又拉回中轴且无持续跟进，立即停止当日交易。"
-      }
-    ],
-    "P09": [
-      {
-        "lesson": "ep02",
-        "case": 1,
-        "date": "Ep.02",
-        "gist": "当高周期流动性池被刺穿后，降维到 2m/1m 等待跌破最近的短期波段低点（BMS）且位移内部留下三 K 线看跌 FVG，在 >50% 溢价区回抽 FVG 时做空，并在 <50% 折价区的内部看涨 FVG 分批平仓。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 1,
-        "date": "Ep.05",
-        "gist": "早盘完成高低点双扫并在高位留下干净等高点后，午休 12:00–13:00 绝不交易；13:30 后等待刺穿下午盘第一个短期波段低点完成洗盘，随后突破早盘高点开启连续阳线逼空（Spooling）直至收盘 MOC 加速。"
-      },
-      {
-        "lesson": "ep07",
-        "case": 0,
-        "date": "Ep.07",
-        "gist": "大阳/大阴日之后常伴随内部回撤与震荡整固，此时需在日线及 4H/1H 级别标出大区间的高低点与 50% 均衡位。"
-      },
-      {
-        "lesson": "ep07",
-        "case": 1,
-        "date": "Ep.07",
-        "gist": "一旦价格扫掉了某一侧的外部止损（BSL/SSL）却未能继续扩张，下一个高确定性磁铁必然是区间内部的 50% 均衡位及内部失衡区（Internal Range Liquidity）。"
-      },
-      {
-        "lesson": "ep14",
-        "case": 0,
-        "date": "Ep.14",
-        "gist": "处于 50% Equilibrium 极值侧（做空选上方溢价区 FVG，做多选下方折价区 FVG）且紧贴 Order Block 的缺口最具机构防守价值。"
-      },
-      {
-        "lesson": "ep14",
-        "case": 1,
-        "date": "Ep.14",
-        "gist": "当价格已经完成深度回撤并在 ITH/ITL 处启动第二波加速腿（Expansion Leg）时，浅层 FVG（Breakaway/Measuring Gap）往往直接充当加速跳板。"
-      },
-      {
-        "lesson": "ep16",
-        "case": 0,
-        "date": "Ep.16",
-        "gist": "早盘一旦触及预设的折价/溢价目标池即刻平仓，绝不把盈利单拖进 12:00–13:00 午休区。"
-      },
-      {
-        "lesson": "ep16",
-        "case": 1,
-        "date": "Ep.16",
-        "gist": "以早盘形成的新高点与新低点重新拉取 50% 均衡线，在 13:30 后寻找二次 MSS + FVG 机会。"
-      },
-      {
-        "lesson": "ep19",
-        "case": 0,
-        "date": "Ep.19",
-        "gist": "回答三个问题：1) 价格刚刚从哪个流动性池出来？2) 下一个最具吸引力的反向池子在哪？3) 当前时间窗口（8:30/9:30/13:30）算法需要先诱骗哪一方？"
-      },
-      {
-        "lesson": "ep19",
-        "case": 1,
-        "date": "Ep.19",
-        "gist": "顺应日线/4H 主交付方向的日内波段往往势如破竹，而逆大势的日内反弹一旦触及内部 50% FVG 就会迅速夭折。"
-      },
-      {
-        "lesson": "ep23",
-        "case": 0,
-        "date": "Ep.23",
-        "gist": "FOMC 制造的大区间确立了新的高低点边界，次日早盘往往先回抽该区间 50% 均衡点或前一日尾盘 FVG，再沿主方向继续推进。"
-      },
-      {
-        "lesson": "ep26",
-        "case": 0,
-        "date": "Ep.26",
-        "gist": "当周线、日线、1H 与日内方向完全同向时拿向外部高低点；当与日线主趋势相反或处于大行情次日时，触及首个 15m 内部 FVG 即平仓 80%–100%。"
-      },
-      {
-        "lesson": "ep28",
-        "case": 0,
-        "date": "Ep.28",
-        "gist": "观察周一至周三上午是否一直在逆周线主趋势诱多/诱空并刺穿日线级关键位；一旦在周二/周三触及日线 PD Array 并发生 1H/15m MSS，周四与周五往往提供极顺畅的波段机会。"
-      },
-      {
-        "lesson": "ep29",
-        "case": 0,
-        "date": "Ep.29",
-        "gist": "当早盘出现明显跳空高开或低开时，前一日 16:00 现货收盘价往往成为早盘回补的第一目标位，或回补 50%（CE）后启动反向趋势。"
-      },
-      {
-        "lesson": "ep31",
-        "case": 0,
-        "date": "Ep.31",
-        "gist": "在日线不断创出新低的熊市阶段，每一次日内早盘向上扫掉前一日高点或早盘高点的拉升，都是机构在溢价区派发空单的礼物。"
-      },
-      {
-        "lesson": "ep34",
-        "case": 0,
-        "date": "Ep.34",
-        "gist": "每天开盘前先标出 PDH 与 PDL。如果早盘价格距离 PDH/PDL 很近，08:30/09:30 极大概率会先去刺穿它，从而触发日内反转或加速。"
-      },
-      {
-        "lesson": "ep36",
-        "case": 0,
-        "date": "Ep.36",
-        "gist": "盘前看清大方向与流动性池，盘中只等“时间窗口 + 扫池子 + 位移 MSS + 溢价/折价 FVG”四个条件同时亮绿灯。"
-      }
-    ],
-    "P10": [
-      {
-        "lesson": "ep09",
-        "case": 0,
-        "date": "Ep.09",
-        "gist": "看涨日 K 线：开盘（Open）→ 向下操纵形成最低价（Low，积累多头）→ 向上派发拉升 → 收盘于高位（Close）。看跌日 K 线：开盘 → 向上操纵形成最高价（High，积累空头）→ 向下派发砸盘 → 收盘于低位。"
-      },
-      {
-        "lesson": "ep09",
-        "case": 1,
-        "date": "Ep.09",
-        "gist": "当天看空时，只等价格拉升到 00:00 午夜开盘价（及 08:30 开盘价）上方扫掉 BSL 再做空；当天看多时，只等价格砸到 00:00 开盘价下方扫掉 SSL 再做多。"
-      },
-      {
-        "lesson": "ep10",
-        "case": 0,
-        "date": "Ep.10",
-        "gist": "不需要预测非农、CPI 或利率决议的利多利空，只需知道数据公布那一刻（如 08:30 或 10:00）算法会借机完成 Stop Raid。"
-      },
-      {
-        "lesson": "ep10",
-        "case": 1,
-        "date": "Ep.10",
-        "gist": "观察 08:30 如何先行构建诱导或第一重猎杀，09:30 现货开盘如何完成最终极值扫荡并启动全天主派发段（Distribution）。"
-      },
-      {
-        "lesson": "ep12",
-        "case": 0,
-        "date": "Ep.12",
-        "gist": "1) 短期高低点（STH/STL）：基础三 K 线摆动极值；2) 中期高低点（ITH/ITL）：左右两侧各有一个更低的 STH（或更高的 STL）烘托的极值，或回抽高时间框架 FVG 形成的波段极值；3) 长期高低点（LTH/LTL）：大级别关键流动性反转点。"
-      },
-      {
-        "lesson": "ep12",
-        "case": 1,
-        "date": "Ep.12",
-        "gist": "在空头趋势中，每一个反弹触及 FVG 形成的新 ITH 都不应被随后的反弹突破；只有当新的位移腿突破前低后，才将止损移至最近的 ITH 上方。"
-      },
-      {
-        "lesson": "ep13",
-        "case": 0,
-        "date": "Ep.13",
-        "gist": "通过真实 NQ/ES 盘面演示：一旦高时间框架 FVG 孕育出 ITH，后续短周期的每一次小反弹都是顺势做空机会。"
-      },
-      {
-        "lesson": "ep13",
-        "case": 1,
-        "date": "Ep.13",
-        "gist": "只要最新的 ITH（空头中）或 ITL（多头中）未被破坏，短周期的小结构突破只是为了回补内部失衡，而非趋势终结。"
-      },
-      {
-        "lesson": "ep17",
-        "case": 0,
-        "date": "Ep.17",
-        "gist": "当 DXY 正在奔向日线 BSL（看涨美元）时，在 EURUSD / GBPUSD 上只寻找冲高扫掉短期高点后的看跌 MSS + SIBI（看跌 FVG）做空机会。"
-      },
-      {
-        "lesson": "ep17",
-        "case": 1,
-        "date": "Ep.17",
-        "gist": "若伦敦盘已走出强劲首波位移，纽约盘（07:00–08:30）常回撤至伦敦波段的 50%–70.5% OTE 区及内部 FVG 提供二次上车点。"
-      },
-      {
-        "lesson": "ep21",
-        "case": 0,
-        "date": "Ep.21",
-        "gist": "顶部看跌 SMT：在关键阻力/BSL 处，NQ 刺穿前高而 ES 未能刺穿前高（或反之），说明上涨并非全市场真实买盘，而是针对单一品种的止损猎杀。底部看涨 SMT：在关键支撑/SSL 处，一个品种破前低而另一个品种守住前低形成更高低点。"
-      },
-      {
-        "lesson": "ep21",
-        "case": 1,
-        "date": "Ep.21",
-        "gist": "做空时选顶部没能创新高（相对更弱）的那个指数；做多时选底部拒绝创新低（相对更强）的那个指数！"
-      },
-      {
-        "lesson": "ep28",
-        "case": 0,
-        "date": "Ep.28",
-        "gist": "观察周一至周三上午是否一直在逆周线主趋势诱多/诱空并刺穿日线级关键位；一旦在周二/周三触及日线 PD Array 并发生 1H/15m MSS，周四与周五往往提供极顺畅的波段机会。"
-      },
-      {
-        "lesson": "ep30",
-        "case": 0,
-        "date": "Ep.30",
-        "gist": "当一段快速拉升留下看涨 FVG、随即立刻被一段快速下砸留下看跌 FVG 双向覆盖时，两者重叠区构成极具阻力的平衡价格区间（BPR）。"
-      },
-      {
-        "lesson": "ep32",
-        "case": 0,
-        "date": "Ep.32",
-        "gist": "当 15m FVG 宽度超过 20–30 点时，不必在边缘盲挂；等价格刺入 15m FVG（尤其是触及其中轴 50% CE）并在 1m 图走出反向 MSS + 1m FVG 时进场。"
-      }
-    ],
-    "P11": [
-      {
-        "lesson": "ep01",
-        "case": 0,
-        "date": "Ep.01",
-        "gist": "顶尖交易员的高频多空反手依赖极深盘感，普通学习者应只截取右侧最干净的一段单边位移波段（如 NQ 123 点主跌浪），用确定性代替交易频率。"
-      },
-      {
-        "lesson": "ep05",
-        "case": 1,
-        "date": "Ep.05",
-        "gist": "早盘完成高低点双扫并在高位留下干净等高点后，午休 12:00–13:00 绝不交易；13:30 后等待刺穿下午盘第一个短期波段低点完成洗盘，随后突破早盘高点开启连续阳线逼空（Spooling）直至收盘 MOC 加速。"
-      },
-      {
-        "lesson": "ep22",
-        "case": 0,
-        "date": "Ep.22",
-        "gist": "14:00 利率决议公布瞬间点差扩大、算法上下扫盘清场，必须等 14:30 发布会开始、某一侧关键流动性被彻底扫清并出现 5m/1m MSS + FVG 后再决定是否轻仓参与。"
-      },
-      {
-        "lesson": "ep26",
-        "case": 0,
-        "date": "Ep.26",
-        "gist": "当周线、日线、1H 与日内方向完全同向时拿向外部高低点；当与日线主趋势相反或处于大行情次日时，触及首个 15m 内部 FVG 即平仓 80%–100%。"
-      },
-      {
-        "lesson": "ep27",
-        "case": 0,
-        "date": "Ep.27",
-        "gist": "如果图表上高低点模糊、K 线大量重叠、双向都没去触碰清晰的 15m/1H 止损池，最佳操作就是关掉交易软件。"
-      },
-      {
-        "lesson": "ep33",
-        "case": 0,
-        "date": "Ep.33",
-        "gist": "单日一旦出现一笔止损，当天若没有绝对 A+ 级机会直接收工；若遭遇连续亏损，下一笔交易必须将风险仓位砍半，直到用减半仓位重新赢回前一次亏损额的一半以上，才允许恢复标准仓位。"
-      },
-      {
-        "lesson": "ep37",
-        "case": 0,
-        "date": "Ep.37",
-        "gist": "不要听信任何人的嘴炮，亲手在 TradingView 上把过去数月的每一天按 Ep.01–05 的标准截图标注归档，建立肌肉记忆。"
-      },
-      {
-        "lesson": "ep37",
-        "case": 1,
-        "date": "Ep.37",
-        "gist": "先在模拟账户或 1 手微型合约上实现连续数周稳定正向执行，用利润垫和纪律证明自己，再逐步放大合约手数。"
-      }
-    ],
-    "P12": [
-      {
-        "lesson": "ep04",
-        "case": 0,
-        "date": "Ep.04",
-        "gist": "破高点后的第一次回调若 K 线重叠无 FVG 或未破短期 Swing Low，属于诱空洗盘，必须放弃并等待二次冲顶后的真 MSS + FVG。"
-      },
-      {
-        "lesson": "ep25",
-        "case": 0,
-        "date": "Ep.25",
-        "gist": "最稳妥的成交位是 FVG 的入口边缘（做空取下沿、做多取上沿）再留 1–2 ticks 缓冲；若追求极致盈亏比则关注 FVG 的 50% 中轴（CE）。"
-      },
-      {
-        "lesson": "ep37",
-        "case": 0,
-        "date": "Ep.37",
-        "gist": "不要听信任何人的嘴炮，亲手在 TradingView 上把过去数月的每一天按 Ep.01–05 的标准截图标注归档，建立肌肉记忆。"
-      },
-      {
-        "lesson": "ep37",
-        "case": 1,
-        "date": "Ep.37",
-        "gist": "先在模拟账户或 1 手微型合约上实现连续数周稳定正向执行，用利润垫和纪律证明自己，再逐步放大合约手数。"
-      }
-    ]
-  }
+  "coverage": {
+    "sourceLessons": 37,
+    "partiallyChecked": 3
+  },
+  "principleCases": {}
 };

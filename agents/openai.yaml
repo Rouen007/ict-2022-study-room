@@ -1,4 +1,4 @@
 interface:
-  display_name: "ICT 2022 学习室 & 交易体系"
-  short_description: "学习、复盘与维护 ICT 2022 Mentorship [No Rant] 37 讲体系及本地 macOS 学习室 App (Created by Xiao Ang)"
-  default_prompt: "使用 $ict-2022-study-room，结合 ICT 2022 Mentorship 全 37 讲原片、1080p 关键帧与 study-room/notebook.json 回答问题、点评复盘或维护学习室 App。"
+  display_name: "ICT 2022 学习室"
+  short_description: "核对课程证据、点评笔记与复盘，维护学习室及 Macro/HTF 选学材料"
+  default_prompt: "使用 $ict-2022-study-room，按请求读取相关原稿、笔记或维护文档，区分已核读证据与待核验 Macro/HTF 补充。"

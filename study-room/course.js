@@ -1,99 +1,118 @@
 window.STUDY_COURSE = {
-  "version": 1,
+  "version": 2,
+  "policyVersion": "study-ny-v2",
   "batches": [
     {
-      "id": "ict-ep02-elements-v1",
-      "title": "第 01 组 · Ep.02 交易模型四大要素与状态判定",
-      "desc": "对应 Ep.02 NQ 2022-01-21 案例 · 区分诱空、猎杀、BMS 与溢价区 FVG 挂单",
-      "lesson": "ep02",
-      "questions": [
-        {
-          "id": "ict-q-ep02-sucker",
-          "title": "A / 早盘先跌破短期小低点（14,600）能追空吗？",
-          "context": "日线看跌（下方 14,366.75 SSL 未扫），但上方 14,820 存在极其干净的 15m 相对等高点（Buyside Liquidity）。早盘 10:15 价格先向下跌破了 14,600 短期低点，此时尚未触及上方 14,820 等高点。对于计划做空上方等高点的你，现在处于什么状态？",
-          "answer": "Wait",
-          "explanation": "Wait（等待）。在大级别等高点（14,820 BSL）未被猎杀前，下方小低点的跌破往往是诱导散户追空的 Sucker Play（或日内先扫 SSL 做多去拿上方 BSL 的多头机会）。对于高空计划，必须等 14,820 BSL 被刺穿。",
-          "prompt": "写出为什么不能在 14,600 跌破时直接追空？"
-        },
-        {
-          "id": "ict-q-ep02-bms-fvg",
-          "title": "B / 刺穿 14,820 后跌破 2m 波段低点并留下 FVG，但尚未回抽",
-          "context": "11:25 价格冲高至 14,855 刺穿了 14,820 BSL，随后在 2m 图强力跌破 14,808 短期波段低点（BMS），并在 14,798–14,805（高于 50% 均衡线的溢价区）留下三 K 线看跌 FVG。当前第 3 根阴线刚收盘于 14,785，尚未向上回抽进 FVG。此时你的状态是？",
-          "answer": "Armed",
-          "explanation": "Armed（已就绪/挂单待触发）。Stop Raid（扫 14,820）+ 2m BMS（破 14,808）+ 溢价区看跌 FVG 均已齐备，止损 S（14,855 上方）与折价区目标 T（14,675）已明确，正在等待阳线向上回抽触及 FVG 入口 E（14,798）成交。",
-          "prompt": "写出此时 E（入场）、S（止损）、T（目标）分别在哪里？"
-        },
-        {
-          "id": "ict-q-ep02-target",
-          "title": "C / 阳线回抽触及 14,798 FVG 下沿，该如何执行与设止盈？",
-          "context": "下一根 2m 阳线向上回抽触及了 14,798.25（溢价区看跌 FVG 下沿），且未破坏上方 14,855 止损边界。此时你的状态是什么？第一止盈位必须满足什么条件？",
-          "answer": "Execute",
-          "explanation": "Execute（执行入场）。遵守“在阳线回抽进入溢价区看跌 FVG 时做空”的铁律，成交后目标必须跨过 50% Equilibrium（均衡线），在绿色折价区内部的看涨 FVG（14,680 / 14,650）与外部 Sell Stops 分批止盈。",
-          "prompt": "写出你的执行动作以及止盈必须跨过哪条分界线？"
-        }
-      ]
-    },
-    {
-      "id": "ict-ep03-ob-mss-v1",
-      "title": "第 02 组 · Ep.03 内部流动性、多空双向与订单块交付状态",
-      "desc": "对应 Ep.03 订单块开盘价翻转与纽约时间纪律 · 带提示理解检查",
+      "id": "ict-training-v2-1",
+      "title": "第 01 组 · 区间锚点与模拟入场",
+      "desc": "合成教学练习 · study-ny-v2；动作仅代表模拟状态，不授权下单。图为概念示意，不提供真实成交证据。",
       "lesson": "ep03",
       "questions": [
         {
-          "id": "ict-q-ep03-state",
-          "title": "A / 连续 4 根阴线刺穿 14,600 SSL，何时确认交付状态由卖转买？",
-          "context": "10:15–10:20 价格以一串连续 4 根阴线刺穿了 14,600 卖方止损池探底 14,538，随后拉起突破了这串连续阴线第一根 K 线的开盘价，并刺穿 14,634 短期波段高点留下看涨 FVG。当价格回踩该看涨 FVG 与订单块开盘价重合区时，应选择什么动作？",
-          "answer": "Execute",
-          "explanation": "Execute（执行做多）。连续阴线构成看涨订单块（Bullish Order Block），向上突破第一根阴线开盘价即发生 Change in the State of Delivery（交付状态由空转多），叠加 Bullish MSS 与看涨 FVG 回踩，做多目标直指上方 14,820 BSL。",
-          "prompt": "写出订单块交付状态改变（Change in State of Delivery）的判定价格线？"
-        },
-        {
-          "id": "ict-q-ep03-lunch",
-          "title": "B / 纽约时间 12:25 午休时段出现看似完美的 1m FVG",
-          "context": "早盘行情结束后，纽约时间 12:25（处于 12:00–13:00 New York Lunch 期间），你在 1 分钟图上看到一个小高点被刺穿并出现了一个微型 FVG，你想立刻开仓做空。按照 ICT 作息铁律，此时应该处于什么状态？",
+          "id": "ict-v2-1-0",
+          "title": "A / 缺少结构确认",
+          "context": "纽约10:15，已观察到价格扫过候选BSL，但没有可确认的反向MSS，也未形成三根已收盘K线的看跌FVG。",
           "answer": "Wait",
-          "explanation": "Wait（空仓等待/休息）。12:00–13:00 是纽约午休禁区（No-Trade Zone），算法趋势交付暂停，极易上下扫损。无论图形看起来多诱人，午休期间一律不开新仓，等待 13:30 下午盘宏启动。",
-          "prompt": "写出纽约午休禁区的具体时间段（NY Time）？"
+          "explanation": "本训练模型证据不足。清扫不保证反转，也不允许推测尚未形成的FVG。",
+          "prompt": "还缺哪些可观察证据？",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
         },
         {
-          "id": "ict-q-ep03-missed",
-          "title": "C / 看跌 FVG 未给回抽直接瀑布式暴跌至 50% 以下目标区",
-          "context": "你在溢价区看跌 FVG 挂了限价空单（Armed），但价格过于弱势，根本没有回抽触及你的 FVG 就直接一泻千里跌穿了 50% 均衡线并触及了下方折价区的内部看涨 FVG 目标位。此时你对原挂单应该做什么？能市价追空吗？",
-          "answer": "Cancel",
-          "explanation": "Cancel（取消原未成交挂单，绝不市价追空）。价格已经到达折价区目标位，风险收益比已完全倒置；此时取消上方原限价单，接受错过，绝不在折价区地板价追空。",
-          "prompt": "为什么价格已经跌到折价区目标附近时必须 Cancel 原挂单而不能市价追入？"
+          "id": "ict-v2-1-1",
+          "title": "B / 条件成立但未回抽",
+          "context": "纽约11:25，先扫BSL后出现已确认的反向MSS与位移。11:24已冻结区间14735–14855，中点14795。三根已收盘K线形成看跌FVG 14798–14805，全部在溢价区。MES模拟计划E=14798、S=14856、T=14675，1张，计划风险290美元，成本另计；假设已通过本练习风险上限检查。当前14785，尚未回抽。",
+          "answer": "Armed",
+          "explanation": "11:25在本训练08:30–12:00新开仓窗口内。已知锚点与风险条件齐全，但尚未模拟成交；12:00前未触发则取消。",
+          "prompt": "计算中点与风险金额，并写出取消时刻。",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
+        },
+        {
+          "id": "ict-v2-1-2",
+          "title": "C / 模拟触价",
+          "context": "延续B题，同一冻结区间和风险检查仍有效。11:27价格回抽至14798，尚未触及止损或目标；本题明确采用触价即视作模拟成交的假设。",
+          "answer": "Execute",
+          "explanation": "仅在本题的模拟成交假设下转为Execute。真实限价单是否成交需检查成交回报，不等当前K线最终收阳。目标依据预先计划，不以跨过0.5作为唯一标准。",
+          "prompt": "区分模拟触价与真实成交。",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
         }
       ]
     },
     {
-      "id": "ict-ep04-05-orderflow-v1",
-      "title": "第 03 组 · Ep.04 强迫市场亮底牌 & Ep.05 下午盘 13:30 剧本",
-      "desc": "对应 Ep.04 过滤无 FVG 的首次回落与 Ep.05 三推诱多 + 下午盘 MOC",
-      "lesson": "ep04",
+      "id": "ict-training-v2-2",
+      "title": "第 02 组 · 证据不足与取消条件",
+      "desc": "合成教学练习 · study-ny-v2；动作仅代表模拟状态，不授权下单。图为概念示意，不提供真实成交证据。",
+      "lesson": "ep03",
       "questions": [
         {
-          "id": "ict-q-ep04-nofvg",
-          "title": "A / 刺穿 BSL 后的第一波回落没有任何 Fair Value Gap",
-          "context": "如 Ep.04 图示：08:30 后价格拉升刺穿了前高 Buyside Liquidity，随后出现第一波小幅回调，但这几根下跌 K 线彼此全部重叠，内部没有任何三 K 线 FVG（或者尚未跌破最近的短期波段低点）。此时你能提前市价做空吗？",
+          "id": "ict-v2-2-0",
+          "title": "A / 只有交付开盘价被突破",
+          "context": "10:20，扫SSL后价格突破一串阴线的指定开盘价，但尚未突破记录的短期swing high，也没有已确认FVG。",
           "answer": "Wait",
-          "explanation": "Wait（按兵不动，强迫市场亮出底牌）。没有位移 + 没有 FVG = 算法尚未确认空头交付，极可能还会再往上拱出新高（二次冲顶）去扫早进场空头的止损。必须等到出现高能量位移（大象跳泳池）且留下清晰 FVG 再行动。",
-          "prompt": "写出“强迫市场亮出底牌（Forcing the market to tip its hand）”等待的两个硬条件？"
+          "explanation": "交付变化不替代本模型要求的结构与FVG证据。",
+          "prompt": "为什么不能用CISD替代MSS？",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
         },
         {
-          "id": "ict-q-ep05-pm130",
-          "title": "B / 下午盘 14:15 向下刺穿 13:30 后的首个短期波段低点并迅速收回",
-          "context": "如 Ep.05 图示：早盘已在 4,515 留下一排干净的相对等高点（BSL）。度过 12:00–13:00 午休后，价格在 14:15 向下刺穿了 13:30 之后形成的第一个短期波段低点（完成下午盘诱空洗盘），随即强力拉起突破短期高点并留下 5m 看涨 FVG。回踩该 FVG 时应执行什么动作？",
-          "answer": "Execute",
-          "explanation": "Execute（执行做多）。13:30 后刺穿首个短期波段低点是典型的下午盘诱空猎杀（Stop Hunt），旨在启动下午盘买方程序（Buy Program Spooling）去攻克早盘留下的 4,515 相对等高点。",
-          "prompt": "下午盘这笔多单的主要流动性磁铁（DOL）在哪里？尾盘哪个时间段会因 MOC 加速？"
+          "id": "ict-v2-2-1",
+          "title": "B / 午休出现候选形态",
+          "context": "12:25纽约时间，当前无持仓、无挂单；出现完整局部形态。study-ny-v2新开仓窗口已结束。",
+          "answer": "Wait",
+          "explanation": "本训练午休不新增交易。这是训练限制，不表示市场停止运动，也不定义已有仓位的处理。",
+          "prompt": "新开仓限制与持仓管理有何不同？",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
         },
         {
-          "id": "ict-q-ep05-exit1600",
-          "title": "C / 下午盘多单一路 Spooling 逼空进入 15:50–16:00 MOC 脉冲",
-          "context": "你在下午盘 14:55 的看涨 FVG 做多已顺利突破早盘等高点 4,515，算法连续收阳逼空（Spooling），现在时间来到 15:55 NY Time，Market-on-Close (MOC) 收盘指令引发最后一波加速冲高。对于你手中的日内多单，现在应该执行什么动作？",
+          "id": "ict-v2-2-2",
+          "title": "C / 目标先于入场到达",
+          "context": "11:40，挂单仍未成交，价格已经先触及原计划目标。本题取消规则规定目标先到即撤销原挂单。",
+          "answer": "Cancel",
+          "explanation": "原路径已完成，取消未成交计划。没有持仓，因此不是Exit。",
+          "prompt": "写出Cancel和Exit的区别。",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
+        }
+      ]
+    },
+    {
+      "id": "ict-training-v2-3",
+      "title": "第 03 组 · 反例、仓位方向与退出",
+      "desc": "合成教学练习 · study-ny-v2；动作仅代表模拟状态，不授权下单。图为概念示意，不提供真实成交证据。",
+      "lesson": "ep03",
+      "questions": [
+        {
+          "id": "ict-v2-3-0",
+          "title": "A / SMT不足以执行",
+          "context": "10:00，ES创出可比前高，NQ未创新高。数据时间已对齐，但没有本模型所需的清扫后MSS与FVG确认。",
+          "answer": "Wait",
+          "explanation": "SMT只增加观察信息，不能证明机构派发，也不是单独入场触发。",
+          "prompt": "哪些替代解释或反例仍然成立？",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
+        },
+        {
+          "id": "ict-v2-3-1",
+          "title": "B / 多单风险参数方向错误",
+          "context": "14:15，局部形态满足，但多单计划E=100、S=110、T=90。没有真实持仓，也没有已提交挂单。",
+          "answer": "Wait",
+          "explanation": "多单应S<E<T。绝对值计算出的正R:R不能修复方向错误；纠正计划后重新检查。",
+          "prompt": "为什么不能直接用abs计算并执行？",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
+        },
+        {
+          "id": "ict-v2-3-2",
+          "title": "C / 训练退出时刻",
+          "context": "15:55，已有模拟多单。事前约定15:55退出，当前尚未触及价格目标。",
           "answer": "Exit",
-          "explanation": "Exit（止盈平仓离场）。ICT 2022 模型是纯日内模型（Intraday），15:40–16:00 的 MOC 加速正是全天多头派发的高潮终点，必须在 16:00 收盘及日内休市前主动平仓落袋，不留隔夜赌博敞口。",
-          "prompt": "写出下午盘趋势单在收盘前哪三个时间节点常出现 MOC 加速？"
+          "explanation": "按预设持仓计划退出。16:00是本训练的日内边界，不是所有期货休市；无需假定MOC必然加速。",
+          "prompt": "退出依赖什么事前规则？",
+          "sourceType": "synthetic",
+          "policyVersion": "study-ny-v2"
         }
       ]
     }

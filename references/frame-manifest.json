@@ -1,0 +1,616 @@
+{
+  "1": [
+    {
+      "id": "ep01_1",
+      "file": "ep01_tos_live_executions.png",
+      "timeStr": "00:40",
+      "seconds": 40,
+      "timeframe": "1m TOS",
+      "titleZh": "Thinkorswim 1分钟实盘高频多空交割记录",
+      "captionZh": "ICT 展示自己早盘在 10:30–11:45 之间连续做多、反手做空、再做多、再在顶部 14,798.25 做空的实盘成交标签。"
+    },
+    {
+      "id": "ep01_2",
+      "file": "ep01_target_one_big_leg.png",
+      "timeStr": "04:50",
+      "seconds": 290,
+      "timeframe": "1m TOS",
+      "titleZh": "课程核心目标：只抓右侧 14,798 → 14,675 单边主跌浪",
+      "captionZh": "摒弃左侧复杂的短线折返，2022 模型只聚焦最右侧那一段干净利落的 123 点（$2,460/手）日内主波段。"
+    }
+  ],
+  "2": [
+    {
+      "id": "ep02_1",
+      "file": "ep02_weekly_bias_candle.png",
+      "timeStr": "00:45",
+      "seconds": 45,
+      "timeframe": "1W 周线",
+      "mtfOrder": 1,
+      "titleZh": "步骤 1（1W 周线）：评估周线向下扩张惯性（Weekly Bias）",
+      "captionZh": "在每周开始前，先判断下一根周线更有可能向哪个方向扩张。此处 NQ 周线破位下行，确立周内逢高做空基调。"
+    },
+    {
+      "id": "ep02_2",
+      "file": "ep02_daily_ssl_and_imbalance.png",
+      "timeStr": "01:55",
+      "seconds": 115,
+      "timeframe": "1D 日线",
+      "mtfOrder": 2,
+      "titleZh": "步骤 2（1D 日线）：锁定下方 14,366.75 旧低点卖方流动性池（DOL）",
+      "captionZh": "日线前期失衡已回补，下方 2021 年 10 月旧低点（14,366.75 红线）下方堆积着大量 Sell Stops，像磁铁一样吸引价格下行。"
+    },
+    {
+      "id": "ep02_3",
+      "file": "ep02_hourly_induce_shorts_run_bsl.png",
+      "timeStr": "04:55",
+      "seconds": 295,
+      "timeframe": "1H 小时线",
+      "mtfOrder": 3,
+      "titleZh": "步骤 3（1H 小时线）：早盘先破小低点诱空，再反抽拉升扫上方等高点",
+      "captionZh": "周五早盘先跌破短期震荡低点（诱导突破派追空），随后迅速拉起去攻击上方相对等高点。"
+    },
+    {
+      "id": "ep02_4",
+      "file": "ep02_15m_equal_highs_stop_hunt.png",
+      "timeStr": "07:20",
+      "seconds": 440,
+      "timeframe": "15m 十五分",
+      "mtfOrder": 4,
+      "titleZh": "步骤 4（15m 十五分）：先扫 14,600 Sell Stops，再猎杀 14,820 Buy Stops",
+      "captionZh": "散户把 14,820 相对等高点视为强阻力并在此放置空头止损（Buy Stops）。聪明钱拉升刺穿 14,820，利用涌入的买单建立大额空头头寸。"
+    },
+    {
+      "id": "ep02_5",
+      "file": "ep02_2m_bms_and_fvg_entry.png",
+      "timeStr": "11:35",
+      "seconds": 695,
+      "timeframe": "2m 两分钟",
+      "mtfOrder": 5,
+      "titleZh": "步骤 5（2m 进场触发）：跌破波段低点（BMS）+ 橙色看跌 FVG 回抽做空",
+      "captionZh": "扫完 14,820 BSL 后切入 2m 图，等待跌破短期波段低点（14,808），并在位移腿内找到三 K 线不重叠的橙色 FVG，在阳线回抽时挂单做空。"
+    },
+    {
+      "id": "ep02_6",
+      "file": "ep02_2m_fib_equilibrium_matrix.png",
+      "timeStr": "13:15",
+      "seconds": 795,
+      "timeframe": "2m 均衡矩阵",
+      "mtfOrder": 6,
+      "titleZh": "步骤 6（2m 溢价/折价区）：50% 斐波那契均衡点（Equilibrium）划分",
+      "captionZh": "从波段低点（14,535）拉到高点（14,855）：50% 以上红色区为溢价区（Premium，只做空），50% 以下绿色区为折价区（Discount，空单平仓区）。"
+    },
+    {
+      "id": "ep02_7",
+      "file": "ep02_2m_full_setup_annotated.png",
+      "timeStr": "15:05",
+      "seconds": 905,
+      "timeframe": "2m 止盈目标",
+      "mtfOrder": 7,
+      "titleZh": "步骤 7（2m 完整闭环）：在折价区内部看涨失衡（14,680 & 14,650）精准止盈",
+      "captionZh": "空单从溢价区橙色 FVG 进场后，第一、二止盈目标设在 50% 以下折价区内部的看涨 FVG（蓝线）与下方 Sell Stops。"
+    }
+  ],
+  "3": [
+    {
+      "id": "ep03_1",
+      "file": "ep03_15m_ssl_and_bsl_pools.png",
+      "timeStr": "02:35",
+      "seconds": 155,
+      "timeframe": "15m 十五分",
+      "mtfOrder": 1,
+      "titleZh": "15m 盘口全景：08:30 右侧的 14,600 SSL 与 14,820 BSL 两大池子",
+      "captionZh": "早盘 08:30 垂直线右侧，价格先向下刺穿 14,600 Sellside Liquidity（感叹号），随后拉升刺穿 14,820 Buyside Liquidity。"
+    },
+    {
+      "id": "ep03_2",
+      "file": "ep03_2m_bullish_mss_fvg_ob.png",
+      "timeStr": "05:10",
+      "seconds": 310,
+      "timeframe": "2m 多头模型",
+      "mtfOrder": 2,
+      "titleZh": "2m 多头闭环：10:20 扫下方 Stop Raid 后突破短期高点（Bullish MSS）+ 回踩 FVG 做多",
+      "captionZh": "扫掉 14,600 SSL 后，价格向上刺穿 14,634 波段高点（橙色小三角）触发 Bullish MSS，回踩橙色灯泡处的看涨 FVG 进场做多，直奔 14,820！"
+    },
+    {
+      "id": "ep03_3",
+      "file": "ep03_2m_bearish_mss_fvg_targets.png",
+      "timeStr": "06:45",
+      "seconds": 405,
+      "timeframe": "2m 空头模型",
+      "mtfOrder": 3,
+      "titleZh": "2m 空头闭环：11:25 扫上方 14,820 Stop Raid 后触发 Bearish MSS + 回抽 FVG 做空",
+      "captionZh": "多单在 14,820 止盈后，价格扫完 BSL 并跌破短期波段低点触发 Bearish MSS，回抽上方橙色灯泡看跌 FVG 反手做空。"
+    },
+    {
+      "id": "ep03_4",
+      "file": "ep03_1m_orderblock_state_of_delivery.png",
+      "timeStr": "09:30",
+      "seconds": 570,
+      "timeframe": "1m 订单块机制",
+      "mtfOrder": 4,
+      "titleZh": "1m 深度拆解：连续阳线构成看跌订单块，跌破开盘价即改变交付状态",
+      "captionZh": "冲高刺穿 BSL 的一连串连续阳线构成看跌 Order Block；当价格向下跌破这串阳线第一根 K 线的开盘价时，算法交付状态正式由买转卖。"
+    },
+    {
+      "id": "ep03_5",
+      "file": "ep03_1m_full_lipstick_chart.png",
+      "timeStr": "11:45",
+      "seconds": 705,
+      "timeframe": "1m 全标注图",
+      "mtfOrder": 5,
+      "titleZh": "1m 完整标注图（Lipstick on the Chart）：比 2m 更早、更紧凑的双向信号",
+      "captionZh": "在 1 分钟级别上，无论是底部的看涨订单块 + FVG 还是顶部的看跌订单块 + FVG，结构转折点都比 2m 图更早浮现。"
+    }
+  ],
+  "4": [
+    {
+      "id": "ep04_1",
+      "file": "ep04_es_2m_equilibrium_overview.png",
+      "timeStr": "00:45",
+      "seconds": 45,
+      "timeframe": "ES 2m 全景",
+      "mtfOrder": 1,
+      "titleZh": "案例一（ES 2m 全景）：50% 均衡线（4,392）上方猎杀 BSL 后直达 4,381.75",
+      "captionZh": "08:30 垂直线后价格拉升至溢价区扫掉 4,423.25 买方流动性，随后空头波段一路派发至折价区 4,381.75 旧低点。"
+    },
+    {
+      "id": "ep04_2",
+      "file": "ep04_es_2m_830_zoomed_journal.png",
+      "timeStr": "02:15",
+      "seconds": 135,
+      "timeframe": "ES 2m 放大",
+      "mtfOrder": 2,
+      "titleZh": "案例一（ES 2m 局部放大）：过滤无 FVG 的首次回落，抓二次冲高后的真 MSS + FVG",
+      "captionZh": "首次过顶后的小幅回落内部无 FVG 故放弃；第二次冲高至 4,436 后强力跌破波段低点（橙色三角）并留下看跌 FVG（橙色灯泡），回抽 4,419 精准做空。"
+    },
+    {
+      "id": "ep04_3",
+      "file": "ep04_nq_5m_wait_for_fvg_entry.png",
+      "timeStr": "04:50",
+      "seconds": 290,
+      "timeframe": "NQ 5m 过滤",
+      "mtfOrder": 3,
+      "titleZh": "案例二（NQ 5m）：强迫市场亮出底牌——耐心等待第二波真位移与 FVG",
+      "captionZh": "突破 14,282 BSL 后的第一波回落既未跌破波段低点也无 FVG；耐心等到冲至 14,405 后长阴线跌破结构并留下 FVG 回抽做空，直奔 50% 以下眼睛图标目标位。"
+    }
+  ],
+  "5": [
+    {
+      "id": "ep05_1",
+      "file": "ep05_barchart_open_interest_rollover.png",
+      "timeStr": "01:55",
+      "seconds": 115,
+      "timeframe": "Barchart 换月",
+      "mtfOrder": 1,
+      "titleZh": "合约换月法则：在 Barchart.com 对比 ESH22 与 ESM22 的未平仓量（Open Int）",
+      "captionZh": "交割月（3月H / 6月M / 9月U / 12月Z）第三个周五到期前一周，一旦下一季合约的 Open Int 超过当季合约即切换主力合约。"
+    },
+    {
+      "id": "ep05_2",
+      "file": "ep05_15m_daily_range_830_lunch.png",
+      "timeStr": "04:15",
+      "seconds": 255,
+      "timeframe": "ES 15m 风向标",
+      "mtfOrder": 2,
+      "titleZh": "15m 风向标（Bellwether Chart）：08:30 左侧高低点与 12:00–13:00 午休禁区",
+      "captionZh": "标出 08:30 垂直线左侧紧邻的 15m 波段高点（4,514.50）与波段低点（4,482.00），粉色竖条为 12:00–13:00 纽约午休禁入区。"
+    },
+    {
+      "id": "ep05_3",
+      "file": "ep05_5m_three_drives_displacement_fvg.png",
+      "timeStr": "06:10",
+      "seconds": 370,
+      "timeframe": "ES 5m 三推诱多",
+      "mtfOrder": 3,
+      "titleZh": "早盘 5m：三推诱多（Three Drives）扫掉 4,514.50 高点后“大象跳泳池”式暴跌",
+      "captionZh": "08:30 后连续走出三个抬高高点（Three Drives）刺穿 4,514.50 买方止损，随后 09:30 美股开盘长阴线暴力下砸直穿 4,482 低点。"
+    },
+    {
+      "id": "ep05_4",
+      "file": "ep05_5m_fvg_zoomed_in.png",
+      "timeStr": "07:50",
+      "seconds": 470,
+      "timeframe": "ES 5m FVG进场",
+      "mtfOrder": 4,
+      "titleZh": "早盘 5m 放大：长阴位移留下的看跌 FVG 与下一根 K 线回抽进场点",
+      "captionZh": "鼠标箭头所指处即为大阴线位移留下的 5m 看跌 FVG，随后一根 K 线向上回抽填补缺口提供完美做空点，15 分钟内砸穿 4,482。"
+    },
+    {
+      "id": "ep05_5",
+      "file": "ep05_5m_pm_session_130_stop_hunt.png",
+      "timeStr": "10:40",
+      "seconds": 640,
+      "timeframe": "ES 5m 13:30猎杀",
+      "mtfOrder": 5,
+      "titleZh": "下午盘 5m 启动：13:30 后刺穿第一个短期波段低点完成洗盘诱空",
+      "captionZh": "12:00–13:00 粉色午休区结束后，14:15 向下刺穿 13:30 后的首个短期小低点（手势高亮处），扫掉跟风多头止损后正式启动下午盘买方程序。"
+    },
+    {
+      "id": "ep05_6",
+      "file": "ep05_5m_pm_spooling_moc.png",
+      "timeStr": "14:35",
+      "seconds": 875,
+      "timeframe": "ES 5m 下午逼空",
+      "mtfOrder": 6,
+      "titleZh": "下午盘 5m Spooling 与 15:40–16:00 MOC 收盘指令加速冲顶",
+      "captionZh": "14:55 大阳线突破早盘相对等高点并留下看涨 FVG，算法开启单边连续阳线逼空（Spooling），并在最后 20 分钟因 MOC 指令加速拉升。"
+    }
+  ],
+  "6": [
+    {
+      "file": "ep06_fvg_concept_diagram.png",
+      "timeframe": "Schema",
+      "timeStr": "06:15",
+      "seconds": 375,
+      "titleZh": "三 K 线看跌 FVG 机构订单流结构原理",
+      "captionZh": "经典看跌 FVG 形成原理：刺穿买方流动性 (BSL) 后，第 1 根 K 线低点与第 3 根 K 线高点之间留下清晰的不重叠失衡缺口。"
+    },
+    {
+      "file": "ep06_15m_nq_execution.png",
+      "timeframe": "15m",
+      "timeStr": "14:30",
+      "seconds": 870,
+      "titleZh": "15m 价格回踩日线 FVG 后的多头建仓走势",
+      "captionZh": "大周期失衡区被完全回补后，日内通过刺穿短期卖方流动性 (SSL) 诱空，随后展开强力反抽。"
+    }
+  ],
+  "7": [
+    {
+      "file": "ep07_daily_bias_consolidation.png",
+      "timeframe": "1D",
+      "timeStr": "04:45",
+      "seconds": 285,
+      "titleZh": "日线偏向在均衡位震荡时的障碍识别",
+      "captionZh": "当价格在日线 50% 均衡位附近盘整纠缠时，切勿盲目预测大单边，必须等待日线突破整固跳栏障碍 (Consolidation Hurdles)。"
+    },
+    {
+      "file": "ep07_15m_liquidity_run.png",
+      "timeframe": "15m",
+      "timeStr": "09:20",
+      "seconds": 560,
+      "titleZh": "15m 图清扫流动性池后的单边破位",
+      "captionZh": "刺穿前期相对平头高点 (Equal Highs) 拿掉买方止损后，大阴线放量跌破结构低点。"
+    }
+  ],
+  "8": [
+    {
+      "file": "ep08_forex_3m_fvg_discount.png",
+      "timeframe": "3m",
+      "timeStr": "03:30",
+      "seconds": 210,
+      "titleZh": "外汇 3 分钟图跌破摆动低点进入折价区 FVG",
+      "captionZh": "EURUSD 快速下砸刺穿短期摆动低点制造折价区，随后在 3m 看涨 FVG 给出教科书级别顺势反弹。"
+    },
+    {
+      "file": "ep08_london_killzone_bracket.png",
+      "timeframe": "15m",
+      "timeStr": "06:20",
+      "seconds": 380,
+      "titleZh": "伦敦杀手时区 (2:00-5:00 AM NY) 挂单与区间划分",
+      "captionZh": "利用伦敦盘开盘初段的犹大秋千 (Judas Swing) 假摔锁定全天极端高/低点，顺应日线偏向入场。"
+    }
+  ],
+  "9": [
+    {
+      "file": "ep09_power_of_3_amd_schema.png",
+      "timeframe": "Model",
+      "timeStr": "04:15",
+      "seconds": 255,
+      "titleZh": "Power of 3（AMD 积累-操纵-派发）K 线阶段模型",
+      "captionZh": "全天 K 线解密：开盘后的积累 (Accumulation) → 刺穿开盘价反向诱敌的操纵 (Manipulation / Judas Swing) → 顺应大势的大单边派发 (Distribution)。"
+    },
+    {
+      "file": "ep09_judas_swing_pm_rally.png",
+      "timeframe": "5m",
+      "timeStr": "09:50",
+      "seconds": 590,
+      "titleZh": "犹大秋千假摔诱空与下午盘单边反转",
+      "captionZh": "13:30 下午盘窗口向下假刺穿午休低点完成诱空洗盘，随后机构算法连续收阳逼空直奔早盘等高点。"
+    }
+  ],
+  "10": [
+    {
+      "file": "ep10_economic_calendar_830_spike.png",
+      "timeframe": "Calendar",
+      "timeStr": "03:30",
+      "seconds": 210,
+      "titleZh": "08:30 宏观经济数据解禁时的算法瞬间脉冲",
+      "captionZh": "宏观数据禁令在 08:30 解除的瞬间，算法以极高速度扫荡两侧挂单并留下大跨度 FVG，绝不在数据发布前 1 分钟凭运气押注。"
+    },
+    {
+      "file": "ep10_power_of_3_nq_chart.png",
+      "timeframe": "15m",
+      "timeStr": "08:45",
+      "seconds": 525,
+      "titleZh": "结合日历事件的 Power of 3 实盘走盘对照",
+      "captionZh": "早盘数据脉冲充当操纵腿 (Manipulation)，刺穿日内高点后迅速掉头进入派发阶段。"
+    }
+  ],
+  "11": [
+    {
+      "file": "ep11_830_fake_rally_trap.png",
+      "timeframe": "5m",
+      "timeStr": "04:20",
+      "seconds": 260,
+      "titleZh": "08:30 开盘假涨破位与散户诱多陷阱",
+      "captionZh": "早盘开盘后诱导性连续推高让散户误以为是顺势大牛市，实则是大资金在买方流动性池建立空头对手盘。"
+    },
+    {
+      "file": "ep11_3m_mss_fvg_confirmation.png",
+      "timeframe": "3m",
+      "timeStr": "08:50",
+      "seconds": 530,
+      "titleZh": "3m 图结构转变 MSS 与看跌 FVG 顺势做空",
+      "captionZh": "大阴线跌破波段低点产生看跌 MSS，价格回抽进溢价区三 K 线看跌 FVG，止损放高点外，目标对侧 SSL。"
+    }
+  ],
+  "12": [
+    {
+      "file": "ep12_market_structure_hierarchy.png",
+      "timeframe": "Hierarchy",
+      "timeStr": "05:15",
+      "seconds": 315,
+      "titleZh": "短期摆动点 (STH/STL) 与中继摆动点 (ITH/ITL) 嵌套体系",
+      "captionZh": "市场结构分层体系：一个有效的中继高点 (ITH) 必须左右各有一个更低的短期高点 (STH)，跌破中继低点才构成真正的结构破坏。"
+    },
+    {
+      "file": "ep12_nested_mss_nq_chart.png",
+      "timeframe": "5m",
+      "timeStr": "11:30",
+      "seconds": 690,
+      "titleZh": "中继波段低点被大实体阴线跌破的真破位确认",
+      "captionZh": "实体饱满的位移大阴线收盘在中继波段低点下方，彻底打破多头交付状态，确认空头主导。"
+    }
+  ],
+  "13": [
+    {
+      "file": "ep13_order_block_50_discount.png",
+      "timeframe": "1H/5m",
+      "timeStr": "03:45",
+      "seconds": 225,
+      "titleZh": "1小时看跌K线作为看涨OB，50%均衡线以下进场",
+      "captionZh": "跌破流动性后的大实体阳线吞没前阴线，阴线实体构筑看涨 Order Block，回踩 OB 与折价 FVG 时挂单做多。"
+    }
+  ],
+  "14": [
+    {
+      "file": "ep14_live_execution_fvg_run.png",
+      "timeframe": "1m",
+      "timeStr": "01:30",
+      "seconds": 90,
+      "titleZh": "实操多头扩张与入场跟踪",
+      "captionZh": "1 分钟实盘快节奏跟单：在价格强力扩张时锁定内部 FVG 回抽机会，果断在对侧等高点止盈。"
+    }
+  ],
+  "15": [
+    {
+      "file": "ep15_fomc_tape_reading_fvg.png",
+      "timeframe": "2m",
+      "timeStr": "01:45",
+      "seconds": 105,
+      "titleZh": "FOMC 现场走盘失衡区识别与收盘止盈",
+      "captionZh": "美联储利率决议公布后的高波动走势：利用大阴线留下的失衡缺口分批挂单做空，顺势收割。"
+    }
+  ],
+  "16": [
+    {
+      "file": "ep16_multiple_setups_manipulation.png",
+      "timeframe": "15m",
+      "timeStr": "03:30",
+      "seconds": 210,
+      "titleZh": "开盘价上方操纵与下破相对等低点",
+      "captionZh": "同一交易日内捕获双重机会：早盘冲高刺穿开盘价完成操纵做空，下午盘在对侧相对等低点反手。"
+    }
+  ],
+  "17": [
+    {
+      "file": "ep17_forex_judas_swing_london.png",
+      "timeframe": "5m",
+      "timeStr": "04:15",
+      "seconds": 255,
+      "titleZh": "外汇开盘犹大秋千诱空与反手做多",
+      "captionZh": "GBPUSD 在伦敦开盘初段向下急速假摔击穿亚洲盘低点，随后 V 型反转并留下看涨 FVG。"
+    }
+  ],
+  "18": [
+    {
+      "file": "ep18_daily_dividers_15m_ob.png",
+      "timeframe": "15m",
+      "timeStr": "04:30",
+      "seconds": 270,
+      "titleZh": "15m 垂直日期分割线与午夜基准价",
+      "captionZh": "在图表上画出午夜 00:00 与早盘 08:30 垂直基准线，以此作为判断当日价格处于溢价或折价的算法中轴。"
+    }
+  ],
+  "19": [
+    {
+      "file": "ep19_order_block_delivery_shift.png",
+      "timeframe": "1D/15m",
+      "timeStr": "05:10",
+      "seconds": 310,
+      "titleZh": "订单块交付状态转变 Change in State of Delivery",
+      "captionZh": "当价格向上吞没最后看跌 K 线时，机构算法的交付状态正式由空转多，旧阻力全面转为买方支撑。"
+    }
+  ],
+  "20": [
+    {
+      "file": "ep20_london_ote_continuation.png",
+      "timeframe": "15m",
+      "timeStr": "02:40",
+      "seconds": 160,
+      "titleZh": "伦敦盘低点形成后的 OTE 顺势回踩",
+      "captionZh": "伦敦低点确立后，价格展开拉升并在 62%–79% Optimal Trade Entry (OTE) 区间给出二次安全上车点。"
+    }
+  ],
+  "21": [
+    {
+      "file": "ep21_dxy_es_equal_lows.png",
+      "timeframe": "1H",
+      "timeStr": "02:15",
+      "seconds": 135,
+      "titleZh": "美元指数与标普相对等低点关联分析",
+      "captionZh": "当美元指数向上冲击日线流动性目标时，股指期货向下同步吸附向相对平头低点 (Equal Lows)。"
+    }
+  ],
+  "22": [
+    {
+      "file": "ep22_smt_divergence_es_nq.png",
+      "timeframe": "15m",
+      "timeStr": "03:30",
+      "seconds": 210,
+      "titleZh": "ES 创新高 vs NQ 未破高的 SMT 背离",
+      "captionZh": "经典 SMT 跨市场背离：标普 ES 突破前期高点创出新高，但纳指 NQ 显露疲态未破高点，预示大资金正在悄悄派发，做空最高胜率信号。"
+    }
+  ],
+  "23": [
+    {
+      "file": "ep23_fomc_fib_channel_targets.png",
+      "timeframe": "5m",
+      "timeStr": "02:30",
+      "seconds": 150,
+      "titleZh": "FOMC 次日回踩高周期 FVG 与斐波通道",
+      "captionZh": "FOMC 大波动次日，价格向上回踩高周期未回补 FVG 后受阻，顺着斐波那契通道精准向下测算止盈。"
+    }
+  ],
+  "24": [
+    {
+      "file": "ep24_avoid_false_break_entry.png",
+      "timeframe": "2m",
+      "timeStr": "02:45",
+      "seconds": 165,
+      "titleZh": "避免假摔与等待确定性 FVG 挂单",
+      "captionZh": "避坑指南：刺穿流动性池后如果只出现碎步小阳/小阴，绝不开仓；必须等到大阳线位移带出 FVG 才动手。"
+    }
+  ],
+  "25": [
+    {
+      "file": "ep25_daily_rebalance_old_lows.png",
+      "timeframe": "1D",
+      "timeStr": "03:20",
+      "seconds": 200,
+      "titleZh": "跌破日线旧低点后的再平衡反弹",
+      "captionZh": "日线连续阴线杀跌破旧低点拿掉卖方止损后，空头动能耗尽，日线级别启动向均衡位的回补再平衡。"
+    }
+  ],
+  "26": [
+    {
+      "file": "ep26_counter_trend_tape_reading.png",
+      "timeframe": "5m",
+      "timeStr": "02:20",
+      "seconds": 140,
+      "titleZh": "逆势日实盘读盘与止损推保护技巧",
+      "captionZh": "逆势交易铁律：目标必须缩水、止损必须快速推保本（Breakeven），只吃确定性波段不抱幻想。"
+    }
+  ],
+  "27": [
+    {
+      "file": "ep27_equal_lows_afternoon_reversal.png",
+      "timeframe": "15m",
+      "timeStr": "02:40",
+      "seconds": 160,
+      "titleZh": "扫等低点后的下午盘回撤修复",
+      "captionZh": "早盘深踩打穿等低点诱空，13:30 下午盘多头算法发力回补早盘留下的看跌失衡区。"
+    }
+  ],
+  "28": [
+    {
+      "file": "ep28_live_scalp_execution.png",
+      "timeframe": "1m",
+      "timeStr": "01:45",
+      "seconds": 105,
+      "titleZh": "实盘极速剥头皮执行与平仓",
+      "captionZh": "1 分钟超短线示范：在 1m FVG 触碰瞬间市价入场，3–5 根 K 线内跨过均衡位在短线流动性高点果断落袋。"
+    }
+  ],
+  "29": [
+    {
+      "file": "ep29_pre_fed_narrow_range_1m.png",
+      "timeframe": "1m",
+      "timeStr": "03:15",
+      "seconds": 195,
+      "titleZh": "美联储前窄幅震荡日 1m 结构破坏",
+      "captionZh": "在美联储主席讲话前夕的极低波动率日，降低预期，仅在极窄日内区间两端做高低点清扫后的快进快出。"
+    }
+  ],
+  "30": [
+    {
+      "file": "ep30_fed_chair_volatility_ob.png",
+      "timeframe": "2m",
+      "timeStr": "02:15",
+      "seconds": 135,
+      "titleZh": "鲍威尔讲话下午盘订单块承接",
+      "captionZh": "下午 14:00 鲍威尔讲话引发剧烈上下扫荡，待第一波脉冲释放后在底部的看涨订单块获得强力支撑。"
+    }
+  ],
+  "31": [
+    {
+      "file": "ep31_am_session_ssl_liquidity.png",
+      "timeframe": "5m",
+      "timeStr": "01:30",
+      "seconds": 90,
+      "titleZh": "早盘清扫旧低点卖方流动性 SSL 案例",
+      "captionZh": "早盘开盘后单边砸穿昨低与亚洲盘低点，精准在卖方流动性极值处反转拉升。"
+    }
+  ],
+  "32": [
+    {
+      "file": "ep32_outside_day_50_equilibrium.png",
+      "timeframe": "15m",
+      "timeStr": "02:45",
+      "seconds": 165,
+      "titleZh": "外包日高低点 50% 均衡位与尾盘 MOC",
+      "captionZh": "外包日（Outside Day）区间极大，从当日高低点拉 50% 均衡线，尾盘 15:00 MOC 资金顺应单边倾泻。"
+    }
+  ],
+  "33": [
+    {
+      "file": "ep33_fvg_imbalance_target.png",
+      "timeframe": "1H/5m",
+      "timeStr": "01:40",
+      "seconds": 100,
+      "titleZh": "跌破 5 月 12 日低点后向上回补 FVG",
+      "captionZh": "历史性大低点被击穿后，空头获利盘兑现，行情向上大步流星回补上方未平衡的 FVG 磁铁。"
+    }
+  ],
+  "34": [
+    {
+      "file": "ep34_opening_price_order_block.png",
+      "timeframe": "5m",
+      "timeStr": "02:30",
+      "seconds": 150,
+      "titleZh": "开盘价基准线与看跌订单块回踩",
+      "captionZh": "早盘 09:30 现货开盘价是一根关键标尺，价格冲过开盘价触碰看跌 Order Block 后遭遇算法无情砸盘。"
+    }
+  ],
+  "35": [
+    {
+      "file": "ep35_smt_ob_continuation.png",
+      "timeframe": "15m",
+      "timeStr": "02:40",
+      "seconds": 160,
+      "titleZh": "午夜小幅犹大秋千与订单块延续向上",
+      "captionZh": "纽约午夜仅走出极小幅度的诱空假摔，随后依托看涨 Order Block 连续阳线破高推进。"
+    }
+  ],
+  "36": [
+    {
+      "file": "ep36_premium_discount_mss.png",
+      "timeframe": "1H/5m",
+      "timeStr": "02:30",
+      "seconds": 150,
+      "titleZh": "小时图摆动低点刺穿后的结构破坏",
+      "captionZh": "小时级别波段低点被实体打穿，小周期一切反弹至溢价区的 FVG 都是送上门的做空机会。"
+    }
+  ],
+  "37": [
+    {
+      "file": "ep37_power_of_3_final_summary.png",
+      "timeframe": "Grand Summary",
+      "timeStr": "02:30",
+      "seconds": 150,
+      "titleZh": "Power of 3 与非农日规避终极总结",
+      "captionZh": "全 37 集收官总结：用 AMD 模型锁定算法节奏，避开非农等极端噪音日，在确定性最高的时段执行最简单的一招鲜。"
+    }
+  ]
+}

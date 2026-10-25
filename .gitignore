@@ -11,3 +11,5 @@ study-room/notebook.json
 study-room/history/
 study-room/native/Study.iconset/
 transcripts/raw_vtt/
+
+study-room/.notebook.lock

@@ -1,13 +1,14 @@
 {
   "repo": "Rouen007/ict-2022-study-room",
   "branch": "main",
-  "commitSha": "075d7df",
-  "commitFullSha": "075d7dfefbe0f6c657ed1c0d11fa85162a79115d",
-  "commitDate": "2026-10-25T08:03:07+08:00",
-  "commitTimestamp": 1792886587,
-  "commitMessage": "feat(sync): add red-dot update indicator when local is behind GitHub (Created by Xiao Ang)",
-  "packagedAt": "2026-10-25 08:03:16",
+  "commitFullSha": "e4378b07af52bcc0a07759fff9c0d9366800cb73",
+  "commitSha": "e4378b0",
+  "commitDate": "2026-10-25T08:03:31+08:00",
+  "commitMessage": "chore(version): sync build timestamp with commit 075d7df",
+  "dirty": true,
+  "contentSHA256": "56cd61c037b19e2ec65ca6fda710eb7da229c27ecb60130fc4c8cd07174f6fbd",
+  "packagedAt": "2026-10-25T14:46:28.983823+00:00",
+  "version": "2.0.0",
   "lessonCount": 37,
-  "imageCount": 62,
-  "version": "1.2.0"
+  "imageCount": 62
 }

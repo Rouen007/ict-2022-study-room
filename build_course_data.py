@@ -4,13 +4,15 @@ import os
 import re
 import glob
 import shutil
+import hashlib
+from pathlib import Path
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TRANSCRIPTS_DIR = os.path.join(BASE_DIR, "transcripts")
 ARTIFACT_DIR = "/Users/rouen/.gemini/antigravity/brain/2f7883a2-405d-4596-a34a-2d0b4894d4c3"
 
 # Complete metadata & Chinese study guide for all 37 episodes
-EPISODE_META = {
+LEGACY_EPISODE_META = {
     1: {
         "titleZh": "课程预期与股指期货合约底层规格",
         "module": "Module 1 · 核心模型与日内基石 (Ep 01–05)",
@@ -707,59 +709,27 @@ GLOSSARY = [
     }
 ]
 
-def parse_transcript_file(filepath):
-    with open(filepath, "r", encoding="utf-8") as f:
-        text = f.read()
-    lines = text.splitlines()
-    title = ""
-    segments = []
-    cur_header = None
-    cur_lines = []
-    for line in lines:
-        if line.startswith("# "):
-            title = line[2:].strip()
-        elif line.startswith("### ["):
-            if cur_header is not None and cur_lines:
-                segments.append({
-                    "range": cur_header,
-                    "startSec": parse_mmss(cur_header.split("-")[0].strip()),
-                    "text": " ".join(cur_lines).strip()
-                })
-            cur_header = line.replace("### [", "").replace("]", "").strip()
-            cur_lines = []
-        elif line.strip():
-            cur_lines.append(line.strip())
-    if cur_header is not None and cur_lines:
-        segments.append({
-            "range": cur_header,
-            "startSec": parse_mmss(cur_header.split("-")[0].strip()),
-            "text": " ".join(cur_lines).strip()
-        })
-    return title, segments
-
-def parse_mmss(s):
-    parts = s.split(":")
-    if len(parts) == 2:
-        return int(parts[0]) * 60 + int(parts[1])
-    elif len(parts) == 3:
-        return int(parts[0]) * 3600 + int(parts[1]) * 60 + int(parts[2])
-    return 0
+from transcript_io import parse_transcript_file, parse_mmss, transcript_identity, validate_evidence_claims
 
 def main():
     with open(os.path.join(TRANSCRIPTS_DIR, "_index.json"), "r", encoding="utf-8") as f:
         idx = json.load(f)
 
+    evidence = json.loads(Path(BASE_DIR, "references/lesson-evidence.json").read_text())
+    frames = json.loads(Path(BASE_DIR, "references/frame-manifest.json").read_text())
     episodes = []
     for item in idx:
         ep_key = item["episode"]
-        parts = ep_key.split("_", 2)
-        ep_num = int(parts[0])
-        vid_id = parts[1]
-        raw_title = parts[2]
+        ep_num, vid_id, raw_title = transcript_identity(ep_key + ".md")
         md_path = os.path.join(TRANSCRIPTS_DIR, f"{ep_key}.md")
         _, segments = parse_transcript_file(md_path)
-        meta = EPISODE_META.get(ep_num, {})
-        keyframes = EPISODE_KEYFRAMES.get(ep_num, [])
+        meta = LEGACY_EPISODE_META.get(ep_num, {})
+        keyframes = [dict(k, evidenceStatus="visual_pending", frameId=k.get("frameId") or f"ep{ep_num:02d}-{Path(k['file']).stem}") for n,k in enumerate(frames.get(str(ep_num), []))]
+        claims = evidence["claims"].get(str(ep_num), [])
+        validate_evidence_claims(claims, md_path, BASE_DIR)
+        for frame in keyframes:
+            if not Path(BASE_DIR, "study-room/lesson-assets", frame["file"]).is_file():
+                raise ValueError(f"Missing keyframe: {frame['file']}")
 
         # Estimate duration from last segment
         duration_sec = 0
@@ -772,16 +742,21 @@ def main():
             "videoId": vid_id,
             "biliUrl": f"https://www.bilibili.com/video/BV16sH963EgW/?p={ep_num}",
             "youtubeUrl": f"https://www.youtube.com/watch?v={vid_id}&list=PLOqlWG05MfW6T7mUjI2CK5BdQ6FrV3zEm",
-            "hasLocalVideo": ep_num <= 5,
-            "localVideoUrl": f"/videos/ep{ep_num:02d}.mp4" if ep_num <= 5 else None,
+            "hasLocalVideo": False,
+            "localVideoUrl": None,
             "titleEn": raw_title.replace("2022 ICT Mentorship [No Rant] ", "").lstrip("- "),
-            "titleZh": meta.get("titleZh", raw_title),
+            "titleZh": raw_title.replace("2022 ICT Mentorship [No Rant] ", "").lstrip("- "),
             "module": meta.get("module", "ICT 2022 Mentorship"),
-            "tags": meta.get("tags", []),
-            "summaryZh": meta.get("summaryZh", ""),
+            "tags": [],
+            "summaryZh": "；".join(c["detailZh"] for c in claims) if claims else "本课原稿与关键帧可供学习；旧中文归纳尚待逐项核验。",
+            "evidenceStatus": "partial_transcript_checked" if claims else "pending",
+            "legacyDraft": {"status": "unverified_archive", "metadata": meta},
+            "sourcePath": str(Path(md_path).relative_to(BASE_DIR)),
+            "biliTimeMapping": "unverified",
             "durationSec": duration_sec,
-            "wordCount": item["words"],
-            "keyPoints": meta.get("keyPoints", []),
+            "durationKind": "last_transcript_timestamp",
+            "wordCount": sum(len(seg["text"].split()) for seg in segments),
+            "keyPoints": claims,
             "keyframes": keyframes,
             "segments": segments
         })
@@ -791,34 +766,17 @@ def main():
         "bilibiliUrl": "https://www.bilibili.com/video/BV16sH963EgW/",
         "youtubePlaylistUrl": "https://www.youtube.com/playlist?list=PLOqlWG05MfW6T7mUjI2CK5BdQ6FrV3zEm",
         "totalEpisodes": len(episodes),
-        "glossary": GLOSSARY,
+        "glossary": [{"term": p["title"], "definition": p["rule"]} for p in json.loads(Path(BASE_DIR,"references/framework.json").read_text())["principles"]],
         "episodes": episodes
     }
 
-    app_src_data_dir = os.path.join(BASE_DIR, "app", "src", "data")
-    os.makedirs(app_src_data_dir, exist_ok=True)
-    out_json_path = os.path.join(app_src_data_dir, "courseData.json")
-    with open(out_json_path, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-    print(f"Wrote {out_json_path} with {len(episodes)} episodes.")
-
-    # Copy keyframes into app/public/frames/
-    frames_dir = os.path.join(BASE_DIR, "app", "public", "frames")
-    os.makedirs(frames_dir, exist_ok=True)
-    for png in glob.glob(os.path.join(ARTIFACT_DIR, "ep*.png")):
-        shutil.copy2(png, os.path.join(frames_dir, os.path.basename(png)))
-    print(f"Copied keyframes to {frames_dir}")
-
-    # Symlink or copy videos into app/public/videos/
-    pub_videos = os.path.join(BASE_DIR, "app", "public", "videos")
-    src_videos = os.path.join(BASE_DIR, "videos")
-    if os.path.lexists(pub_videos):
-        if os.path.islink(pub_videos):
-            os.unlink(pub_videos)
-        else:
-            shutil.rmtree(pub_videos)
-    os.symlink(src_videos, pub_videos)
-    print(f"Linked {src_videos} -> {pub_videos}")
+    if len(episodes) != 37 or len({e['ep'] for e in episodes}) != 37:
+        raise ValueError("Expected 37 unique episodes")
+    out_json_path = Path(BASE_DIR, "courseData.json")
+    staged = out_json_path.with_suffix(".json.pending")
+    staged.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    os.replace(staged, out_json_path)
+    print(f"Wrote {out_json_path}: {len(episodes)} episodes, {sum(len(e['segments']) for e in episodes)} segments")
 
 if __name__ == "__main__":
     main()

@@ -77,6 +77,31 @@
     `;
   }
 
+  window.renderFrameworkExtensions = function renderFrameworkExtensions() {
+    const extensions = getDistillRoot().framework?.extensions;
+    if (!extensions || (!extensions.macros?.length && !extensions.htf)) return '';
+    const spans = list => (list || []).map(pair => pair.join('–')).join('、') || '无';
+    const macros = (extensions.macros || []).map(item => `
+      <tr data-macro-id="${escapeText(item.id)}">
+        <td><strong>${escapeText(item.time)}</strong><br><small>${escapeText(item.session)}</small></td>
+        <td>${escapeText(item.durationMinutes)}分钟</td>
+        <td>${escapeText(item.focus)}<br><small>来源待核对</small></td>
+        <td>${escapeText(spans(item.entryIntersections))}</td>
+        <td>${escapeText(spans(item.outsideEntryWindows))}</td>
+      </tr>`).join('');
+    const htf = extensions.htf;
+    return `
+      <details class="framework-extensions" data-study-extensions>
+        <summary>选学补充 · Macro 时间窗口与高周期偏向（来源待核对）</summary>
+        <p>${escapeText(extensions.notice)}</p>
+        <p class="muted">时区：America/New_York。年份与具体原课片段待核验；窗口时长分别计算。</p>
+        ${macros ? `<div class="extension-table-wrap"><table class="extension-table"><thead><tr><th>观察时段</th><th>时长</th><th>观察重点</th><th>训练新开仓时间交集</th><th>不新增交易的部分</th></tr></thead><tbody>${macros}</tbody></table></div>` : ''}
+        <p class="muted">交集仅说明时间条件，仍需满足完整入场规则；右端点不含。已有持仓按事前计划管理。</p>
+        <p class="muted">NYSE主板15:50开始公布收盘竞价不平衡，16:00开始收盘竞价。Macro观察窗口与该流程分别记录。<a href="https://www.nyse.com/trade/auctions" target="_blank" rel="noopener">查看NYSE官方时间表 ↗</a></p>
+        ${htf ? `<div class="extension-htf"><strong>高周期分析笔记 · 待原课核验</strong><p>${escapeText(htf.dailyBiasAnchor)}</p><p>${escapeText(htf.dealingRangeExpansion)}</p><small>${escapeText(htf.source)}</small></div>` : ''}
+      </details>`;
+  };
+
   window.renderLessonDistill = function renderLessonDistill(lesson) {
     const root = getDistillRoot();
     const framework = root.framework || {};
@@ -132,7 +157,8 @@
           </div>
           <div class="dstages">${stages}</div>
         </div>
-        <p class="dcore"><strong>一句话：</strong>${escapeText(item.core)}</p>
+        <p class="muted"><strong>核验范围：</strong>${escapeText(item.gaps || '待核验')}</p>
+        <p class="dcore"><strong>本课状态：</strong>${escapeText(item.core)}</p>
         <div class="drules">${rulesHtml}</div>
         <div class="ddrill">
           <span><strong>自测一问：</strong>${escapeText(item.drill)}</span>
@@ -163,7 +189,7 @@
     const chainList = framework.chain || framework.stages || [];
     body.innerHTML = `
       <div>
-        <p class="eyebrow">一笔 ICT 2022 交易只走这 6 步（每节课只是往对应格子里放工具）</p>
+        <p class="eyebrow">学习室条件分析框架 v2 · 证据不足时可以停在任一步</p>
         <div class="map-stages">
           ${chainList.map((stage) => `
             <div class="map-stage">
@@ -175,7 +201,7 @@
         </div>
       </div>
       <div>
-        <p class="eyebrow">12 条跨课通用原则（点课程编号可直接跳回对应章节）</p>
+        <p class="eyebrow">12 条训练原则 · 主模型归纳，非市场必然规律</p>
         <div class="map-principles">
           ${(framework.principles || []).map((p) => {
             const stage = sMap[p.stage];
@@ -197,6 +223,8 @@
         </div>
       </div>
     `;
+
+    body.innerHTML += window.renderFrameworkExtensions();
 
     body.querySelectorAll('[data-map-lesson]').forEach((btn) => {
       btn.addEventListener('click', () => {

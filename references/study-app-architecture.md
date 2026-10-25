@@ -1,70 +1,60 @@
-# ICT 2022 学习室 App 架构与维护规范
+# 学习室工程维护
 
-> **Created by Xiao Ang** · 对应 `/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/study-room` 与 `/Users/rouen/Desktop/ICT 2022 学习室.app`。
+共同源为 `/Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship`。桌面包为 `/Users/rouen/Desktop/ICT 2022 学习室.app`。
 
----
+## 数据与维护源
 
-## 一、目录与数据流架构
+| 维护源 | 作用与产物 |
+| --- | --- |
+| `references/framework.json` | 阶段、原则、sessionPolicy与选学材料；构建生成framework.md和App体系数据。 |
+| `references/lesson-evidence.json` | 已核读的字幕片段、来源hash与显式图片引用；归因流程见 [证据规范](evidence-and-extensions.md)。 |
+| `references/frame-manifest.json` | 关键帧元数据；图注保留视觉核验状态。 |
+| `references/practice.json` | 合成练习、policyVersion和参考动作；旧回答保留。 |
+| `transcript_io.py` | 唯一字幕解析与片段校验实现；空稿、错误时间或不匹配证据应失败。 |
+| `framework_extensions.py` | Macro时钟、时长、训练时段交集；不产生方向或交易权限。 |
 
-```text
-ict-2022-mentorship/
-├── SKILL.md                          # Agent Skill 主入口
-├── agents/openai.yaml                # Codex / OpenAI Agent 声明
-├── references/                       # Skill 按需加载参考文档
-├── courseData.json                   # 37 讲元数据、时间轴节点、关键帧与术语源数据
-├── build_course_data.py              # 生成 courseData.json 的脚本
-├── build_study_room.py               # 生成 study-room 三大 JS 数据包的核心构建器
-├── ICT_2022_全37讲_图文精读手册.md   # 全 37 讲深度中文讲义源文档（含 62+ 关键帧图解与全模块拆解）
-├── transcripts/                      # 全 37 集清洗后逐分钟英文原稿 (01_*.md - 37_*.md)
-└── study-room/                       # 学习室前端与 macOS 原生封装目录
-    ├── index.html                    # 6 大学习模块主页面
-    ├── style.css / distill.css       # 纸感墨绿主题与三层提炼样式
-    ├── app.js / distill.js           # 交互逻辑、双端外链跳帧与本地存储桥接
-    ├── distill-data.js               # [自动生成] window.LESSON_DISTILL (6步链路 + 12原则 + 37集提炼卡)
-    ├── library-data.js               # [自动生成] window.ANG_LIBRARY (37集完整图文 HTML + 逐分钟原稿)
-    ├── course.js                     # [自动生成] window.STUDY_COURSE (每次3题引导练习)
-    ├── lesson-assets/                # 1080p 原片关键帧截图 (*.png)
-    ├── notebook.json                 # [运行时落盘] 用户笔记、练习记录与 Ep.04 复盘手帐
-    ├── history/                      # [运行时落盘] 按分钟防丢快照 (notebook-yyyyMMdd-HHmm.json)
-    └── native/
-        ├── App.swift                 # Cocoa + WKWebView 原生容器（含 --qa 自动体检与外链系统级拦截）
-        ├── Icon.swift                # 深曜石蓝黑 + 香槟金 FVG 专属图标生成器
-        ├── Info.plist                # local.rouen.ict2022study
-        └── build.sh                  # 一键编译、签名并输出至 ~/Desktop/ICT 2022 学习室.app
+构建链：`build_course_data.py` → 根目录 `courseData.json` → `build_study_room.py` → `study-room/{library-data,distill-data,course,version}.js` 与 `version.json`。
+
+修改维护源，不直接修改生成数据；也不要误将已标待核验的旧讲义或旧模板重新导入为有效教学规则。`references/legacy-teaching-drafts.json`及历史讲义保留供对照。
+
+## 正式笔记与恢复
+
+StudyDataPath固定绑定正式数据目录，兼容旧包StudyRootPath。页面资源可回退到包内，笔记目录不能随页面可用性改变。绑定目录缺失时停止写入，不创建空白替代目录；只有无数据路径配置的独立分发包才使用Application Support/ICT2022Study。
+
+保存通过requestId、内容token与revision确认，持有跨进程锁后检查版本，先保留有效快照再原子写正式文件。初始化不得自动写默认值；版本冲突、损坏、超限或备份失败时保留当前编辑并停止覆盖。
+
+- **原生保存失败／超时**：先导出当前编辑，再核对正式文件与快照；不能循环重试同一覆盖。
+- **缓存损坏**：保留原始字节，恢复副本写入成功后才替换缓存；原生仍可读取有效磁盘文件。
+- **重读磁盘**：使用“保留编辑副本并重读磁盘笔记”，不自行回填旧快照。浏览器异常缓存可导出原文或保留副本后启用当前记录。
+- **运行中的旧App**：先正常保存退出再重开；不要用killall强杀未保存编辑。
+
+## 按改动验证
+
+纯Skill／说明文档整理只做frontmatter、链接与差异检查，不重建课程或App。数据、行为或原生代码改变时，运行覆盖该改动的现有检查；没有新问题时不反复扩大验证。
+
+从共同源执行必要的内容／前端检查：
+
+```bash
+python3 build_course_data.py
+python3 build_study_room.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+node tests/frontend.test.cjs
 ```
 
----
+原生或打包相关变更需要隔离验收，使用独立目录：
 
-## 二、修改与重建标准流程
+```bash
+ict_qa_dir=$(mktemp -d "${TMPDIR:-/tmp}/ict-qa.XXXXXX")
+./study-room/native/build.sh "$ict_qa_dir/ICT 2022 学习室.app"
+"$ict_qa_dir/ICT 2022 学习室.app/Contents/MacOS/ICT2022Study" --qa
+```
 
-1. **修改数据或讲义内容时**：
-   - 不要直接手改生成的 `study-room/distill-data.js`、`study-room/library-data.js` 或 `study-room/course.js`，应修改 `build_course_data.py`、`build_study_room.py` 或 `ICT_2022_Ep01_05_图文精读手册.md`，然后运行：
-     ```bash
-     cd /Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship
-     python3 build_course_data.py
-     python3 build_study_room.py
-     ```
-2. **语法与原生 `--qa` 校验**：
-   ```bash
-   node --check study-room/distill.js && node --check study-room/app.js
-   killall ICT2022Study || true
-   ./study-room/native/build.sh
-   "/Users/rouen/Desktop/ICT 2022 学习室.app/Contents/MacOS/ICT2022Study" --qa
-   open "/Users/rouen/Desktop/ICT 2022 学习室.app"
-   ```
-   - **注意**：macOS 对已运行的应用执行 `open` 只会切到旧进程前台，不会重新加载新二进制文件；因此每次重编译后必须先 `killall ICT2022Study || true` 再 `open`。
+QA读取包内Resources，使用统一真实路径、临时笔记和非持久WebView缓存；不得传入正式笔记作为fixture。有25秒上限，检查课程、题库、图片、扩展展示与两次保存／重载；失败返回非零。它验证工程行为，不验证交易理论。
 
----
+`build.sh`先完成staging构建、签名和包校验，再归档同标识旧App并替换；失败恢复旧包。目标必须为绝对.app路径，不能是符号链接。必要检查通过后再安装桌面版；临时目录和旧包保留，清理遵循共享删除规则。
 
-## 三、增量补齐后续集数（Ep.06–Ep.37）1080p 关键帧流程
+## 图解与版本
 
-为了保持本地与 GitHub 仓库轻量（不留存几百 MB 的 `.mp4` 视频文件），扩充后续集数截图时严格遵循 **「临时拉流 → 截帧核验 → 即刻删流」**：
+新增图解先核读片段、按需截帧、视觉确认并保留videoId、视频版本、时间与hash。用独立临时路径，不把大体积视频放入仓库；B站时间映射未核验时只链接分集。
 
-1. 阅读 `transcripts/{ep}_*.md`，找出 ICT 在图上讲解关键结构（如 Daily Bias、Power of 3 / AMD、London/NY 扫损、SMT 背离、FVG/OB 进场）的精确时间戳。
-2. 临时拉取该集 1080p 视频流到 `/tmp/ep{ep}.mp4`：
-   ```bash
-   yt-dlp -f "bestvideo[height<=1080][ext=mp4]" -o "/tmp/ep{ep}.mp4" "https://www.youtube.com/watch?v={videoId}"
-   ```
-3. 使用 `ffmpeg -ss {MM:SS} -i /tmp/ep{ep}.mp4 -frames:v 1 -q:v 2 study-room/lesson-assets/ep{ep}_{slug}.png` 截取高清帧，并用看图工具逐张确认文字批注与 K 线清晰无误。
-4. **立即删除临时视频**：`rm -f /tmp/ep{ep}.mp4`。
-5. 将新截图信息加入 `build_course_data.py` 与 `build_study_room.py` 的提炼卡片中，重新生成并编译 App。
+版本包含source commit、dirty状态与课程／框架／练习内容指纹；Git不可读返回unknown。不同提交按祖先关系判断，不用时间先后。同步检查默认启动一次和手动检查，有超时与单次在途限制，不后台循环。

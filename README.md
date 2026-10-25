@@ -1,45 +1,46 @@
-# ICT 2022 学习室 (ICT 2022 Mentorship Study Room)
+# ICT 2022 学习室
 
-> **Created by Xiao Ang** · 针对 **2022 ICT Mentorship [No Rant]** 全 37 集课程打造的本地双语精读与交互训练系统（支持零依赖浏览器直开 & 原生 macOS 桌面应用 `ICT 2022 学习室.app`）。
+本地 No-Rant 37 集原稿、62 张关键帧、条件分析框架与练习，以及 macOS WKWebView 学习室。
 
-## 🚀 快速上手（其他人 Clone 后可直接使用）
+## 当前证据范围
 
-```bash
-git clone https://github.com/Rouen007/ict-2022-study-room.git
-cd ict-2022-study-room
-```
+2026-10-25 修复了课程归因、保存和构建问题。37集全部可读，但只对 Ep.03、22、29 的所列部分字幕要点完成本轮核读。其他旧中文讲义、图注保留为待复核资料，折叠显示；不把资料覆盖数当成教学验证数。
 
-### 方式一：直接用浏览器打开（跨平台 · 零编译）
-所有课程数据（`distill-data.js`、`library-data.js`、`course.js`）与全 37 讲 62+ 张 1080p 原片关键帧高清截图均已打包在 `study-room/` 内，直接双击或命令行打开即可使用（笔记自动保存在浏览器 `localStorage`，所有时间戳支持点击一键直达 YouTube 原片 / B站中配对应秒数）：
+- [当前训练框架](references/framework.md)（由 framework.json 生成）
+- [核读证据](references/lesson-evidence.json)
+- [工程维护与测试](references/study-app-architecture.md)
+- [修复报告](REPAIR_REPORT.md)
 
-```bash
-open study-room/index.html
-```
+## 使用
 
-### 方式二：一键编译原生 macOS 桌面应用 (`ICT 2022 学习室.app`)
-在 macOS 上运行以下命令，自动通过系统自带 `swiftc` 编译并签名至你的桌面 `~/Desktop/ICT 2022 学习室.app`（支持本地 `notebook.json` + `history/` 按分钟快照防丢落盘）：
+浏览器直接打开 `study-room/index.html`。浏览器笔记保存在当前浏览器缓存，请导出备份；原生正式笔记是独立的数据来源。
+
+macOS安装需要 Xcode Command Line Tools：
 
 ```bash
 ./study-room/native/build.sh
 open "$HOME/Desktop/ICT 2022 学习室.app"
 ```
 
----
+构建先生成完整新包，再把旧包移入桌面 `.ict-app-archives/`。不会删除旧App；编译失败不影响旧包。若旧App正在运行，先正常保存退出，再打开新版，不要强制终止带有未保存笔记的进程。
 
-## 📦 核心功能模块 (`study-room/`)
+## 修改与验证
 
-1. **01 指导课堂**：全 37 讲三层提炼卡片（`S1–S6` 交易链路 + `P01–P12` 可迁移原则）+ **全 37 讲 62+ 张 1080p 原片关键帧逐图精读与六大模块完整图文深度讲义** + 全 37 集逐分钟英文原稿与时间戳双向直达（YouTube 原片 / B站中配）。
-2. **02 多周期图谱 & 视频直达**：原片 YouTube / B站中配秒级双直达 + `1W → 1D → 1H → 15m → 2m/1m` 多周期剥洋葱交互图谱（支持盲测遮罩模式）。
-3. **03 日内时间与流程**：纽约时间轴 4 阶段（`08:30 前盘前定位` → `08:30–11:00 早盘猎杀` → `12:00–13:00 午休禁区` → `13:30–16:00 下午盘与 MOC`）、开仓前 6 步必检清单与 12 词核心术语库。
-4. **04 理解练习**：每次 3 题引导式状态判断（`Wait / Armed / Execute / Cancel / Exit`），带 SVG 盘面演化图与版本化答题记录。
-5. **05 Ep.04 复盘手帐**：严格遵循第 4 集四维复盘规范，内置 `MNQ / MES / NQ / ES` 点值与盈亏比计算器。
-6. **06 我的笔记**：原生 `WKWebView` 双写持久化（`notebook.json` + `history/` 按分钟快照）与一键「复制接续请求」。
+```bash
+python3 build_course_data.py
+python3 build_study_room.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+node tests/frontend.test.cjs
+```
 
----
+原生 `--qa` 使用临时笔记与独立缓存，检查37课、3题、62张图和两次保存重载；失败返回非零退出。完整命令见工程维护文档。
 
-## 📚 配套深度文档
+新课证据在 `references/lesson-evidence.json` 中显式绑定原稿hash与时间；图片使用frameId，不再按数组位置自动配图。B站中配尚未核对时间偏移，仅提供分集链接。
 
-- [🧭 ICT 2022 终极总结与全体系精要归纳](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/ICT_2022_终极总结与全体系精要归纳.md)：IPDA 算法逻辑、S1–S6 六阶段标准化实战决策链、12 大核心技术武器库速查与终局晋级阶梯。
-- [📘 ICT 2022 全 37 讲图文精读手册](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/ICT_2022_全37讲_图文精读手册.md)：涵盖全 37 讲 62+ 张关键帧图解、机构订单流逻辑与避坑指南的大全集讲义。
-- [知识体系总纲与六阶段链路](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/references/framework.md)：12 条核心交易原则与 S1–S6 实战决策链路。
-- [学习室技术架构与编译指南](file:///Users/rouen/.gemini/antigravity/scratch/ict-2022-mentorship/references/study-app-architecture.md)：纯原生 Swift + WKWebView 架构与增量补齐流程。
+## 笔记与恢复
+
+开发安装固定绑定 `study-room/notebook.json`，即使源码页面缺失也不切换数据目录。只有未配置数据路径的独立分发包才使用 `~/Library/Application Support/ICT2022Study/`；已绑定目录不可用时停止写入。每次保存先核对内容token，保留前后快照并原子写入。冲突或损坏时阻止覆盖；可导出当前编辑或点击“保留编辑副本并重读磁盘笔记”。恢复副本在该WebView的本地缓存中，仍应导出JSON作为持久备份。
+
+手帐区分计划、已平仓、取消、未成交和无交易；计划毛目标不等于实际盈利。既有笔记与旧版回答不会被迁移脚本改写或删除。旧版回答不与新版合成题重新评分。
+
+课程材料仅作为教学与条件分析；Execute是练习状态，不代表真实成交或下单授权。

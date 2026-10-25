@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; frame-src 'none'; object-src 'none'" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICT 2022 学习室 · Created by Xiao Ang</title>
   <link rel="stylesheet" href="style.css" />
@@ -30,14 +31,14 @@
           <span>01</span>
           <div>
             <strong>指导课堂</strong>
-            <small>37 讲三层提炼 + 1080p 图解 + 双语原稿</small>
+            <small>37 讲原稿与图解 · 标明核验状态</small>
           </div>
         </button>
         <button class="nav-btn" data-view="mtf">
           <span>02</span>
           <div>
             <strong>多周期图谱 & 原片</strong>
-            <small>1W→1D→1H→15m→2m 剥洋葱与本地视频</small>
+            <small>1W→1D→1H→15m→2m 图谱与原片外链</small>
           </div>
         </button>
         <button class="nav-btn" data-view="orderflow">
@@ -58,7 +59,7 @@
           <span>05</span>
           <div>
             <strong>Ep.04 复盘手帐</strong>
-            <small>标准四维复盘表 + NQ/ES 盈亏换算</small>
+            <small>计划、风险与结果记录</small>
           </div>
         </button>
         <button class="nav-btn" data-view="notebook">
@@ -72,7 +73,7 @@
 
       <div class="progress-card">
         <p class="eyebrow">学习原则</p>
-        <p id="principleText">流动性 (Liquidity) 先于方向，扫损 (Stop Hunt) 先于反转，位移 (Displacement) 产生 FVG，折价/溢价 (Discount/Premium) 决定挂单性价比。</p>
+        <p id="principleText">先记录当时可见证据，再提出条件路径。清扫、MSS、FVG 和 SMT 都不保证结果；训练规则与老师原话分别标注。</p>
         <div class="progress-line"><span id="progressFill"></span></div>
         <small id="progressMeta">已完成 0 / 37 讲</small>
         <small id="saveStatus" class="save-status">存储准备中…</small>
@@ -83,6 +84,7 @@
             <small>本地数据落后，点击查看 ↗</small>
           </div>
         </div>
+        <button class="ghost small" id="reloadNotebookFromDisk" type="button" hidden>保留编辑副本并重读磁盘笔记</button>
         <button class="ghost small reload-btn" id="reloadApp" type="button">刷新最新内容</button>
         <small style="display:block;margin-top:8px;color:#9ebdb0;font-size:0.72rem;text-align:center;">Created by Xiao Ang · ICT 2022 Study Room</small>
       </div>
@@ -94,7 +96,7 @@
         <header class="page-head">
           <div>
             <p class="eyebrow">第一部分 · 先建立流动性与市场结构语言</p>
-            <h2>37 讲指导课堂（全 37 讲 1080p 原片深度图解与三层提炼）</h2>
+            <h2>37 讲学习资料与证据核验</h2>
           </div>
           <div class="head-actions">
             <button class="ghost git-top-pill" id="gitTopPill" type="button" title="检查与 GitHub 仓库数据同步状态">
@@ -131,7 +133,7 @@
       <section class="view" id="view-mtf">
         <header class="page-head">
           <div>
-            <p class="eyebrow">第二部分 · 1080p 原片跳帧与多周期矩阵拆解</p>
+            <p class="eyebrow">第二部分 · 历史图谱待复核，当前规则以体系地图为准</p>
             <h2>多周期图谱 & 原片同步研读</h2>
           </div>
           <div class="head-actions">
@@ -180,6 +182,66 @@
 
         <div class="flow-steps" id="flowSteps"></div>
         <div class="flow-detail" id="flowDetail"></div>
+        <div id="frameworkExtensions"></div>
+
+        <div class="macro-timeline-card" style="margin:20px 0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px 20px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+            <div>
+              <p class="eyebrow" style="margin:0 0 4px;color:var(--gold-dark);font-weight:700;">ICT 2024 高阶时间算法扩展</p>
+              <h3 style="margin:0;font-size:1.1rem;">纽约算法宏观时间窗口 (Intraday Macro Windows · America/New_York)</h3>
+            </div>
+            <span class="badge-core">高概率时间交付</span>
+          </div>
+          <p class="muted" style="margin:0 0 14px;font-size:0.88rem;">
+            ICT 2024 核心演进：<strong>价格脱离了精确时间窗口毫无意义</strong>。以下 6 个 20 分钟局部窗口是算法集中执行流动性试探、再平衡与单向推进的高发期。
+          </p>
+          <div class="macro-grid" id="macroWindowsGrid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:12px;"></div>
+        </div>
+
+        <!-- 外部对比与补充视角：2C Trading (Al Brooks 裸K体系) -->
+        <div class="comparative-perspective-card" id="comparativePerspectiveSection">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:12px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span class="badge" style="background:#e8f4f0;color:#0d5945;font-weight:700;font-size:0.75rem;padding:3px 8px;border-radius:4px;border:1px solid #c2e2d7;">跨体系对照</span>
+                <span class="badge" style="background:#fef3e6;color:#a45b13;font-weight:700;font-size:0.75rem;padding:3px 8px;border-radius:4px;border:1px solid #fad7ad;">外部补充视角</span>
+              </div>
+              <h3 style="margin:0 0 6px;font-size:1.22rem;color:var(--text-main);">
+                外部对比与补充视角：2C Trading（Al Brooks 裸K价格行为学）
+              </h3>
+              <p class="muted" style="margin:0;font-size:0.86rem;line-height:1.5;">
+                <strong>来源与隔离声明</strong>：YouTube @2C_trading（170+ 实盘视频）· 体系基于 Al Brooks 裸K对 ES/SPX 5m 剥头皮。<strong>此视角为外部补充认知，非 ICT 官方原话</strong>。对比 FVG 与 3 根 K / 50% 挂单，帮助理解「算法交割」与「价格行为」的底层异同。
+              </p>
+            </div>
+            <div class="comp-nav-tabs" style="display:flex;gap:6px;background:#f4f6f8;padding:4px;border-radius:6px;flex-wrap:wrap;">
+              <button class="comp-tab active" data-tab="comp-matrix" type="button" style="padding:6px 14px;font-size:0.84rem;border-radius:4px;border:none;cursor:pointer;">五维对比总览</button>
+              <button class="comp-tab" data-tab="comp-3c" type="button" style="padding:6px 14px;font-size:0.84rem;border-radius:4px;border:none;cursor:pointer;">3根K微通道与50%挂单</button>
+              <button class="comp-tab" data-tab="comp-blacklist" type="button" style="padding:6px 14px;font-size:0.84rem;border-radius:4px;border:none;cursor:pointer;">10条反规则黑名单</button>
+              <button class="comp-tab" data-tab="comp-latest" type="button" style="padding:6px 14px;font-size:0.84rem;border-radius:4px;border:none;cursor:pointer;background:#eef6fc;color:#1e4e8c;font-weight:700;">2026 最新视频演进</button>
+              <button class="comp-tab" data-tab="comp-fasttrack" type="button" style="padding:6px 14px;font-size:0.84rem;border-radius:4px;border:none;cursor:pointer;background:#fef7e0;color:#8f520a;font-weight:700;">🚀 极速决策与原子卡片</button>
+            </div>
+          </div>
+
+          <div id="compTabContentMatrix" class="comp-tab-pane">
+            <div id="comparativeMatrixGrid"></div>
+          </div>
+
+          <div id="compTabContent3C" class="comp-tab-pane" style="display:none;">
+            <div id="comparative3CSopContent"></div>
+          </div>
+
+          <div id="compTabContentBlacklist" class="comp-tab-pane" style="display:none;">
+            <div id="comparativeBlacklistContent"></div>
+          </div>
+
+          <div id="compTabContentLatest" class="comp-tab-pane" style="display:none;">
+            <div id="comparativeLatestContent"></div>
+          </div>
+
+          <div id="compTabContentFastTrack" class="comp-tab-pane" style="display:none;">
+            <div id="comparativeFastTrackContent"></div>
+          </div>
+        </div>
 
         <div class="checklist-and-glossary">
           <div class="checklist-card">
@@ -253,8 +315,8 @@
               </label>
               <label>时段窗口
                 <select id="jSession">
-                  <option value="08:30-11:00 NY AM">08:30–11:00 NY 早盘窗口</option>
-                  <option value="13:30-16:00 NY PM">13:30–16:00 NY 下午盘窗口</option>
+                  <option value="08:30-12:00 NY AM">08:30–12:00 NY 早盘窗口</option>
+                  <option value="13:30-15:30 NY PM">13:30–15:30 NY 新开仓窗口</option>
                 </select>
               </label>
               <label>张数 (Contracts)
@@ -278,6 +340,12 @@
                 <input type="number" step="0.25" id="jTarget" placeholder="如 14780.75" />
               </label>
             </div>
+            <div class="j-form-row">
+              <label>记录类型<select id="jRecordType"><option value="plan">计划（尚未成交）</option><option value="closed">已平仓（含止损）</option><option value="cancelled">已取消</option><option value="missed">未成交／错过</option><option value="no_trade">无交易观察</option></select></label>
+              <label>实际退出价（已平仓必填）<input id="jActualExit" type="number" step="0.25" /></label>
+              <label>实际总费用（美元，含佣金等）<input id="jFees" type="number" min="0" step="0.01" value="0" /></label>
+              <label>观察截止时刻（纽约当地时间）<input id="jObservedAt" type="datetime-local" /></label>
+            </div>
             <div class="j-calc-preview" id="jCalcPreview">
               <span>③ 点数距离：<strong>0.00 pts</strong></span>
               <span>风险距离：<strong>0.00 pts (R:R —)</strong></span>
@@ -288,7 +356,7 @@
             </label>
             <div style="display:flex;gap:10px;margin-top:10px;">
               <button class="primary" id="saveJournalEntry" type="button">保存到复盘手帐</button>
-              <button class="ghost" id="fillDemoJournal" type="button">填入 Ep.04 原片 NQ 案例数据</button>
+              <button class="ghost" id="fillDemoJournal" type="button">填入历史示例（来源待复核）</button>
             </div>
           </div>
 
@@ -328,6 +396,7 @@
           </div>
           <div class="note-card full">
             <h3>已保存的练习回答</h3>
+            <p id="legacyAnswersHint" class="muted"></p>
             <div id="savedAnswers" class="saved-answers"></div>
           </div>
           <div class="note-card full">
@@ -404,8 +473,8 @@
       <div class="sync-cmd-card" id="syncCmdCard" style="display:none;">
         <label>终端更新命令（在项目工作区执行）：</label>
         <div class="cmd-row">
-          <code id="pullCmdText">git pull origin main && ./study-room/native/build.sh</code>
-          <button class="primary small" id="btnCopyPullCmd" type="button">复制更新命令</button>
+          <code id="pullCmdText">git status --short &amp;&amp; git fetch origin &amp;&amp; git log --oneline HEAD..origin/main</code>
+          <button class="primary small" id="btnCopyPullCmd" type="button">复制检查命令</button>
         </div>
         <small class="cmd-tip">更新拉取后，桌面 App 将自动热重载为最新讲义与图解。</small>
       </div>

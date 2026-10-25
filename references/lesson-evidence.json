@@ -1,0 +1,76 @@
+{
+  "edition": "本地 No-Rant 剪辑版，时间戳仅适用于该版本；B站对应偏移未核验",
+  "claims": {
+    "3": [
+      {
+        "id": "ep03-t65",
+        "seconds": 65,
+        "timeStr": "01:05",
+        "titleZh": "日内 MSS 的作用范围",
+        "detailZh": "原稿区分日内结构变化与可能持续多日的结构破坏；不能由日内 MSS 直接推出多日反转。",
+        "attribution": "主模型核读摘要",
+        "status": "transcript_checked",
+        "sourcePath": "transcripts/03_vJWdXPe8Reo_2022 ICT Mentorship [No Rant] ep. 3 - Internal Range Liquidity & Market Structure Shifts.md",
+        "sourceSHA256": "6bdefcca492172728dd9c29da3ed114218a1871159d7ffb0ba8ae67464859539",
+        "sourceExcerpt": "I guess the point at which you'll look for anticipate a market structure shift. And you don't force it, okay? I see a lot of people try to teach my concepts. They'll talk about market structure breaks or shifts, and we'll use that term interchangeably. But, for intraday, I want you to think about intraday market structure shifts because it's not necessarily a break in market structure that leads to prolonged multi-day movement, okay? What do I mean by that? If you see market structure that's bearish and it's broken to the downside, intraday, that may just lead to an intraday price leg that may eventually see that high be taken out in the same day. So, that's why I'm using the term market structure shift, not market structure break. For our conversation here on this mentorship, just know that when I'm going to lean on that term market structure break, it means a little bit more in context versus an intraday shift",
+        "frameIds": []
+      },
+      {
+        "id": "ep03-t245",
+        "seconds": 245,
+        "timeStr": "04:05",
+        "titleZh": "结构突破与 FVG 确认时点",
+        "detailZh": "这一具体案例允许突破短期高点而不要求收盘在其上；随后等待蜡烛收盘检查 FVG。不可把两种确认时点混为一谈。",
+        "attribution": "主模型核读摘要",
+        "status": "transcript_checked",
+        "sourcePath": "transcripts/03_vJWdXPe8Reo_2022 ICT Mentorship [No Rant] ep. 3 - Internal Range Liquidity & Market Structure Shifts.md",
+        "sourceSHA256": "6bdefcca492172728dd9c29da3ed114218a1871159d7ffb0ba8ae67464859539",
+        "sourceExcerpt": "meaningful. And then, the market will start to seek buy stops. Okay? Or buy-side liquidity. That would rest above here. Here. And here. So, here's those sell stops. So, this little area here that's shaded in, that's a area where sell stops would be residing below that 14,600 level, okay? On that 15-minute timeframe. So, the market dove into that liquidity. And you may or may not know that it's a buy. You don't need to. You anticipate a shift in market structure. When the market rallies above, when does that happen? On this candle right here. See that little white bulb? That's when you're thinking, \"Okay, now I have a condition in the marketplace that I might see an opportunity intraday. Let's see if there's further evidence to that.\" Short-term high is taken here. We traded above it. It does not need to close above it. Okay? Real important. Once that candle closes and this candle opens, you're going to monitor this candle. And you want to see, as soon as this candle closes, does it create that fair value gap?",
+        "frameIds": []
+      },
+      {
+        "id": "ep03-t789",
+        "seconds": 789,
+        "timeStr": "13:09",
+        "titleZh": "纽约交易时段",
+        "detailZh": "原稿说早盘通常08:30–11:00，可延长至中午；午休避免找新机会，下午偏好13:30后。没有在此要求12:00强制平掉所有持仓。",
+        "attribution": "主模型核读摘要",
+        "status": "transcript_checked",
+        "sourcePath": "transcripts/03_vJWdXPe8Reo_2022 ICT Mentorship [No Rant] ep. 3 - Internal Range Liquidity & Market Structure Shifts.md",
+        "sourceSHA256": "6bdefcca492172728dd9c29da3ed114218a1871159d7ffb0ba8ae67464859539",
+        "sourceExcerpt": "intraday high and low forming right before the equities open at 9:30. Pretty easy, right? The hours of operation again are generally between 8:30 in the morning to 11:00, but it can be extended all the way to New York lunch noon. I do not tend to take trades after noon local time New York. Uh that hour is usually very problematic and it's just it's better not to even look for any kind of setups. Wait until 1:00, preferably really 1:30 to 4:00, then you got the afternoon trend. Typically, you'll see between 2:00 and 3:00 there's a setup that usually forms in the afternoon trend or setup in that period of the time of the day. That will also offer opportunities, but that's outside the scope of what I'm going to be teaching in this mentorship. All right, so we talked about internal range liquidity, and internal range liquidity is looking for short-term lows or short-term highs inside a price leg that we're retracing back into. Okay, that's all it means. Internal range liquidity is a short-term higher low with stops above or below it or an imbalance in that same range of price action. And I taught you market structure shifts, showed you exactly all of what's necessary. That is all that you require, and the skill set of identifying pools",
+        "frameIds": []
+      }
+    ],
+    "22": [
+      {
+        "id": "ep22-t0",
+        "seconds": 0,
+        "timeStr": "00:00",
+        "titleZh": "日线背景与候选流动性",
+        "detailZh": "开头回顾 S&P 日线、看跌订单块、风险背景和相对等低点，随后转入小时图。本段不支持旧稿的 FOMC 14:00/14:30 时间标签。",
+        "attribution": "主模型核读摘要",
+        "status": "transcript_checked",
+        "sourcePath": "transcripts/22_y8LZDgWNS0k_2022 ICT Mentorship [No Rant] ep. 22 - ICT SMT Divergence.md",
+        "sourceSHA256": "df97319ea5462d3604b904194217b1b7b6a737db1644c45b9d47e06231ecf1c7",
+        "sourceExcerpt": "so we are looking at the EM Min S&P daily chart this is June delivery contract month for 2022 and I'm going to kind of like bring you back up to speed to what we were looking for over the last weeks or month or so remember back here we had that bearish order block I outlined that as an area to watch that and we're entering a seasonal tendency so we're going expecting lower prices we got lower prices I showed you the relationship between the dollar because it's risk off so we have all the decline taking place in the equities Market and I said that we would be likely to draw down into this relative equal low we're looking at how the market did in fact trade down into our relative equal lows so this was the draw on liquidity now imagine an you know a magnet of some kind down here and price is going to be drawn down to that level here so this is where the liquidity was and they tapped into it today so I'm going to take you into the marketplace and strip this down a little bit and give you some more details so we're going to the hourly chart all right so we had a run here",
+        "frameIds": []
+      }
+    ],
+    "29": [
+      {
+        "id": "ep29-t0",
+        "seconds": 0,
+        "timeStr": "00:00",
+        "titleZh": "窄幅看涨日案例的背景",
+        "detailZh": "开头回顾2022-05-16的看涨偏向、Nasdaq相对等高点及S&P一分图；次段讨论美联储主席讲话前波动可能收缩。本段不支持旧稿的隔夜缺口标签。",
+        "attribution": "主模型核读摘要",
+        "status": "transcript_checked",
+        "sourcePath": "transcripts/29_q59V02J9dpg_2022 ICT Mentorship [No Rant] ep. 29 - Trading Bullish Narrow Range Days.md",
+        "sourceSHA256": "088acc0a1d09c9ef103140c86b7697f634d13531e1c0e2be4de880ef3ca49a1c",
+        "sourceExcerpt": "all right folks welcome back this is episode 29 I'm going to be doing a brief review of what took place today I kind of like want to bring your attention back to that 12553 and a quarter level which is the relative equal highs here on NASDAQ so that was kind of like the basis for why I went into the market today Monday the 16th of May 2022 with the bullish bias I was looking for this draw in liquidity for Nasdaq I originally went in looking for a trade in NASDAQ but all right in &p much like the NASDAQ had a daily swing low and while we didn't have relative equal highs here for S&P the bias was in my opinion warranted for at least the beginning of the week looking for a continuation on the upside all right so we have the one minute chart I went right into the one minute chart because we're starting with a bullish bias and at 9:30 we see the market does in fact take out a short-term High it declines I'm not interested in going short it does not give me a pattern anyway notice that there's no fair value Gap Revisited the market creates this relative equal low starts a rally trades up into the afternoon in here I want to see it create a buying opportunity now the",
+        "frameIds": []
+      }
+    ]
+  }
+}
