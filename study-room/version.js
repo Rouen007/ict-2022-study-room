@@ -1,12 +1,12 @@
 window.ANG_VERSION = {
   "repo": "Rouen007/ict-2022-study-room",
   "branch": "main",
-  "commitSha": "f58278a",
-  "commitFullSha": "f58278a78265b481b47c2e0edabd21b95987bfbb",
-  "commitDate": "2026-10-24T22:31:05+08:00",
-  "commitTimestamp": 1792852265,
-  "commitMessage": "docs: add master summary and full system distillation guide (Created by Xiao Ang)",
-  "packagedAt": "2026-10-25 07:59:11",
+  "commitSha": "075d7df",
+  "commitFullSha": "075d7dfefbe0f6c657ed1c0d11fa85162a79115d",
+  "commitDate": "2026-10-25T08:03:07+08:00",
+  "commitTimestamp": 1792886587,
+  "commitMessage": "feat(sync): add red-dot update indicator when local is behind GitHub (Created by Xiao Ang)",
+  "packagedAt": "2026-10-25 08:03:16",
   "lessonCount": 37,
   "imageCount": 62,
   "version": "1.2.0"
