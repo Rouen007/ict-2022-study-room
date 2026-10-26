@@ -1,4 +1,4 @@
 interface:
   display_name: "ICT 2022 学习室"
-  short_description: "核对课程证据、点评笔记与复盘，维护学习室及 Macro/HTF 选学材料"
-  default_prompt: "使用 $ict-2022-study-room，按请求读取相关原稿、笔记或维护文档，区分已核读证据与待核验 Macro/HTF 补充。"
+  short_description: "核对ICT课程、点评笔记，按模型对照2C与Junkman并维护学习室"
+  default_prompt: "使用 $ict-2022-study-room，按请求进入课程、笔记或ICT/2C/Junkman对照，先确定模型版本，区分核读证据与待核验归纳。"

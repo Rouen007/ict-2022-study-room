@@ -45,6 +45,8 @@ class ContentTests(unittest.TestCase):
         self.assertEqual((14735 + 14855) / 2, 14795)
         self.assertGreater(14798, 14795)
         self.assertEqual((14856 - 14798) * 5, 290)
+        self.assertEqual(len(practice['batches']), 6)
+        self.assertEqual(sum(len(b['questions']) for b in practice['batches']), 18)
         self.assertTrue(all(q['sourceType']=='synthetic' for b in practice['batches'] for q in b['questions']))
 
     def test_false_evidence_fails_even_with_unchanged_file_hash(self):

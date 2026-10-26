@@ -79,6 +79,31 @@ function sample(note,updatedAt='2026-10-25T00:00:00Z') {
   t.nodes.jContracts.value='invalid';
   assert.equal(t.run('computeJournalPreview().dollars'),0);
   assert.equal(t.run('computeJournalPreview().entry'),null);
+
+  // 18 practice questions and Space R Veto Gate checks
+  assert.equal(t.run('PRACTICE_BATCHES.length'), 6);
+  assert.equal(t.run('PRACTICE_BATCHES.reduce((acc,b)=>acc+b.questions.length,0)'), 18);
+  t.nodes.jRecordType.value = 'plan';
+  t.nodes.jContracts.value = '1';
+  t.nodes.jEntry.value = '100';
+  t.nodes.jStop.value = '110';
+  t.nodes.jTarget.value = '90'; // R = 10/10 = 1.0 < 1.5
+  assert.equal(t.run('computeJournalPreview().vetoStatus.pass'), false);
+  assert.ok(t.run('computeJournalPreview().vetoStatus.message').includes('空间 R 否决门生效'));
+  t.nodes.jTarget.value = '80'; // R = 20/10 = 2.0 >= 1.5
+  assert.equal(t.run('computeJournalPreview().vetoStatus.pass'), true);
+  t.nodes.jBarrierDist = { value: '3.5' };
+  assert.equal(t.run('computeJournalPreview().vetoStatus.pass'), false);
+  assert.ok(t.run('computeJournalPreview().vetoStatus.message').includes('空间否决门生效'));
+  t.nodes.jBarrierDist = { value: '15.0' };
+  assert.equal(t.run('computeJournalPreview().vetoStatus.pass'), true);
+  t.nodes.jEnv = { value: 'trading_range' };
+  t.nodes.jSetupModel = { value: '2c_3bar_limit' };
+  assert.equal(t.run('computeJournalPreview().vetoStatus.pass'), false);
+  assert.ok(t.run('computeJournalPreview().vetoStatus.message').includes('震荡禁忌否决'));
+  t.nodes.jEnv = { value: 'trend' };
+  assert.equal(t.run('computeJournalPreview().vetoStatus.pass'), true);
+
   assert.ok(!t.run("buildVideoUrls('37', 60).biliUrl").includes('&t='));
   assert.ok(t.run("buildVideoUrls('37', 60).ytUrl").includes('FzejekE_XoM'));
   t=setup();

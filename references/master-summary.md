@@ -2,6 +2,7 @@
 
 - 当前条件框架：[framework.md](framework.md)，维护源是 [framework.json](framework.json)。
 - 原稿归因、覆盖与Macro／HTF选学：[evidence-and-extensions.md](evidence-and-extensions.md)。
+- 跨体系与极速训练：[cross-framework-guide.md](cross-framework-guide.md) → [速查卡](跨体系极速决策树与原子卡片速查表.md)。
 - 笔记／原答点评：[teaching-and-review.md](teaching-and-review.md)。
 - App工程与恢复：[study-app-architecture.md](study-app-architecture.md)。
 

@@ -299,8 +299,35 @@
 
         <div class="journal-grid">
           <div class="journal-form-card">
-            <h3>新增复盘记录（Ep.04 四维标准）</h3>
-            <p class="muted">ICT 在第 4 集反复强调：每天把高、低、点差和折算金额标在图上并记入复盘日志，不要去想“要是抓满整段能赚多少钱”，只看 FVG 内的确定性区间。</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+              <h3 style="margin:0;">新增复盘与开单前核对（Ep.04 四维标准 + Space R 否决门）</h3>
+              <span class="badge" style="background:#e8f4f0;color:#0d5945;font-weight:700;font-size:0.75rem;padding:3px 8px;border-radius:4px;border:1px solid #c2e2d7;">Space R ≥ 1.5R 否决门</span>
+            </div>
+            <p class="muted">ICT 在第 4 集反复强调：每天把高、低、点差和折算金额标在图上并记入复盘日志，不要去想“要是抓满整段能赚多少钱”，只看确定性区间。开单前系统自动执行 Space R 空间否决判定。</p>
+            
+            <div class="j-form-row" style="background:#f8fafc;padding:10px 12px;border-radius:6px;border:1px solid #e2e8f0;margin-bottom:12px;">
+              <label style="flex:1.2;">① 盘前环境先验定性
+                <select id="jEnv">
+                  <option value="trend">单边强趋势日（顺大周期/突破回踩接受）</option>
+                  <option value="wide_channel">宽通道推进日（顺大逆小/逢低做多）</option>
+                  <option value="trading_range">窄幅震荡/纠结区间（【严禁使用 50% 挂单】，中间 1/3 观望）</option>
+                  <option value="sweep_hunt">扫损震荡日（开盘贴近极限，先扫流动性后选方向）</option>
+                </select>
+              </label>
+              <label style="flex:1;">② 距前方大黄线/大墙距离 (pts)
+                <input type="number" step="0.25" id="jBarrierDist" placeholder="例如 12.5（<5点触发一票否决）" />
+              </label>
+              <label style="flex:1.2;">③ 拟匹配交易模型
+                <select id="jSetupModel">
+                  <option value="ict_fvg">卡 01 · ICT 算法猎杀 (Sweep + MSS + FVG)</option>
+                  <option value="2c_3bar_limit">卡 02 · 2C 微通道 3 根 K 50% 挂单</option>
+                  <option value="2c_wedge">卡 03 · 2C 三推楔形 (3-Push 动能竭尽 + 2nd Entry)</option>
+                  <option value="jm_btes">卡 04 · Junkman B/T/E/S (实体破 B + 回踩 T + 破 H)</option>
+                  <option value="super_trend_vwap">卡 05 · 超级趋势日 (正 Gamma + 回踩 VWAP 顺势)</option>
+                </select>
+              </label>
+            </div>
+
             <div class="j-form-row">
               <label>交易日期
                 <input type="date" id="jDate" />
@@ -346,6 +373,7 @@
               <label>实际总费用（美元，含佣金等）<input id="jFees" type="number" min="0" step="0.01" value="0" /></label>
               <label>观察截止时刻（纽约当地时间）<input id="jObservedAt" type="datetime-local" /></label>
             </div>
+            <div id="jVetoGateBanner" style="display:none;padding:10px 14px;border-radius:6px;font-size:0.86rem;font-weight:600;margin:10px 0;line-height:1.45;"></div>
             <div class="j-calc-preview" id="jCalcPreview">
               <span>③ 点数距离：<strong>0.00 pts</strong></span>
               <span>风险距离：<strong>0.00 pts (R:R —)</strong></span>

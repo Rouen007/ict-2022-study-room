@@ -1544,6 +1544,11 @@ function computeJournalPreview() {
   const recordType = document.getElementById('jRecordType')?.value || 'plan';
   const actualExit = Number(document.getElementById('jActualExit')?.value || 0);
   const fees = Number(document.getElementById('jFees')?.value || 0);
+  const env = document.getElementById('jEnv')?.value || 'trend';
+  const barrierRaw = document.getElementById('jBarrierDist')?.value;
+  const barrierDist = barrierRaw !== undefined && barrierRaw !== '' && barrierRaw !== null ? Number(barrierRaw) : null;
+  const setupModel = document.getElementById('jSetupModel')?.value || 'ict_fvg';
+
   const noTrade = recordType === 'no_trade';
   const mult = { MNQ: 2, MES: 5, NQ: 20, ES: 50 }[sym];
   const pricesOK = [entry, stop, target].every(n => Number.isFinite(n) && n > 0 && Math.abs(n * 4 - Math.round(n * 4)) < 1e-8);
@@ -1552,15 +1557,49 @@ function computeJournalPreview() {
   const error = valid ? '' : '请填写整数合约数与 0.25 的价格刻度；多单要求止损 < 入场 < 目标，空单要求目标 < 入场 < 止损；已平仓还需填写有效退出价与非负费用。';
   const pts = valid && !noTrade ? Math.abs(target - entry) : 0;
   const risk = valid && !noTrade ? Math.abs(entry - stop) : 0;
-  const rr = valid && risk > 0 ? (pts / risk).toFixed(2) : '—';
+  const numericRR = valid && risk > 0 ? (pts / risk) : 0;
+  const rr = valid && risk > 0 ? numericRR.toFixed(2) : '—';
   const dollars = noTrade ? 0 : pts * (mult || 0) * contracts;
   const riskDollars = noTrade ? 0 : risk * (mult || 0) * contracts;
   const netPnL = valid && recordType === 'closed' ? (actualExit - entry) * (long ? 1 : -1) * mult * contracts - fees : null;
+
+  // Space R Veto Gate Evaluation
+  let vetoStatus = { pass: true, type: 'pass', message: '' };
+  if (noTrade) {
+    vetoStatus = { pass: true, type: 'neutral', message: '无交易观察已记录：恪守纪律，空仓也是最高级的交易决策。' };
+  } else if (!valid) {
+    vetoStatus = { pass: false, type: 'error', message: error };
+  } else if (env === 'trading_range' && setupModel === '2c_3bar_limit') {
+    vetoStatus = { pass: false, type: 'veto', message: '⛔ 震荡禁忌否决：强阴强阳交错的震荡区间（Trading Range）严禁使用 3 根 K 50% 挂单！区间内深回撤必扫窄止损！' };
+  } else if (barrierDist !== null && Number.isFinite(barrierDist) && barrierDist < 5) {
+    vetoStatus = { pass: false, type: 'veto', message: `⛔ 空间否决门生效：距前方核心大黄线/大墙壁垒仅 ${barrierDist.toFixed(2)} 点 (< 5 点)，近端撞墙无安全操作空间，坚决放弃！` };
+  } else if (numericRR < 1.5) {
+    vetoStatus = { pass: false, type: 'veto', message: `⛔ 空间 R 否决门生效：Space R = ${rr}R < 1.5R 盈亏比严重不足，坚决撤单放弃！形态再漂亮也绝不开单。` };
+  } else if (numericRR >= 2.0) {
+    vetoStatus = { pass: true, type: 'pass_high', message: `✅ 优质计划执行：Space R = ${rr}R ≥ 2.0R 达到标准执行门槛！建议到达第一目标减仓 70% 并抬止损至保本。` };
+  } else {
+    vetoStatus = { pass: true, type: 'pass_min', message: `✅ 合格计划执行：Space R = ${rr}R ≥ 1.5R 满足最低盈亏比门槛。第一目标分批减仓并移动保本。` };
+  }
+
+  const vetoEl = document.getElementById('jVetoGateBanner');
+  if (vetoEl) {
+    vetoEl.style.display = 'block';
+    if (vetoStatus.type === 'neutral') {
+      vetoEl.style.background = '#f7fafc'; vetoEl.style.border = '1px solid #e2e8f0'; vetoEl.style.color = '#4a5568';
+    } else if (!vetoStatus.pass) {
+      vetoEl.style.background = '#fff5f5'; vetoEl.style.border = '1px solid #fed7d7'; vetoEl.style.color = '#9b2c2c';
+    } else {
+      vetoEl.style.background = '#f0fff4'; vetoEl.style.border = '1px solid #c6f6d5'; vetoEl.style.color = '#22543d';
+    }
+    vetoEl.textContent = vetoStatus.message;
+  }
+
   const preview = document.getElementById('jCalcPreview');
   if (preview) preview.textContent = noTrade ? '无交易观察也纳入复盘；请记录等待或放弃的原因。' : valid
-    ? `计划毛目标 ${pts.toFixed(2)} 点 / $${dollars.toFixed(2)}；计划风险 $${riskDollars.toFixed(2)}；R:R ${rr}（未扣费用与滑点，非实际盈利）${netPnL !== null ? `；实际净盈亏 $${netPnL.toFixed(2)}` : ''}`
+    ? `计划毛目标 ${pts.toFixed(2)} 点 / $${dollars.toFixed(2)}；计划风险 $${riskDollars.toFixed(2)}；Space R ${rr}R（未扣费用与滑点，非实际盈利）${netPnL !== null ? `；实际净盈亏 $${netPnL.toFixed(2)}` : ''}`
     : error;
-  return { sym, contracts: noTrade ? 0 : contracts, entry: noTrade ? null : entry, stop: noTrade ? null : stop, target: noTrade ? null : target, pts, risk, rr, dollars, riskDollars, valid, error, recordType, actualExit, fees, netPnL };
+
+  return { sym, contracts: noTrade ? 0 : contracts, entry: noTrade ? null : entry, stop: noTrade ? null : stop, target: noTrade ? null : target, pts, risk, rr, spaceR: numericRR, dollars, riskDollars, valid, error, recordType, actualExit, fees, netPnL, env, barrierDist, setupModel, vetoStatus };
 }
 
 function renderJournalView() {
@@ -1582,7 +1621,8 @@ function renderJournalView() {
       </div>
       <p style="margin:6px 0;font-size:0.88rem;">
         ① 入场 FVG：<b>${escapeHtml(item.entry)}</b> ｜ ② 止损：<b>${escapeHtml(item.stop)}</b> ｜ ③ 目标：<b>${escapeHtml(item.target)}</b>
-        （<b>${Number(item.points).toFixed(2)} pts</b> · R:R <b>${escapeHtml(item.rr)}</b> · ④ 计划毛目标（未核对成交） <b>$${Number(item.dollars).toLocaleString('en-US', { minimumFractionDigits: 2 })}</b>）
+        （<b>${Number(item.points).toFixed(2)} pts</b> · Space R <b>${escapeHtml(item.rr)}R</b> · ④ 计划毛目标（未核对成交） <b>$${Number(item.dollars).toLocaleString('en-US', { minimumFractionDigits: 2 })}</b>）
+        ${item.rr && item.rr !== '—' ? `<span class="badge" style="margin-left:6px;font-size:0.75rem;padding:2px 6px;border-radius:3px;background:${Number(item.rr) >= 1.5 ? '#e6fffa' : '#fff5f5'};color:${Number(item.rr) >= 1.5 ? '#234e52' : '#9b2c2c'};font-weight:700;">${Number(item.rr) >= 1.5 ? 'Space R 合格' : 'Space R 否决'}</span>` : ''}
       </p>
       <p class="muted" style="margin:4px 0 0;">${item.recordType === 'closed' && Number.isFinite(item.netPnL) ? `实际净盈亏：$${item.netPnL.toFixed(2)}（已扣记录费用）` : '尚无已核对实际净盈亏'} · ${escapeHtml(item.comment || '')}</p>
     </div>
@@ -1798,21 +1838,27 @@ function bindEvents() {
   });
 
   // Journal events
-  ['jSymbol', 'jContracts', 'jEntry', 'jStop', 'jTarget', 'jDirection', 'jRecordType', 'jActualExit', 'jFees'].forEach((id) => {
+  ['jSymbol', 'jContracts', 'jEntry', 'jStop', 'jTarget', 'jDirection', 'jRecordType', 'jActualExit', 'jFees', 'jEnv', 'jBarrierDist', 'jSetupModel'].forEach((id) => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('input', computeJournalPreview);
+    if (el) {
+      el.addEventListener('input', computeJournalPreview);
+      if (el.tagName === 'SELECT') el.addEventListener('change', computeJournalPreview);
+    }
   });
 
   document.getElementById('fillDemoJournal').addEventListener('click', () => {
     document.getElementById('jDate').value = '2022-02-04';
     document.getElementById('jSymbol').value = 'NQ';
     document.getElementById('jSession').value = '08:30-11:00 NY AM';
+    if (document.getElementById('jEnv')) document.getElementById('jEnv').value = 'trend';
+    if (document.getElementById('jBarrierDist')) document.getElementById('jBarrierDist').value = '25.00';
+    if (document.getElementById('jSetupModel')) document.getElementById('jSetupModel').value = 'ict_fvg';
     document.getElementById('jContracts').value = '1';
     document.getElementById('jDirection').value = 'Sweep BSL → Short';
     document.getElementById('jEntry').value = '14957.00';
     document.getElementById('jStop').value = '14989.50';
     document.getElementById('jTarget').value = '14780.75';
-    document.getElementById('jComment').value = '【Ep.04 实盘复盘】5m 图三推扫高后出现位移大阴线跌破结构，耐心等回抽 14957 看跌 FVG 进场，14780.75 对侧 SSL 止盈。';
+    document.getElementById('jComment').value = '【Ep.04 实盘复盘】5m 图三推扫高后出现位移大阴线跌破结构，耐心等回抽 14957 看跌 FVG 进场，14780.75 对侧 SSL 止盈。Space R = 5.42R ≥ 1.5R 满足执行门槛。';
     computeJournalPreview();
   });
 
@@ -1831,6 +1877,7 @@ function bindEvents() {
       target: calc.target,
       points: calc.pts,
       rr: calc.rr,
+      spaceR: calc.spaceR,
       dollars: calc.dollars,
       riskDollars: calc.riskDollars,
       recordType: calc.recordType,
@@ -1839,6 +1886,10 @@ function bindEvents() {
       netPnL: calc.netPnL,
       observedAtNY: document.getElementById('jObservedAt').value || null,
       timeZone: 'America/New_York',
+      env: calc.env,
+      setupModel: calc.setupModel,
+      barrierDist: calc.barrierDist,
+      vetoStatus: calc.vetoStatus,
       outcome: calc.recordType,
       comment: document.getElementById('jComment').value
     });
